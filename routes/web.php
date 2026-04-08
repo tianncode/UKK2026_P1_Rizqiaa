@@ -7,28 +7,39 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-// login
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
 Route::post('/login', [AuthC::class, 'login']);
 
-// logout
-Route::post('/logout', [AuthC::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthC::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
-Route::get('/admin', function () {
-    return view('dash');
-})->name('dashboard.admin');
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
-Route::get('/dashboard/petugas', function () {
-    return view('dashboard.petugas');
-})->name('dashboard.petugas');
+    Route::get('/admin', function () {
+        return view('dash');
+    })->name('dashboard.admin');
+});
 
-Route::get('/dashboard/peminjam', function () {
-    return view('dashboard.peminjam');
-})->name('dashboard.peminjam');
+Route::middleware(['auth', 'role:employee'])->group(function () {
 
-Route::prefix('petugas')->name('petugas.')->group(function () {
+    Route::get('/petugas', function () {
+        return view('dashboard.petugas');
+    })->name('dashboard.petugas');
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+
+    Route::get('/peminjam', function () {
+        return view('dashboard.peminjam');
+    })->name('dashboard.peminjam');
+});
+
+Route::prefix('users-management/petugas')->name('petugas.')->group(function () {
     Route::get('/', [PetugasC::class, 'index'])->name('index');
     Route::get('/create', [PetugasC::class, 'create'])->name('form');
     Route::post('/store', [PetugasC::class, 'store'])->name('store');

@@ -18,7 +18,7 @@ License: For each use you must have a valid license purchased only from above li
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Bold | Bootstrap 5 HTML Admin Dashboard Theme by KeenThemes</title>
+    <title>UKK 2026 P1-Rizqia</title>
     <meta charset="utf-8" />
     <meta name="description"
         content="Bold admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
@@ -31,13 +31,14 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/products/bold-html-pro" />
     <meta property="og:site_name" content="Bold HTML Pro by Keenthemes" />
     <link rel="canonical" href="http://preview.keenthemes.com/#" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
 
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" /> <!--end::Fonts-->
 
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
     <!--end::Vendor Stylesheets-->
 
 
@@ -100,7 +101,7 @@ License: For each use you must have a valid license purchased only from above li
 
 
     <!--begin::App-->
- <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
         <!--begin::Page-->
         <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
 
@@ -123,7 +124,8 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Logo image-->
                         <a href="index708f.html?page=index">
                             <img alt="Logo" src="assets/media/logos/default.svg" class="h-20px theme-light-show" />
-                            <img alt="Logo" src="assets/media/logos/default-dark.svg" class="h-20px theme-dark-show" />
+                            <img alt="Logo" src="assets/media/logos/default-dark.svg"
+                                class="h-20px theme-dark-show" />
                         </a>
                         <!--end::Logo image-->
                     </div>
@@ -136,8 +138,9 @@ License: For each use you must have a valid license purchased only from above li
 
                             <!--begin::Search-->
                             <div id="kt_header_search" class="header-search d-flex align-items-center w-lg-350px"
-                                data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter"
-                                data-kt-search-layout="menu" data-kt-search-responsive="true" data-kt-menu-trigger="auto"
+                                data-kt-search-keypress="true" data-kt-search-min-length="2"
+                                data-kt-search-enter="enter" data-kt-search-layout="menu"
+                                data-kt-search-responsive="true" data-kt-menu-trigger="auto"
                                 data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
 
                                 <!--begin::Tablet and mobile search toggle-->
@@ -163,9 +166,9 @@ License: For each use you must have a valid license purchased only from above li
                                             class="path1"></span><span class="path2"></span></i> <!--end::Icon-->
 
                                     <!--begin::Input-->
-                                    <input type="text" class="search-input form-control form-control rounded-1  ps-13"
-                                        name="search" value="" placeholder="Search..."
-                                        data-kt-search-element="input" />
+                                    <input type="text"
+                                        class="search-input form-control form-control rounded-1  ps-13" name="search"
+                                        value="" placeholder="Search..." data-kt-search-element="input" />
                                     <!--end::Input-->
 
                                     <!--begin::Spinner-->
@@ -180,8 +183,8 @@ License: For each use you must have a valid license purchased only from above li
                                     <span
                                         class="search-reset  btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4"
                                         data-kt-search-element="clear">
-                                        <i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0"><span class="path1"></span><span
-                                                class="path2"></span></i> </span>
+                                        <i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0"><span
+                                                class="path1"></span><span class="path2"></span></i> </span>
                                     <!--end::Reset-->
                                 </form>
                                 <!--end::Form-->
@@ -447,7 +450,8 @@ License: For each use you must have a valid license purchased only from above li
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
                                                                     class="path3"></span><span
-                                                                    class="path4"></span><span class="path5"></span></i>
+                                                                    class="path4"></span><span
+                                                                    class="path5"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -473,7 +477,8 @@ License: For each use you must have a valid license purchased only from above li
                                                             <i class="ki-duotone ki-frame fs-2 text-primary"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
-                                                                    class="path3"></span><span class="path4"></span></i>
+                                                                    class="path3"></span><span
+                                                                    class="path4"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -498,7 +503,8 @@ License: For each use you must have a valid license purchased only from above li
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-message-text-2 fs-2 text-primary"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span class="path3"></span></i>
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -523,7 +529,8 @@ License: For each use you must have a valid license purchased only from above li
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-profile-circle fs-2 text-primary"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span class="path3"></span></i>
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -582,7 +589,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-laptop fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -605,7 +613,8 @@ License: For each use you must have a valid license purchased only from above li
                                                             <i class="ki-duotone ki-chart-simple fs-2 text-primary"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
-                                                                    class="path3"></span><span class="path4"></span></i>
+                                                                    class="path3"></span><span
+                                                                    class="path4"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -626,7 +635,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-chart fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -647,7 +657,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-chart-line-down fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -668,7 +679,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-sms fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -689,7 +701,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-bank fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -710,7 +723,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-chart-line-down fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -759,7 +773,8 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--begin::Input group-->
                                         <div class="mb-5">
-                                            <input type="text" class="form-control form-control-sm form-control-solid"
+                                            <input type="text"
+                                                class="form-control form-control-sm form-control-solid"
                                                 placeholder="Contains the word" name="query" />
                                         </div>
                                         <!--end::Input group-->
@@ -772,7 +787,8 @@ License: For each use you must have a valid license purchased only from above li
                                                 <label>
                                                     <input type="radio" class="btn-check" name="type"
                                                         value="has" checked="checked" />
-                                                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">
+                                                    <span
+                                                        class="btn btn-sm btn-color-muted btn-active btn-active-primary">
                                                         All
                                                     </span>
                                                 </label>
@@ -839,7 +855,8 @@ License: For each use you must have a valid license purchased only from above li
                                                 <label>
                                                     <input type="radio" class="btn-check" name="attachment"
                                                         value="has" checked="checked" />
-                                                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">
+                                                    <span
+                                                        class="btn btn-sm btn-color-muted btn-active btn-active-primary">
                                                         Has attachment
                                                     </span>
                                                 </label>
@@ -862,8 +879,9 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--begin::Input group-->
                                         <div class="mb-5">
-                                            <select name="timezone" aria-label="Select a Timezone" data-control="select2"
-                                                data-dropdown-parent="#kt_header_search" data-placeholder="date_period"
+                                            <select name="timezone" aria-label="Select a Timezone"
+                                                data-control="select2" data-dropdown-parent="#kt_header_search"
+                                                data-placeholder="date_period"
                                                 class="form-select form-select-sm form-select-solid">
                                                 <option value="next">Within the next</option>
                                                 <option value="last">Within the last</option>
@@ -922,7 +940,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="pb-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span
+                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Projects
                                                 </span>
 
@@ -936,7 +955,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span
+                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Targets
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1"
@@ -949,7 +969,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span
+                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Affiliate Programs
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1" />
@@ -961,7 +982,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span
+                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Referrals
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1"
@@ -974,7 +996,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span
+                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Users
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1" />
@@ -1010,7 +1033,8 @@ License: For each use you must have a valid license purchased only from above li
                             </div>
 
                             <!--begin::My apps-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column w-100 w-sm-350px" data-kt-menu="true">
+                            <div class="menu menu-sub menu-sub-dropdown menu-column w-100 w-sm-350px"
+                                data-kt-menu="true">
                                 <!--begin::Card-->
                                 <div class="card">
                                     <!--begin::Card header-->
@@ -1026,9 +1050,10 @@ License: For each use you must have a valid license purchased only from above li
                                                 class="btn btn-sm btn-icon btn-active-light-primary me-n3"
                                                 data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                                 data-kt-menu-placement="bottom-end">
-                                                <i class="ki-duotone ki-setting-3 fs-2"><span class="path1"></span><span
-                                                        class="path2"></span><span class="path3"></span><span
-                                                        class="path4"></span><span class="path5"></span></i> </button>
+                                                <i class="ki-duotone ki-setting-3 fs-2"><span
+                                                        class="path1"></span><span class="path2"></span><span
+                                                        class="path3"></span><span class="path4"></span><span
+                                                        class="path5"></span></i> </button>
 
                                             <!--begin::Menu 3-->
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
@@ -1058,7 +1083,8 @@ License: For each use you must have a valid license purchased only from above li
                                                             title="Specify a target name for future usage and reference">
                                                             <i class="ki-duotone ki-information fs-6"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span class="path3"></span></i>
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i>
                                                         </span>
                                                     </a>
                                                 </div>
@@ -1118,8 +1144,8 @@ License: For each use you must have a valid license purchased only from above li
                                                                     class="form-check form-switch form-check-custom form-check-solid">
                                                                     <!--begin::Input-->
                                                                     <input class="form-check-input w-30px h-20px"
-                                                                        type="checkbox" value="1" checked="checked"
-                                                                        name="notifications" />
+                                                                        type="checkbox" value="1"
+                                                                        checked="checked" name="notifications" />
                                                                     <!--end::Input-->
 
                                                                     <!--end::Label-->
@@ -1486,7 +1512,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-35px me-4">
                                                         <span class="symbol-label bg-light-primary">
                                                             <i class="ki-duotone ki-abstract-28 fs-2 text-primary"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1516,7 +1543,8 @@ License: For each use you must have a valid license purchased only from above li
                                                         <span class="symbol-label bg-light-danger">
                                                             <i class="ki-duotone ki-information fs-2 text-danger"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span class="path3"></span></i>
+                                                                    class="path2"></span><span
+                                                                    class="path3"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1546,7 +1574,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-35px me-4">
                                                         <span class="symbol-label bg-light-warning">
                                                             <i class="ki-duotone ki-briefcase fs-2 text-warning"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1575,7 +1604,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-35px me-4">
                                                         <span class="symbol-label bg-light-success">
                                                             <i class="ki-duotone ki-abstract-12 fs-2 text-success"><span
-                                                                    class="path1"></span><span class="path2"></span></i>
+                                                                    class="path1"></span><span
+                                                                    class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1606,7 +1636,8 @@ License: For each use you must have a valid license purchased only from above li
                                                             <i class="ki-duotone ki-colors-square fs-2 text-primary"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
-                                                                    class="path3"></span><span class="path4"></span></i>
+                                                                    class="path3"></span><span
+                                                                    class="path4"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1685,7 +1716,8 @@ License: For each use you must have a valid license purchased only from above li
                                                                     class="path17"></span><span
                                                                     class="path18"></span><span
                                                                     class="path19"></span><span
-                                                                    class="path20"></span><span class="path21"></span></i>
+                                                                    class="path20"></span><span
+                                                                    class="path21"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -2070,7 +2102,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
                                             </div>
 
-                                            <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
+                                            <a href="#"
+                                                class="fw-semibold text-muted text-hover-primary fs-7">
                                                 max@kt.com </a>
                                         </div>
                                         <!--end::Username-->
@@ -2157,7 +2190,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
                                             <div class="menu-content px-3">
-                                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                                <label
+                                                    class="form-check form-switch form-check-custom form-check-solid">
                                                     <input class="form-check-input w-30px h-20px" type="checkbox"
                                                         value="1" checked="checked" name="notifications" />
                                                     <span class="form-check-label text-muted fs-7">
@@ -2231,8 +2265,8 @@ License: For each use you must have a valid license purchased only from above li
                                             <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                                 data-kt-value="dark">
                                                 <span class="menu-icon" data-kt-element="icon">
-                                                    <i class="ki-duotone ki-moon fs-2"><span class="path1"></span><span
-                                                            class="path2"></span></i>
+                                                    <i class="ki-duotone ki-moon fs-2"><span
+                                                            class="path1"></span><span class="path2"></span></i>
                                                 </span>
                                                 <span class="menu-title">
                                                     Dark
@@ -2284,8 +2318,8 @@ License: For each use you must have a valid license purchased only from above li
                                             <a href="index1477.html?page=account/settings"
                                                 class="menu-link d-flex px-5 active">
                                                 <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1" src="assets/media/flags/united-states.svg"
-                                                        alt="" />
+                                                    <img class="rounded-1"
+                                                        src="assets/media/flags/united-states.svg" alt="" />
                                                 </span>
                                                 English
                                             </a>
@@ -2416,203 +2450,197 @@ License: For each use you must have a valid license purchased only from above li
                             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
                             data-kt-toggle-name="app-sidebar-minimize">
 
-                            <i class="ki-duotone ki-exit-left fs-1 rotate-180 me-n4"><span class="path1"></span><span
-                                    class="path2"></span></i>
+                            <i class="ki-duotone ki-exit-left fs-1 rotate-180 me-n4"><span
+                                    class="path1"></span><span class="path2"></span></i>
                         </div>
                         <!--end::Sidebar toggle-->
                     </div>
 
                     <!--begin::Navs-->
-                    <div class="app-sidebar-navs flex-column-fluid py-6" id="kt_app_sidebar_navs">
+                    <div class="app-sidebar-navs flex-column-fluid py-4" id="kt_app_sidebar_navs">
                         <div id="kt_app_sidebar_navs_wrappers" class="app-sidebar-wrapper">
-                            <div id="kt_app_sidebar_navs_scroll" class="hover-scroll-y mx-3 my-2"
+                            <div id="kt_app_sidebar_navs_scroll" class="hover-scroll-y mx-2 my-2"
                                 data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
                                 data-kt-scroll-dependencies="#kt_app_sidebar_header"
                                 data-kt-scroll-wrappers="#kt_app_sidebar_navs" data-kt-scroll-offset="5px">
 
-                                <!--begin::Teams-->
-                                <div class="app-sidebar-menu-secondary menu menu-rounded menu-column mb-3 ps-6 pe-4">
-                                    <!--begin::Heading-->
-                                    <div class="menu-item mb-2">
-                                        <div class="menu-heading text-uppercase fs-7 fw-bolder">
-                                            Teams
+                                {{-- Profile Card --}}
+                                <div class="mx-3 mb-4 rounded-3 p-4 text-center" style="background:#E6F1FB;">
+                                    <div class="position-relative d-inline-block mb-2">
+                                        <div class="symbol symbol-55px symbol-circle mx-auto">
+                                            <img src="{{ Auth::user()->avatar ?? asset('assets/media/avatars/blank.png') }}"
+                                                alt="avatar" />
+                                        </div>
+                                        <span class="position-absolute bottom-0 end-0"
+                                            style="width:12px;height:12px;background:#1D9E75;border-radius:50%;border:2px solid #E6F1FB;display:block;"></span>
+                                    </div>
+                                    <div class="fw-bold fs-6 mb-1" style="color:#0C447C;">
+                                        {{ Auth::user()->detail->name }}
+                                    </div>
+                                    <div class="fs-8 mb-3" style="color:#185FA5;">{{ Auth::user()->email }}</div>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <span class="badge rounded-pill fs-8 px-3 py-2"
+                                            style="background:#B5D4F4;color:#0C447C;">{{ Auth::user()->role }}</span>
+                                    </div>
+                                </div>
+
+                                {{-- Mini Stats --}}
+                                <div class="d-grid gap-2 mx-3 mb-3" style="grid-template-columns:1fr 1fr;">
+                                    <div class="rounded-2 p-3 text-center bg-light">
+                                        <span
+                                            class="d-block fw-bold fs-4 text-gray-800">{{ $totalPeminjaman ?? 24 }}</span>
+                                        <span class="fs-8 text-muted">Peminjaman</span>
+                                    </div>
+                                    <div class="rounded-2 p-3 text-center bg-light">
+                                        <span
+                                            class="d-block fw-bold fs-4 text-gray-800">{{ $kembaliHariIni ?? 8 }}</span>
+                                        <span class="fs-8 text-muted">Kembali hari ini</span>
+                                    </div>
+                                </div>
+
+                                <div class="separator mx-3 mb-3"></div>
+
+                                {{-- Sidebar Menu --}}
+                                <div id="kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
+                                    class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary px-3">
+
+                                    {{-- ================= MENU UTAMA ================= --}}
+                                    <div class="menu-item mb-1">
+                                        <div class="menu-heading text-uppercase fs-8 fw-bolder text-muted">
+                                            Menu Utama
                                         </div>
                                     </div>
-                                    <!--end::Heading-->
-                                    <!--begin::Menu Item-->
+
+                                    {{-- ================= DASHBOARD ================= --}}
                                     <div class="menu-item">
-                                        <!--begin::Menu link-->
-                                        <a class="menu-link active" href="indexb27d.html?page=apps/projects/project">
-                                            <!--begin::Bullet-->
-                                            <span class="menu-icon">
-                                                <span class="bullet bullet-dot bg-success">
-                                                </span>
-                                            </span>
-                                            <!--end::Bullet-->
-
-
-
-                                            <!--begin::Title-->
-                                            <span class="menu-title">
-                                                AudioEngine </span>
-                                            <!--end::Title-->
+                                        <a class="menu-link" href="#">
+                                            <span class="menu-icon"><i
+                                                    class="ki-duotone ki-element-11 fs-2"></i></span>
+                                            <span class="menu-title">Dashboard</span>
                                         </a>
-                                        <!--end::Menu link-->
                                     </div>
-                                    <!--end::Menu Item-->
-                                    <!--begin::Menu Item-->
-                                    <div class="menu-item">
-                                        <!--begin::Menu link-->
-                                        <a class="menu-link " href="index26e9.html?page=apps/projects/activity">
-                                            <!--begin::Bullet-->
-                                            <span class="menu-icon">
-                                                <span class="bullet bullet-dot bg-danger">
-                                                </span>
-                                            </span>
-                                            <!--end::Bullet-->
 
-
-
-                                            <!--begin::Title-->
-                                            <span class="menu-title">
-                                                Schipol Extranet </span>
-                                            <!--end::Title-->
-                                        </a>
-                                        <!--end::Menu link-->
-                                    </div>
-                                    <!--end::Menu Item-->
-                                    <!--begin::Menu Item-->
-                                    <div class="menu-item">
-                                        <!--begin::Menu link-->
-                                        <a class="menu-link " href="indexec50.html?page=apps/projects/files">
-                                            <!--begin::Icon-->
-                                            <span class="menu-icon">
-                                                <i class="ki-duotone ki-lock-2 fs-2"><span class="path1"></span><span
-                                                        class="path2"></span><span class="path3"></span><span
-                                                        class="path4"></span><span class="path5"></span></i> </span>
-                                            <!--end::Icon-->
-
-
-                                            <!--begin::Title-->
-                                            <span class="menu-title">
-                                                ABN AMBRO </span>
-                                            <!--end::Title-->
-                                        </a>
-                                        <!--end::Menu link-->
-                                    </div>
-                                    <!--end::Menu Item-->
-                                    <!--begin::Menu Item-->
-                                    <div class="menu-item">
-                                        <!--begin::Menu link-->
-                                        <a class="menu-link " href="index962a.html?page=apps/projects/settings">
-                                            <!--begin::Icon-->
-                                            <span class="menu-icon">
-                                                <i class="ki-duotone ki-lock-2 fs-2"><span class="path1"></span><span
-                                                        class="path2"></span><span class="path3"></span><span
-                                                        class="path4"></span><span class="path5"></span></i> </span>
-                                            <!--end::Icon-->
-
-
-                                            <!--begin::Title-->
-                                            <span class="menu-title">
-                                                NS Mobile App </span>
-                                            <!--end::Title-->
-                                        </a>
-                                        <!--end::Menu link-->
-                                    </div>
-                                    <!--end::Menu Item-->
-
-                                </div>
-                                <!--end::Teams-->
-                                <!--begin::Sidebar menu-->
-                                <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
-                                    class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary ps-6 pe-0">
-                                    <!--begin::Heading-->
-                                    <div class="menu-item mb-2">
-                                        <div class="menu-heading text-uppercase fs-7 fw-bolder">
-                                            Menu
+                                    {{-- ================= ADMIN ================= --}}
+                                    @if (Auth::user()->role == 'admin')
+                                        {{-- Users Management --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('petugas.index') }}">
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-profile-user fs-2"></i></span>
+                                                <span class="menu-title">Users Management</span>
+                                            </a>
                                         </div>
+
+                                        {{-- Management Alat --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-wrench fs-2"></i></span>
+                                                <span class="menu-title">Management Alat</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Kategori --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-category fs-2"></i></span>
+                                                <span class="menu-title">Management Kategori</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Data Peminjaman --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Data Peminjaman</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Pengembalian --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Pengembalian</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Log Aktivitas --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Log Aktivitas</span>
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    {{-- ================= PETUGAS ================= --}}
+                                    @if (Auth::user()->role == 'petugas')
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Pengajuan Peminjaman</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Pengembalian</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Pelanggaran</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Laporan</span>
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    {{-- ================= PEMINJAM ================= --}}
+                                    @if (Auth::user()->role == 'peminjam')
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Daftar Alat</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Ajukan Peminjaman</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Pengembalian</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-title">Riwayat Peminjaman</span>
+                                            </a>
+                                        </div>
+                                    @endif
+                                    <div class="separator mx-1 my-3"></div>
+
+                                    {{-- Log Out --}}
+                                    <div class="menu-item">
+                                        <a class="menu-link text-danger" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <span class="menu-icon"><i
+                                                    class="ki-duotone ki-exit-right fs-2 text-danger"><span
+                                                        class="path1"></span><span
+                                                        class="path2"></span></i></span>
+                                            <span class="menu-title text-danger">Log out</span>
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">@csrf</form>
                                     </div>
-                                    <!--end::Heading-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span
-                                                class="menu-title">Dashboards</span></span>
-                                    </div><!--end:Menu item-->
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span class="menu-title">Users
-                                                Management</span><span
-                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link active"
-                                                    href="{{ route('petugas.index') }}"><span class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Petugas</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index06c5.html?page=dashboards/store-analytics"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Peminjam</span></a><!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div><!--end:Menu sub-->
-                                    </div><!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span
-                                                class="menu-title">Management Alat</span></span>
-                                    </div><!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span
-                                                class="menu-title">Management Kategori </span></span>
-                                    </div><!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span class="menu-title">Data
-                                                Peminjaman</span></span>
-                                    </div><!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span
-                                                class="menu-title">Pengembalian</span></span>
-                                    </div><!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span
-                                                        class="path4"></span></i></span><span class="menu-title">Log
-                                                Aktivitas</span></span>
-                                    </div><!--end:Menu item-->
+
                                 </div>
-                                <!--end::Sidebar menu-->
                             </div>
                         </div>
                     </div>

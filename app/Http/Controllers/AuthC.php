@@ -9,31 +9,32 @@ class AuthC extends Controller
 {
   public function login(Request $request)
   {
-    // validasi input
+    // validasi
     $request->validate([
       'email' => 'required|email',
       'password' => 'required'
     ]);
 
-    // ambil credential
     $credentials = $request->only('email', 'password');
 
-    // cek login
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
 
       $role = Auth::user()->role;
 
       if ($role == 'admin') {
-        return redirect('/admin');
-      } elseif ($role == 'petugas') {
-        return redirect('/dashboard/petugas');
-      } else {
-        return redirect('/dashboard/peminjam');
+        return redirect()->route('dashboard.admin');
+      } elseif ($role == 'employee') {
+        return redirect()->route('dashboard.petugas');
+      } elseif ($role == 'user') { 
+        return redirect()->route('dashboard.peminjam');
       }
+
+      // fallback (kalau role aneh)
+      Auth::logout();
+      return redirect()->route('login')->withErrors('Role tidak dikenali');
     }
 
-    // jika gagal
     return back()->withErrors([
       'email' => 'Email atau password salah!',
     ])->onlyInput('email');
