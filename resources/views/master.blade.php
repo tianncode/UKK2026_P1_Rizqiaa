@@ -100,12 +100,9 @@ License: For each use you must have a valid license purchased only from above li
 
 
     <!--begin::App-->
-    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+ <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
         <!--begin::Page-->
         <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
-
-
-
 
             <!--begin::Header-->
             <div id="kt_app_header" class="app-header " data-kt-sticky="true"
@@ -126,8 +123,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Logo image-->
                         <a href="index708f.html?page=index">
                             <img alt="Logo" src="assets/media/logos/default.svg" class="h-20px theme-light-show" />
-                            <img alt="Logo" src="assets/media/logos/default-dark.svg"
-                                class="h-20px theme-dark-show" />
+                            <img alt="Logo" src="assets/media/logos/default-dark.svg" class="h-20px theme-dark-show" />
                         </a>
                         <!--end::Logo image-->
                     </div>
@@ -140,9 +136,8 @@ License: For each use you must have a valid license purchased only from above li
 
                             <!--begin::Search-->
                             <div id="kt_header_search" class="header-search d-flex align-items-center w-lg-350px"
-                                data-kt-search-keypress="true" data-kt-search-min-length="2"
-                                data-kt-search-enter="enter" data-kt-search-layout="menu"
-                                data-kt-search-responsive="true" data-kt-menu-trigger="auto"
+                                data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter"
+                                data-kt-search-layout="menu" data-kt-search-responsive="true" data-kt-menu-trigger="auto"
                                 data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
 
                                 <!--begin::Tablet and mobile search toggle-->
@@ -168,9 +163,9 @@ License: For each use you must have a valid license purchased only from above li
                                             class="path1"></span><span class="path2"></span></i> <!--end::Icon-->
 
                                     <!--begin::Input-->
-                                    <input type="text"
-                                        class="search-input form-control form-control rounded-1  ps-13" name="search"
-                                        value="" placeholder="Search..." data-kt-search-element="input" />
+                                    <input type="text" class="search-input form-control form-control rounded-1  ps-13"
+                                        name="search" value="" placeholder="Search..."
+                                        data-kt-search-element="input" />
                                     <!--end::Input-->
 
                                     <!--begin::Spinner-->
@@ -185,8 +180,8 @@ License: For each use you must have a valid license purchased only from above li
                                     <span
                                         class="search-reset  btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4"
                                         data-kt-search-element="clear">
-                                        <i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0"><span
-                                                class="path1"></span><span class="path2"></span></i> </span>
+                                        <i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0"><span class="path1"></span><span
+                                                class="path2"></span></i> </span>
                                     <!--end::Reset-->
                                 </form>
                                 <!--end::Form-->
@@ -452,8 +447,7 @@ License: For each use you must have a valid license purchased only from above li
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
                                                                     class="path3"></span><span
-                                                                    class="path4"></span><span
-                                                                    class="path5"></span></i>
+                                                                    class="path4"></span><span class="path5"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -479,8 +473,7 @@ License: For each use you must have a valid license purchased only from above li
                                                             <i class="ki-duotone ki-frame fs-2 text-primary"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
-                                                                    class="path3"></span><span
-                                                                    class="path4"></span></i>
+                                                                    class="path3"></span><span class="path4"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -505,8 +498,7 @@ License: For each use you must have a valid license purchased only from above li
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-message-text-2 fs-2 text-primary"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i>
+                                                                    class="path2"></span><span class="path3"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -531,8 +523,7 @@ License: For each use you must have a valid license purchased only from above li
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-profile-circle fs-2 text-primary"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i>
+                                                                    class="path2"></span><span class="path3"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -591,8 +582,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-laptop fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -615,8 +605,7 @@ License: For each use you must have a valid license purchased only from above li
                                                             <i class="ki-duotone ki-chart-simple fs-2 text-primary"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
-                                                                    class="path3"></span><span
-                                                                    class="path4"></span></i>
+                                                                    class="path3"></span><span class="path4"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -637,8 +626,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-chart fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -659,8 +647,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-chart-line-down fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -681,8 +668,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-sms fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -703,8 +689,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-bank fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -725,8 +710,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <i class="ki-duotone ki-chart-line-down fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -775,8 +759,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--begin::Input group-->
                                         <div class="mb-5">
-                                            <input type="text"
-                                                class="form-control form-control-sm form-control-solid"
+                                            <input type="text" class="form-control form-control-sm form-control-solid"
                                                 placeholder="Contains the word" name="query" />
                                         </div>
                                         <!--end::Input group-->
@@ -789,8 +772,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <label>
                                                     <input type="radio" class="btn-check" name="type"
                                                         value="has" checked="checked" />
-                                                    <span
-                                                        class="btn btn-sm btn-color-muted btn-active btn-active-primary">
+                                                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">
                                                         All
                                                     </span>
                                                 </label>
@@ -857,8 +839,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <label>
                                                     <input type="radio" class="btn-check" name="attachment"
                                                         value="has" checked="checked" />
-                                                    <span
-                                                        class="btn btn-sm btn-color-muted btn-active btn-active-primary">
+                                                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">
                                                         Has attachment
                                                     </span>
                                                 </label>
@@ -881,9 +862,8 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--begin::Input group-->
                                         <div class="mb-5">
-                                            <select name="timezone" aria-label="Select a Timezone"
-                                                data-control="select2" data-dropdown-parent="#kt_header_search"
-                                                data-placeholder="date_period"
+                                            <select name="timezone" aria-label="Select a Timezone" data-control="select2"
+                                                data-dropdown-parent="#kt_header_search" data-placeholder="date_period"
                                                 class="form-select form-select-sm form-select-solid">
                                                 <option value="next">Within the next</option>
                                                 <option value="last">Within the last</option>
@@ -942,8 +922,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="pb-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span
-                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Projects
                                                 </span>
 
@@ -957,8 +936,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span
-                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Targets
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1"
@@ -971,8 +949,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span
-                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Affiliate Programs
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1" />
@@ -984,8 +961,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span
-                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Referrals
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1"
@@ -998,8 +974,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="py-4 border-bottom">
                                             <label
                                                 class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                                <span
-                                                    class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
+                                                <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">
                                                     Users
                                                 </span>
                                                 <input class="form-check-input" type="checkbox" value="1" />
@@ -1035,8 +1010,7 @@ License: For each use you must have a valid license purchased only from above li
                             </div>
 
                             <!--begin::My apps-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column w-100 w-sm-350px"
-                                data-kt-menu="true">
+                            <div class="menu menu-sub menu-sub-dropdown menu-column w-100 w-sm-350px" data-kt-menu="true">
                                 <!--begin::Card-->
                                 <div class="card">
                                     <!--begin::Card header-->
@@ -1052,10 +1026,9 @@ License: For each use you must have a valid license purchased only from above li
                                                 class="btn btn-sm btn-icon btn-active-light-primary me-n3"
                                                 data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                                 data-kt-menu-placement="bottom-end">
-                                                <i class="ki-duotone ki-setting-3 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span class="path4"></span><span
-                                                        class="path5"></span></i> </button>
+                                                <i class="ki-duotone ki-setting-3 fs-2"><span class="path1"></span><span
+                                                        class="path2"></span><span class="path3"></span><span
+                                                        class="path4"></span><span class="path5"></span></i> </button>
 
                                             <!--begin::Menu 3-->
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
@@ -1085,8 +1058,8 @@ License: For each use you must have a valid license purchased only from above li
                                                             title="Specify a target name for future usage and reference">
                                                             <i class="ki-duotone ki-information fs-6"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i> </span>
+                                                                    class="path2"></span><span class="path3"></span></i>
+                                                        </span>
                                                     </a>
                                                 </div>
                                                 <!--end::Menu item-->
@@ -1145,8 +1118,8 @@ License: For each use you must have a valid license purchased only from above li
                                                                     class="form-check form-switch form-check-custom form-check-solid">
                                                                     <!--begin::Input-->
                                                                     <input class="form-check-input w-30px h-20px"
-                                                                        type="checkbox" value="1"
-                                                                        checked="checked" name="notifications" />
+                                                                        type="checkbox" value="1" checked="checked"
+                                                                        name="notifications" />
                                                                     <!--end::Input-->
 
                                                                     <!--end::Label-->
@@ -1513,8 +1486,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-35px me-4">
                                                         <span class="symbol-label bg-light-primary">
                                                             <i class="ki-duotone ki-abstract-28 fs-2 text-primary"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1544,8 +1516,7 @@ License: For each use you must have a valid license purchased only from above li
                                                         <span class="symbol-label bg-light-danger">
                                                             <i class="ki-duotone ki-information fs-2 text-danger"><span
                                                                     class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i>
+                                                                    class="path2"></span><span class="path3"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1575,8 +1546,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-35px me-4">
                                                         <span class="symbol-label bg-light-warning">
                                                             <i class="ki-duotone ki-briefcase fs-2 text-warning"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1605,8 +1575,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-35px me-4">
                                                         <span class="symbol-label bg-light-success">
                                                             <i class="ki-duotone ki-abstract-12 fs-2 text-success"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
+                                                                    class="path1"></span><span class="path2"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1637,8 +1606,7 @@ License: For each use you must have a valid license purchased only from above li
                                                             <i class="ki-duotone ki-colors-square fs-2 text-primary"><span
                                                                     class="path1"></span><span
                                                                     class="path2"></span><span
-                                                                    class="path3"></span><span
-                                                                    class="path4"></span></i>
+                                                                    class="path3"></span><span class="path4"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -1717,8 +1685,7 @@ License: For each use you must have a valid license purchased only from above li
                                                                     class="path17"></span><span
                                                                     class="path18"></span><span
                                                                     class="path19"></span><span
-                                                                    class="path20"></span><span
-                                                                    class="path21"></span></i>
+                                                                    class="path20"></span><span class="path21"></span></i>
                                                         </span>
                                                     </div>
                                                     <!--end::Symbol-->
@@ -2103,8 +2070,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
                                             </div>
 
-                                            <a href="#"
-                                                class="fw-semibold text-muted text-hover-primary fs-7">
+                                            <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
                                                 max@kt.com </a>
                                         </div>
                                         <!--end::Username-->
@@ -2191,8 +2157,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
                                             <div class="menu-content px-3">
-                                                <label
-                                                    class="form-check form-switch form-check-custom form-check-solid">
+                                                <label class="form-check form-switch form-check-custom form-check-solid">
                                                     <input class="form-check-input w-30px h-20px" type="checkbox"
                                                         value="1" checked="checked" name="notifications" />
                                                     <span class="form-check-label text-muted fs-7">
@@ -2266,8 +2231,8 @@ License: For each use you must have a valid license purchased only from above li
                                             <a href="#" class="menu-link px-3 py-2" data-kt-element="mode"
                                                 data-kt-value="dark">
                                                 <span class="menu-icon" data-kt-element="icon">
-                                                    <i class="ki-duotone ki-moon fs-2"><span
-                                                            class="path1"></span><span class="path2"></span></i>
+                                                    <i class="ki-duotone ki-moon fs-2"><span class="path1"></span><span
+                                                            class="path2"></span></i>
                                                 </span>
                                                 <span class="menu-title">
                                                     Dark
@@ -2319,8 +2284,8 @@ License: For each use you must have a valid license purchased only from above li
                                             <a href="index1477.html?page=account/settings"
                                                 class="menu-link d-flex px-5 active">
                                                 <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1"
-                                                        src="assets/media/flags/united-states.svg" alt="" />
+                                                    <img class="rounded-1" src="assets/media/flags/united-states.svg"
+                                                        alt="" />
                                                 </span>
                                                 English
                                             </a>
@@ -2393,10 +2358,15 @@ License: For each use you must have a valid license purchased only from above li
 
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-5">
-                                    <a href="index5b43.html?page=authentication/sign-in/basic"
-                                        class="menu-link px-5">
+                                    <a href="#" class="menu-link px-5"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Sign Out
                                     </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
                                 <!--end::Menu item-->
                             </div>
@@ -2446,8 +2416,8 @@ License: For each use you must have a valid license purchased only from above li
                             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
                             data-kt-toggle-name="app-sidebar-minimize">
 
-                            <i class="ki-duotone ki-exit-left fs-1 rotate-180 me-n4"><span
-                                    class="path1"></span><span class="path2"></span></i>
+                            <i class="ki-duotone ki-exit-left fs-1 rotate-180 me-n4"><span class="path1"></span><span
+                                    class="path2"></span></i>
                         </div>
                         <!--end::Sidebar toggle-->
                     </div>
@@ -2472,8 +2442,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--begin::Menu Item-->
                                     <div class="menu-item">
                                         <!--begin::Menu link-->
-                                        <a class="menu-link active"
-                                            href="indexb27d.html?page=apps/projects/project">
+                                        <a class="menu-link active" href="indexb27d.html?page=apps/projects/project">
                                             <!--begin::Bullet-->
                                             <span class="menu-icon">
                                                 <span class="bullet bullet-dot bg-success">
@@ -2518,10 +2487,9 @@ License: For each use you must have a valid license purchased only from above li
                                         <a class="menu-link " href="indexec50.html?page=apps/projects/files">
                                             <!--begin::Icon-->
                                             <span class="menu-icon">
-                                                <i class="ki-duotone ki-lock-2 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span class="path4"></span><span
-                                                        class="path5"></span></i> </span>
+                                                <i class="ki-duotone ki-lock-2 fs-2"><span class="path1"></span><span
+                                                        class="path2"></span><span class="path3"></span><span
+                                                        class="path4"></span><span class="path5"></span></i> </span>
                                             <!--end::Icon-->
 
 
@@ -2539,10 +2507,9 @@ License: For each use you must have a valid license purchased only from above li
                                         <a class="menu-link " href="index962a.html?page=apps/projects/settings">
                                             <!--begin::Icon-->
                                             <span class="menu-icon">
-                                                <i class="ki-duotone ki-lock-2 fs-2"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span><span class="path4"></span><span
-                                                        class="path5"></span></i> </span>
+                                                <i class="ki-duotone ki-lock-2 fs-2"><span class="path1"></span><span
+                                                        class="path2"></span><span class="path3"></span><span
+                                                        class="path4"></span><span class="path5"></span></i> </span>
                                             <!--end::Icon-->
 
 
@@ -2568,728 +2535,81 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
                                     <!--end::Heading-->
                                     <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click"
-                                        class="menu-item here show menu-accordion ms-n5"><!--begin:Menu link--><span
-                                            class="menu-link"><span class="menu-icon"><i
+                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
+                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
                                                     class="ki-duotone ki-element-11 fs-2"><span
                                                         class="path1"></span><span class="path2"></span><span
                                                         class="path3"></span><span
                                                         class="path4"></span></i></span><span
-                                                class="menu-title">Dashboards</span><span
+                                                class="menu-title">Dashboards</span></span>
+                                    </div><!--end:Menu item-->
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
+                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
+                                                    class="ki-duotone ki-element-11 fs-2"><span
+                                                        class="path1"></span><span class="path2"></span><span
+                                                        class="path3"></span><span
+                                                        class="path4"></span></i></span><span class="menu-title">Users
+                                                Management</span><span
                                                 class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
                                         <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
                                             <div class="menu-item"><!--begin:Menu link--><a class="menu-link active"
-                                                    href="index708f.html?page=index"><span class="menu-bullet"><span
+                                                    href="{{ route('petugas.index') }}"><span class="menu-bullet"><span
                                                             class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Default</span></a><!--end:Menu link-->
+                                                        class="menu-title">Petugas</span></a><!--end:Menu link-->
                                             </div><!--end:Menu item--><!--begin:Menu item-->
                                             <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
                                                     href="index06c5.html?page=dashboards/store-analytics"><span
                                                         class="menu-bullet"><span
                                                             class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Store
-                                                        Analytics</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index273f.html?page=dashboards/logistics"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Logistics</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index13c3.html?page=dashboards/projects"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Projects</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item-->
-                                        </div><!--end:Menu sub-->
-                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-some-files fs-2"><span
-                                                        class="path1"></span><span
-                                                        class="path2"></span></i></span><span
-                                                class="menu-title">Pages</span><span
-                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index4dc9.html?page=pages/general/about"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">About Us</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index16d1.html?page=pages/general/invoice"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Invoice</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index6f2e.html?page=pages/general/faq"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">FAQ</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexd35f.html?page=pages/general/wizard"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Wizard</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexa2ad.html?page=pages/general/pricing"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Pricing</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item-->
-                                        </div><!--end:Menu sub-->
-                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-chart-pie-4 fs-1"><span
-                                                        class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span></i></span><span
-                                                class="menu-title">Account</span><span
-                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index3164.html?page=account/overview"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Overview</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index1477.html?page=account/settings"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Settings</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexbbde.html?page=account/security"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Security</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index6330.html?page=account/activity"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Activity</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index93d4.html?page=account/billing"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Billing</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index28ff.html?page=account/statements"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Statements</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexe638.html?page=account/referrals"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Referrals</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index93a9.html?page=account/api-keys"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">API Keys</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexcf4a.html?page=account/logs"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Logs</span></a><!--end:Menu link--></div>
+                                                        class="menu-title">Peminjam</span></a><!--end:Menu link-->
+                                            </div>
                                             <!--end:Menu item-->
                                         </div><!--end:Menu sub-->
-                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
+                                    </div><!--end:Menu item-->
+                                    <!--begin:Menu item-->
+                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
                                         <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-user fs-2"><span
-                                                        class="path1"></span><span
-                                                        class="path2"></span></i></span><span
-                                                class="menu-title">Authentication</span><span
-                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Sign In</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                    <!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index5b43.html?page=authentication/sign-in/basic"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Basic</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index08d9.html?page=authentication/sign-in/password-reset"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Password
-                                                                Reset</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexab86.html?page=authentication/sign-in/new-password"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">New
-                                                                Password</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Sign Up</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                    <!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexfc7e.html?page=authentication/sign-up/basic"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Basic</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexed50.html?page=authentication/sign-up/multi-steps"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Multi-steps</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index5719.html?page=authentication/sign-up/free-trial"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Free
-                                                                Trial</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index362a.html?page=authentication/sign-up/coming-soon"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Coming
-                                                                Soon</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index33bb.html?page=authentication/general/welcome"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Welcome
-                                                        Message</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexd381.html?page=authentication/general/verify-email"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Verify Email</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index0340.html?page=authentication/general/password-confirmation"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Password
-                                                        Confirmation</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexc665.html?page=authentication/general/deactivation"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Account
-                                                        Deactivation</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index6407.html?page=authentication/general/error-404"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Error 404</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="index6147.html?page=authentication/general/error-500"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Error 500</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Email Templates</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                    <!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexf7da.html?page=authentication/email/verify-email"
-                                                            target="_blank"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Verify
-                                                                Email</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index6adb.html?page=authentication/email/invitation"
-                                                            target="_blank"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Account
-                                                                Invitation</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexbbcd.html?page=authentication/email/password-reset"
-                                                            target="_blank"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Password
-                                                                Reset</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index2945.html?page=authentication/email/password-change"
-                                                            target="_blank"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Password
-                                                                Changed</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item-->
-                                        </div><!--end:Menu sub-->
-                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
-                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-chart-line-star fs-2"><span
+                                                    class="ki-duotone ki-element-11 fs-2"><span
                                                         class="path1"></span><span class="path2"></span><span
-                                                        class="path3"></span></i></span><span
-                                                class="menu-title">Apps</span><span
-                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Projects</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index99a6.html?page=apps/projects/list"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">My
-                                                                Projects</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexb27d.html?page=apps/projects/project"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">View
-                                                                Project</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexc4f8.html?page=apps/projects/targets"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Targets</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index0a67.html?page=apps/projects/budget"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Budget</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexf4d7.html?page=apps/projects/users"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Users</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexec50.html?page=apps/projects/files"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Files</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index26e9.html?page=apps/projects/activity"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Activity</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index962a.html?page=apps/projects/settings"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Settings</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">eCommerce</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                                    <div data-kt-menu-trigger="click"
-                                                        class="menu-item menu-accordion"><!--begin:Menu link--><span
-                                                            class="menu-link"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Catalog</span><span
-                                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                        <div class="menu-sub menu-sub-accordion">
-                                                            <!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexf9c0.html?page=apps/ecommerce/catalog/products"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Products</span></a><!--end:Menu link-->
-                                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index49f3.html?page=apps/ecommerce/catalog/categories"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Categories</span></a><!--end:Menu link-->
-                                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index5b94.html?page=apps/ecommerce/catalog/add-product"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Add
-                                                                        Product</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexde00.html?page=apps/ecommerce/catalog/edit-product"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Edit
-                                                                        Product</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexc8ee.html?page=apps/ecommerce/catalog/add-category"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Add
-                                                                        Category</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index3e3f.html?page=apps/ecommerce/catalog/edit-category"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Edit
-                                                                        Category</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item-->
-                                                        </div><!--end:Menu sub-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div data-kt-menu-trigger="click"
-                                                        class="menu-item menu-accordion"><!--begin:Menu link--><span
-                                                            class="menu-link"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Sales</span><span
-                                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                        <div class="menu-sub menu-sub-accordion">
-                                                            <!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index1522.html?page=apps/ecommerce/sales/listing"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Orders
-                                                                        Listing</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index8e13.html?page=apps/ecommerce/sales/details"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Order
-                                                                        Details</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexa335.html?page=apps/ecommerce/sales/add-order"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Add
-                                                                        Order</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index938f.html?page=apps/ecommerce/sales/edit-order"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Edit
-                                                                        Order</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item-->
-                                                        </div><!--end:Menu sub-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div data-kt-menu-trigger="click"
-                                                        class="menu-item menu-accordion"><!--begin:Menu link--><span
-                                                            class="menu-link"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Customers</span><span
-                                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                        <div class="menu-sub menu-sub-accordion">
-                                                            <!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexe97a.html?page=apps/ecommerce/customers/listing"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Customer
-                                                                        Listing</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index36f3.html?page=apps/ecommerce/customers/details"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Customer
-                                                                        Details</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item-->
-                                                        </div><!--end:Menu sub-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div data-kt-menu-trigger="click"
-                                                        class="menu-item menu-accordion"><!--begin:Menu link--><span
-                                                            class="menu-link"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Reports</span><span
-                                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                        <div class="menu-sub menu-sub-accordion">
-                                                            <!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index63f3.html?page=apps/ecommerce/reports/view"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Products
-                                                                        Viewed</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index735a.html?page=apps/ecommerce/reports/sales"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Sales</span></a><!--end:Menu link-->
-                                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index2735.html?page=apps/ecommerce/reports/returns"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Returns</span></a><!--end:Menu link-->
-                                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexb2eb.html?page=apps/ecommerce/reports/customer-orders"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Customer
-                                                                        Orders</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index1e64.html?page=apps/ecommerce/reports/shipping"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Shipping</span></a><!--end:Menu link-->
-                                                            </div><!--end:Menu item-->
-                                                        </div><!--end:Menu sub-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexc1d8.html?page=apps/ecommerce/settings"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Settings</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">User Management</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                                    <div data-kt-menu-trigger="click"
-                                                        class="menu-item menu-accordion mb-1">
-                                                        <!--begin:Menu link--><span class="menu-link"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Users</span><span
-                                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                        <div class="menu-sub menu-sub-accordion">
-                                                            <!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexcde1.html?page=apps/user-management/users/list"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Users
-                                                                        List</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index0081.html?page=apps/user-management/users/view"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">View
-                                                                        User</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item-->
-                                                        </div><!--end:Menu sub-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div data-kt-menu-trigger="click"
-                                                        class="menu-item menu-accordion"><!--begin:Menu link--><span
-                                                            class="menu-link"><span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Roles</span><span
-                                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                        <div class="menu-sub menu-sub-accordion">
-                                                            <!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="indexc93f.html?page=apps/user-management/roles/list"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">Roles
-                                                                        List</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item--><!--begin:Menu item-->
-                                                            <div class="menu-item"><!--begin:Menu link--><a
-                                                                    class="menu-link"
-                                                                    href="index5fae.html?page=apps/user-management/roles/view"><span
-                                                                        class="menu-bullet"><span
-                                                                            class="bullet bullet-dot"></span></span><span
-                                                                        class="menu-title">View
-                                                                        Role</span></a><!--end:Menu link--></div>
-                                                            <!--end:Menu item-->
-                                                        </div><!--end:Menu sub-->
-                                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index2c45.html?page=apps/user-management/permissions"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Permissions</span></a><!--end:Menu link-->
-                                                    </div><!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                <!--begin:Menu link--><span class="menu-link"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Subscription</span><span
-                                                        class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                                <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index1938.html?page=apps/subscriptions/getting-started"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Getting
-                                                                Started</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="indexe9b6.html?page=apps/subscriptions/list"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Subscription
-                                                                List</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index2234.html?page=apps/subscriptions/add"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">Add
-                                                                Subscription</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item--><!--begin:Menu item-->
-                                                    <div class="menu-item"><!--begin:Menu link--><a
-                                                            class="menu-link"
-                                                            href="index17f1.html?page=apps/subscriptions/view"><span
-                                                                class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span><span
-                                                                class="menu-title">View
-                                                                Subscription</span></a><!--end:Menu link--></div>
-                                                    <!--end:Menu item-->
-                                                </div><!--end:Menu sub-->
-                                            </div><!--end:Menu item-->
-                                        </div><!--end:Menu sub-->
-                                    </div><!--end:Menu item--><!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion ms-n5">
+                                                        class="path3"></span><span
+                                                        class="path4"></span></i></span><span
+                                                class="menu-title">Management Alat</span></span>
+                                    </div><!--end:Menu item-->
+                                    <!--begin:Menu item-->
+                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
                                         <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                                    class="ki-duotone ki-rescue fs-2"><span
-                                                        class="path1"></span><span
-                                                        class="path2"></span></i></span><span
-                                                class="menu-title">Help</span><span
-                                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="https://preview.keenthemes.com/html/bold-html-pro/docs/base/utilities"
-                                                    target="_blank"
-                                                    title="Check out over 200 in-house components, plugins and ready for use solutions"
-                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                    data-bs-dismiss="click" data-bs-placement="right"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Components</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="https://preview.keenthemes.com/html/bold-html-pro/docs"
-                                                    target="_blank" title="Check out the complete documentation"
-                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                    data-bs-dismiss="click" data-bs-placement="right"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Documentation</span></a><!--end:Menu link-->
-                                            </div><!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="indexa048.html?page=layout-builder"
-                                                    title="Build your layout, preview and export HTML for server side integration"
-                                                    data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                    data-bs-dismiss="click" data-bs-placement="right"><span
-                                                        class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Layout
-                                                        Builder</span></a><!--end:Menu link--></div>
-                                            <!--end:Menu item--><!--begin:Menu item-->
-                                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                                    href="https://preview.keenthemes.com/html/bold-html-pro/docs/getting-started/changelog"
-                                                    target="_blank"><span class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span><span
-                                                        class="menu-title">Changelog
-                                                        v1.0.1</span></a><!--end:Menu link--></div><!--end:Menu item-->
-                                        </div><!--end:Menu sub-->
+                                                    class="ki-duotone ki-element-11 fs-2"><span
+                                                        class="path1"></span><span class="path2"></span><span
+                                                        class="path3"></span><span
+                                                        class="path4"></span></i></span><span
+                                                class="menu-title">Management Kategori </span></span>
+                                    </div><!--end:Menu item-->
+                                    <!--begin:Menu item-->
+                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
+                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
+                                                    class="ki-duotone ki-element-11 fs-2"><span
+                                                        class="path1"></span><span class="path2"></span><span
+                                                        class="path3"></span><span
+                                                        class="path4"></span></i></span><span class="menu-title">Data
+                                                Peminjaman</span></span>
+                                    </div><!--end:Menu item-->
+                                    <!--begin:Menu item-->
+                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
+                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
+                                                    class="ki-duotone ki-element-11 fs-2"><span
+                                                        class="path1"></span><span class="path2"></span><span
+                                                        class="path3"></span><span
+                                                        class="path4"></span></i></span><span
+                                                class="menu-title">Pengembalian</span></span>
+                                    </div><!--end:Menu item-->
+                                    <!--begin:Menu item-->
+                                    <div data-kt-menu-trigger="" class="menu-item menu-accordion ms-n5">
+                                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
+                                                    class="ki-duotone ki-element-11 fs-2"><span
+                                                        class="path1"></span><span class="path2"></span><span
+                                                        class="path3"></span><span
+                                                        class="path4"></span></i></span><span class="menu-title">Log
+                                                Aktivitas</span></span>
                                     </div><!--end:Menu item-->
                                 </div>
                                 <!--end::Sidebar menu-->
@@ -3403,1067 +2723,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Toolbar-->
 
                         <!--begin::Content-->
-                        <div id="kt_app_content" class="app-content  flex-column-fluid ">
-
-
-                            <!--begin::Content container-->
-                            <div id="kt_app_content_container" class="app-container  container-fluid ">
-                                <!--begin::Row-->
-                                <div class="row gy-5 g-xl-10 mb-xl-10">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-12 col-xxl-4">
-                                        <!--begin::Row-->
-                                        <div class="row gy-5 g-xl-10">
-                                            <!--begin::Col-->
-                                            <div class="col-md-6 col-xxl-12">
-
-                                                <!--begin::Card widget 1-->
-                                                <div class="card card-flush border-0 h-xl-100" data-bs-theme="light"
-                                                    style="background-color: #22232B">
-                                                    <!--begin::Header-->
-                                                    <div class="card-header pt-2">
-                                                        <!--begin::Title-->
-                                                        <h3 class="card-title">
-                                                            <span class="text-white fs-3 fw-bold me-2">Facebook
-                                                                Campaign</span>
-
-                                                            <span class="badge badge-success">Active</span>
-                                                        </h3>
-                                                        <!--end::Title-->
-
-                                                        <!--begin::Toolbar-->
-                                                        <div class="card-toolbar">
-                                                            <!--begin::Menu-->
-                                                            <button
-                                                                class="btn btn-icon bg-white bg-opacity-10 btn-color-white btn-active-success w-25px h-25px"
-                                                                data-kt-menu-trigger="click"
-                                                                data-kt-menu-placement="bottom-end"
-                                                                data-kt-menu-overflow="true">
-
-                                                                <i class="ki-duotone ki-black-right fs-5"></i>
-                                                            </button>
-
-
-                                                            <!--begin::Menu 2-->
-                                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
-                                                                data-kt-menu="true">
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <div
-                                                                        class="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">
-                                                                        Quick Actions</div>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu separator-->
-                                                                <div class="separator mb-3 opacity-75"></div>
-                                                                <!--end::Menu separator-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        New Ticket
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        New Customer
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3"
-                                                                    data-kt-menu-trigger="hover"
-                                                                    data-kt-menu-placement="right-start">
-                                                                    <!--begin::Menu item-->
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        <span class="menu-title">New Group</span>
-                                                                        <span class="menu-arrow"></span>
-                                                                    </a>
-                                                                    <!--end::Menu item-->
-
-                                                                    <!--begin::Menu sub-->
-                                                                    <div
-                                                                        class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                                        <!--begin::Menu item-->
-                                                                        <div class="menu-item px-3">
-                                                                            <a href="#"
-                                                                                class="menu-link px-3">
-                                                                                Admin Group
-                                                                            </a>
-                                                                        </div>
-                                                                        <!--end::Menu item-->
-
-                                                                        <!--begin::Menu item-->
-                                                                        <div class="menu-item px-3">
-                                                                            <a href="#"
-                                                                                class="menu-link px-3">
-                                                                                Staff Group
-                                                                            </a>
-                                                                        </div>
-                                                                        <!--end::Menu item-->
-
-                                                                        <!--begin::Menu item-->
-                                                                        <div class="menu-item px-3">
-                                                                            <a href="#"
-                                                                                class="menu-link px-3">
-                                                                                Member Group
-                                                                            </a>
-                                                                        </div>
-                                                                        <!--end::Menu item-->
-                                                                    </div>
-                                                                    <!--end::Menu sub-->
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        New Contact
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu separator-->
-                                                                <div class="separator mt-3 opacity-75"></div>
-                                                                <!--end::Menu separator-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <div class="menu-content px-3 py-3">
-                                                                        <a class="btn btn-primary  btn-sm px-4"
-                                                                            href="#">
-                                                                            Generate Reports
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Menu item-->
-                                                            </div>
-                                                            <!--end::Menu 2-->
-
-                                                            <!--end::Menu-->
-                                                        </div>
-                                                        <!--end::Toolbar-->
-                                                    </div>
-                                                    <!--end::Header-->
-
-                                                    <!--begin::Body-->
-                                                    <div
-                                                        class="card-body d-flex justify-content-between flex-column pt-1 px-0 pb-0">
-                                                        <!--begin::Wrapper-->
-                                                        <div class="d-flex flex-wrap px-9 mb-5">
-                                                            <!--begin::Stat-->
-                                                            <div class="rounded min-w-125px py-3 px-4 my-1 me-6"
-                                                                style="border: 1px dashed rgba(255, 255, 255, 0.15)">
-                                                                <!--begin::Number-->
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="text-white fs-2 fw-bold"
-                                                                        data-kt-countup="true"
-                                                                        data-kt-countup-value="4368"
-                                                                        data-kt-countup-prefix="$">0</div>
-                                                                </div>
-                                                                <!--end::Number-->
-
-                                                                <!--begin::Label-->
-                                                                <div class="fw-semibold fs-6 text-white opacity-50">
-                                                                    New Followers</div>
-                                                                <!--end::Label-->
-                                                            </div>
-                                                            <!--end::Stat-->
-
-                                                            <!--begin::Stat-->
-                                                            <div class="rounded min-w-125px py-3 px-4 my-1"
-                                                                style="border: 1px dashed rgba(255, 255, 255, 0.15)">
-                                                                <!--begin::Number-->
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="text-white fs-2 fw-bold"
-                                                                        data-kt-countup="true"
-                                                                        data-kt-countup-value="120,000">0</div>
-                                                                </div>
-                                                                <!--end::Number-->
-
-                                                                <!--begin::Label-->
-                                                                <div class="fw-semibold fs-6 text-white opacity-50">
-                                                                    Followers Goal</div>
-                                                                <!--end::Label-->
-                                                            </div>
-                                                            <!--end::Stat-->
-                                                        </div>
-                                                        <!--end::Wrapper-->
-
-                                                        <!--begin::Chart-->
-                                                        <div id="kt_card_widget_1_chart"
-                                                            data-kt-chart-color="primary" style="height: 105px">
-                                                        </div>
-                                                        <!--end::Chart-->
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                                <!--end::Card widget 1-->
-
-
-                                            </div>
-                                            <!--end::Col-->
-
-                                            <!--begin::Col-->
-                                            <div class="col-md-6 col-xxl-12">
-
-                                                <!--begin::List widget 1-->
-                                                <div class="card card-flush h-lg-100">
-                                                    <!--begin::Header-->
-                                                    <div class="card-header pt-5">
-                                                        <!--begin::Title-->
-                                                        <h3 class="card-title align-items-start flex-column">
-                                                            <span
-                                                                class="card-label fw-bold text-gray-900">Highlights</span>
-                                                            <span class="text-gray-500 mt-1 fw-semibold fs-6">Latest
-                                                                social statistics</span>
-                                                        </h3>
-                                                        <!--end::Title-->
-
-                                                        <!--begin::Toolbar-->
-                                                        <div class="card-toolbar">
-                                                            <!--begin::Menu-->
-                                                            <button
-                                                                class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
-                                                                data-kt-menu-trigger="click"
-                                                                data-kt-menu-placement="bottom-end"
-                                                                data-kt-menu-overflow="true">
-
-                                                                <i class="ki-duotone ki-dots-square fs-1"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span><span
-                                                                        class="path3"></span><span
-                                                                        class="path4"></span></i>
-                                                            </button>
-
-                                                            <!--begin::Menu 2-->
-                                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
-                                                                data-kt-menu="true">
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <div
-                                                                        class="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">
-                                                                        Quick Actions</div>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu separator-->
-                                                                <div class="separator mb-3 opacity-75"></div>
-                                                                <!--end::Menu separator-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        New Ticket
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        New Customer
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3"
-                                                                    data-kt-menu-trigger="hover"
-                                                                    data-kt-menu-placement="right-start">
-                                                                    <!--begin::Menu item-->
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        <span class="menu-title">New Group</span>
-                                                                        <span class="menu-arrow"></span>
-                                                                    </a>
-                                                                    <!--end::Menu item-->
-
-                                                                    <!--begin::Menu sub-->
-                                                                    <div
-                                                                        class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                                        <!--begin::Menu item-->
-                                                                        <div class="menu-item px-3">
-                                                                            <a href="#"
-                                                                                class="menu-link px-3">
-                                                                                Admin Group
-                                                                            </a>
-                                                                        </div>
-                                                                        <!--end::Menu item-->
-
-                                                                        <!--begin::Menu item-->
-                                                                        <div class="menu-item px-3">
-                                                                            <a href="#"
-                                                                                class="menu-link px-3">
-                                                                                Staff Group
-                                                                            </a>
-                                                                        </div>
-                                                                        <!--end::Menu item-->
-
-                                                                        <!--begin::Menu item-->
-                                                                        <div class="menu-item px-3">
-                                                                            <a href="#"
-                                                                                class="menu-link px-3">
-                                                                                Member Group
-                                                                            </a>
-                                                                        </div>
-                                                                        <!--end::Menu item-->
-                                                                    </div>
-                                                                    <!--end::Menu sub-->
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        New Contact
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu separator-->
-                                                                <div class="separator mt-3 opacity-75"></div>
-                                                                <!--end::Menu separator-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <div class="menu-content px-3 py-3">
-                                                                        <a class="btn btn-primary  btn-sm px-4"
-                                                                            href="#">
-                                                                            Generate Reports
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Menu item-->
-                                                            </div>
-                                                            <!--end::Menu 2-->
-
-                                                            <!--end::Menu-->
-                                                        </div>
-                                                        <!--end::Toolbar-->
-                                                    </div>
-                                                    <!--end::Header-->
-
-                                                    <!--begin::Body-->
-                                                    <div class="card-body pt-5">
-                                                        <!--begin::Item-->
-                                                        <div class="d-flex flex-stack">
-                                                            <!--begin::Section-->
-                                                            <div class="text-gray-700 fw-semibold fs-6 me-2">Avg.
-                                                                Client Rating</div>
-                                                            <!--end::Section-->
-
-                                                            <!--begin::Statistics-->
-                                                            <div class="d-flex align-items-senter">
-                                                                <i
-                                                                    class="ki-duotone ki-arrow-up-right fs-2 text-success me-2"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span></i>
-
-                                                                <!--begin::Number-->
-                                                                <span class="text-gray-900 fw-bolder fs-6">7.8</span>
-                                                                <!--end::Number-->
-
-                                                                <span class="text-gray-500 fw-bold fs-6">/10</span>
-                                                            </div>
-                                                            <!--end::Statistics-->
-                                                        </div>
-                                                        <!--end::Item-->
-
-                                                        <!--begin::Separator-->
-                                                        <div class="separator separator-dashed my-3"></div>
-                                                        <!--end::Separator-->
-
-                                                        <!--begin::Item-->
-                                                        <div class="d-flex flex-stack">
-                                                            <!--begin::Section-->
-                                                            <div class="text-gray-700 fw-semibold fs-6 me-2">Instagram
-                                                                Followers</div>
-                                                            <!--end::Section-->
-
-                                                            <!--begin::Statistics-->
-                                                            <div class="d-flex align-items-senter">
-                                                                <i
-                                                                    class="ki-duotone ki-arrow-down-right fs-2 text-danger me-2"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span></i>
-
-                                                                <!--begin::Number-->
-                                                                <span class="text-gray-900 fw-bolder fs-6">730k</span>
-                                                                <!--end::Number-->
-
-
-                                                            </div>
-                                                            <!--end::Statistics-->
-                                                        </div>
-                                                        <!--end::Item-->
-
-                                                        <!--begin::Separator-->
-                                                        <div class="separator separator-dashed my-3"></div>
-                                                        <!--end::Separator-->
-
-                                                        <!--begin::Item-->
-                                                        <div class="d-flex flex-stack">
-                                                            <!--begin::Section-->
-                                                            <div class="text-gray-700 fw-semibold fs-6 me-2">Google
-                                                                Ads CPC</div>
-                                                            <!--end::Section-->
-
-                                                            <!--begin::Statistics-->
-                                                            <div class="d-flex align-items-senter">
-                                                                <i
-                                                                    class="ki-duotone ki-arrow-up-right fs-2 text-success me-2"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span></i>
-
-                                                                <!--begin::Number-->
-                                                                <span
-                                                                    class="text-gray-900 fw-bolder fs-6">$2.09</span>
-                                                                <!--end::Number-->
-
-
-                                                            </div>
-                                                            <!--end::Statistics-->
-                                                        </div>
-                                                        <!--end::Item-->
-
-
-
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                                <!--end::LIst widget 1-->
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Row-->
-                                    </div>
-                                    <!--end::Col-->
-
-                                    <!--begin::Col-->
-                                    <div class="col-xl-8">
-                                        <!--begin::Chart widget 17-->
-                                        <div class="card card-flush h-xl-100">
-                                            <!--begin::Header-->
-                                            <div class="card-header pt-7">
-                                                <!--begin::Title-->
-                                                <h3 class="card-title align-items-start flex-column">
-                                                    <span class="card-label fw-bold text-gray-900">Sales
-                                                        Statistics</span>
-
-                                                    <span class="text-gray-500 pt-2 fw-semibold fs-6">Top Selling
-                                                        Countries</span>
-                                                </h3>
-                                                <!--end::Title-->
-
-                                                <!--begin::Toolbar-->
-                                                <div class="card-toolbar">
-                                                    <!--begin::Menu-->
-                                                    <button
-                                                        class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end"
-                                                        data-kt-menu-overflow="true">
-                                                        <i class="ki-duotone ki-dots-square fs-1 text-gray-500 me-n1"><span
-                                                                class="path1"></span><span
-                                                                class="path2"></span><span
-                                                                class="path3"></span><span
-                                                                class="path4"></span></i>
-                                                    </button>
-
-                                                    <!--begin::Menu-->
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold w-100px py-4"
-                                                        data-kt-menu="true">
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                Remove
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                Mute
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                Settings
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                    </div>
-                                                    <!--end::Menu-->
-
-                                                    <!--end::Menu-->
-                                                </div>
-                                                <!--end::Toolbar-->
-                                            </div>
-                                            <!--end::Header-->
-
-                                            <!--begin::Body-->
-                                            <div class="card-body pt-5">
-                                                <!--begin::Chart container-->
-                                                <div id="kt_charts_widget_16_chart" class="w-100 h-350px"></div>
-                                                <!--end::Chart container-->
-                                            </div>
-                                            <!--end::Body-->
-                                        </div>
-                                        <!--end::Chart widget 17-->
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-
-                                <!--begin::Row-->
-                                <div class="row gx-5 gx-xl-10">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-4 mb-5 mb-xl-10">
-                                        <!--begin::Chart widget 29-->
-                                        <div class="card card-flush h-xl-100">
-                                            <!--begin::Header-->
-                                            <div class="card-header py-7">
-                                                <!--begin::Statistics-->
-                                                <div class="m-0">
-                                                    <!--begin::Heading-->
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <!--begin::Title-->
-                                                        <span
-                                                            class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">7,9</span>
-                                                        <!--end::Title-->
-
-                                                        <!--begin::Label-->
-                                                        <span class="badge badge-light-success fs-base">
-                                                            <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span></i>
-                                                            2.2%
-                                                        </span>
-                                                        <!--end::Label-->
-                                                    </div>
-                                                    <!--end::Heading-->
-
-                                                    <!--begin::Description-->
-                                                    <span class="fs-6 fw-semibold text-gray-500">Avarage
-                                                        Position</span>
-                                                    <!--end::Description-->
-                                                </div>
-                                                <!--end::Statistics-->
-
-                                                <!--begin::Toolbar-->
-                                                <div class="card-toolbar">
-                                                    <!--begin::Menu-->
-                                                    <button
-                                                        class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end"
-                                                        data-kt-menu-overflow="true">
-                                                        <i class="ki-duotone ki-dots-square fs-1 text-gray-500 me-n1"><span
-                                                                class="path1"></span><span
-                                                                class="path2"></span><span
-                                                                class="path3"></span><span
-                                                                class="path4"></span></i>
-                                                    </button>
-
-
-                                                    <!--begin::Menu 2-->
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
-                                                        data-kt-menu="true">
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <div
-                                                                class="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">
-                                                                Quick Actions</div>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu separator-->
-                                                        <div class="separator mb-3 opacity-75"></div>
-                                                        <!--end::Menu separator-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                New Ticket
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                New Customer
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                            data-kt-menu-placement="right-start">
-                                                            <!--begin::Menu item-->
-                                                            <a href="#" class="menu-link px-3">
-                                                                <span class="menu-title">New Group</span>
-                                                                <span class="menu-arrow"></span>
-                                                            </a>
-                                                            <!--end::Menu item-->
-
-                                                            <!--begin::Menu sub-->
-                                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        Admin Group
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        Staff Group
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        Member Group
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-                                                            </div>
-                                                            <!--end::Menu sub-->
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                New Contact
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu separator-->
-                                                        <div class="separator mt-3 opacity-75"></div>
-                                                        <!--end::Menu separator-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <div class="menu-content px-3 py-3">
-                                                                <a class="btn btn-primary  btn-sm px-4"
-                                                                    href="#">
-                                                                    Generate Reports
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                    </div>
-                                                    <!--end::Menu 2-->
-
-                                                    <!--end::Menu-->
-                                                </div>
-                                                <!--end::Toolbar-->
-                                            </div>
-                                            <!--end::Header-->
-
-                                            <!--begin::Body-->
-                                            <div class="card-body d-flex align-items-end p-0">
-                                                <!--begin::Chart-->
-                                                <div id="kt_charts_widget_29"
-                                                    class="h-300px w-100 min-h-auto ps-7 pe-0 mb-5"></div>
-                                                <!--end::Chart-->
-                                            </div>
-                                            <!--end::Body-->
-                                        </div>
-                                        <!--end::Chart widget 29-->
-
-
-                                    </div>
-                                    <!--end::Col-->
-
-                                    <!--begin::Col-->
-                                    <div class="col-xl-8 mb-5 mb-xl-10">
-
-                                        <!--begin::Chart widget 24-->
-                                        <div class="card card-flush overflow-hidden h-xl-100">
-                                            <!--begin::Header-->
-                                            <div class="card-header py-5">
-                                                <!--begin::Title-->
-                                                <h3 class="card-title align-items-start flex-column">
-                                                    <span class="card-label fw-bold text-gray-900">Human
-                                                        Resources</span>
-                                                    <span class="text-gray-500 mt-1 fw-semibold fs-6">Reports by
-                                                        states and ganders</span>
-                                                </h3>
-                                                <!--end::Title-->
-
-                                                <!--begin::Toolbar-->
-                                                <div class="card-toolbar">
-                                                    <!--begin::Menu-->
-                                                    <button
-                                                        class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end"
-                                                        data-kt-menu-overflow="true">
-
-                                                        <i class="ki-duotone ki-dots-square fs-1"><span
-                                                                class="path1"></span><span
-                                                                class="path2"></span><span
-                                                                class="path3"></span><span
-                                                                class="path4"></span></i>
-                                                    </button>
-
-                                                    <!--begin::Menu 2-->
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
-                                                        data-kt-menu="true">
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <div
-                                                                class="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">
-                                                                Quick Actions</div>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu separator-->
-                                                        <div class="separator mb-3 opacity-75"></div>
-                                                        <!--end::Menu separator-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                New Ticket
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                New Customer
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                            data-kt-menu-placement="right-start">
-                                                            <!--begin::Menu item-->
-                                                            <a href="#" class="menu-link px-3">
-                                                                <span class="menu-title">New Group</span>
-                                                                <span class="menu-arrow"></span>
-                                                            </a>
-                                                            <!--end::Menu item-->
-
-                                                            <!--begin::Menu sub-->
-                                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        Admin Group
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        Staff Group
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3">
-                                                                        Member Group
-                                                                    </a>
-                                                                </div>
-                                                                <!--end::Menu item-->
-                                                            </div>
-                                                            <!--end::Menu sub-->
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">
-                                                                New Contact
-                                                            </a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-
-                                                        <!--begin::Menu separator-->
-                                                        <div class="separator mt-3 opacity-75"></div>
-                                                        <!--end::Menu separator-->
-
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <div class="menu-content px-3 py-3">
-                                                                <a class="btn btn-primary  btn-sm px-4"
-                                                                    href="#">
-                                                                    Generate Reports
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                    </div>
-                                                    <!--end::Menu 2-->
-
-                                                    <!--end::Menu-->
-                                                </div>
-                                                <!--end::Toolbar-->
-                                            </div>
-                                            <!--end::Header-->
-
-                                            <!--begin::Card body-->
-                                            <div class="card-body pt-0">
-                                                <!--begin::Chart-->
-                                                <div id="kt_charts_widget_24" class="min-h-auto"
-                                                    style="height: 300px"></div>
-                                                <!--end::Chart-->
-                                            </div>
-                                            <!--end::Card body-->
-                                        </div>
-                                        <!--end::Chart widget 24-->
-
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-
-                                <!--begin::Row-->
-                                <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-4">
-
-                                        <!--begin::Engage widget 1-->
-                                        <div class="card h-md-100" dir="ltr">
-                                            <!--begin::Body-->
-                                            <div class="card-body d-flex flex-column flex-center">
-                                                <!--begin::Heading-->
-                                                <div class="mb-2">
-                                                    <!--begin::Title-->
-                                                    <h1 class="fw-semibold text-gray-800 text-center lh-lg">
-                                                        Have your tried <br /> new
-                                                        <span class="fw-bolder"> Invoice Manager?</span>
-                                                    </h1>
-                                                    <!--end::Title-->
-
-                                                    <!--begin::Illustration-->
-                                                    <div class="py-10 text-center">
-                                                        <img src="assets/media/svg/illustrations/easy/2.svg"
-                                                            class="theme-light-show h-125px" alt="" />
-                                                        <img src="assets/media/svg/illustrations/easy/2-dark.svg"
-                                                            class="theme-dark-show h-125px" alt="" />
-                                                    </div>
-                                                    <!--end::Illustration-->
-                                                </div>
-                                                <!--end::Heading-->
-
-                                                <!--begin::Links-->
-                                                <div class="text-center mb-1">
-                                                    <!--begin::Link-->
-                                                    <a class="btn btn-sm btn-primary me-2"
-                                                        data-bs-target="#kt_modal_offer_a_deal"
-                                                        data-bs-toggle="modal">
-                                                        Try Now </a>
-                                                    <!--end::Link-->
-
-                                                    <!--begin::Link-->
-                                                    <a class="btn btn-sm btn-light"
-                                                        href="index93d4.html?page=account/billing">
-                                                        Learn More </a>
-                                                    <!--end::Link-->
-                                                </div>
-                                                <!--end::Links-->
-                                            </div>
-                                            <!--end::Body-->
-                                        </div>
-                                        <!--end::Engage widget 1-->
-
-                                    </div>
-                                    <!--end::Col-->
-
-                                    <!--begin::Col-->
-                                    <div class="col-xl-8">
-
-
-                                        <!--begin::Engage widget 7-->
-                                        <div class="card card-flush h-xl-100">
-                                            <!--begin::Header-->
-                                            <div class="card-header pt-7">
-                                                <!--begin::Title-->
-                                                <h3 class="card-title align-items-start flex-column">
-                                                    <span class="card-label fw-bold text-gray-900">Recent
-                                                        Followers</span>
-                                                    <span class="text-gray-500 mt-1 fw-semibold fs-6">Total 424,567
-                                                        deliveries</span>
-                                                </h3>
-                                                <!--end::Title-->
-
-                                                <!--begin::Toolbar-->
-                                                <div class="card-toolbar">
-                                                    <a href="index28ff.html?page=account/statements"
-                                                        class="btn btn-sm btn-light">History</a>
-                                                </div>
-                                                <!--end::Toolbar-->
-                                            </div>
-                                            <!--end::Header-->
-
-                                            <!--begin::Card body-->
-                                            <div class="card-body pt-7">
-                                                <!--begin::Row-->
-                                                <div class="row align-items-end h-100 gx-5 gx-xl-10">
-
-                                                    <!--begin::Col-->
-                                                    <div class="col-md-4 mb-11 mb-md-0">
-                                                        <!--begin::Overlay-->
-                                                        <a class="d-block overlay"
-                                                            data-fslightbox="lightbox-hot-sales"
-                                                            href="assets/media/stock/900x600/42.jpg">
-                                                            <!--begin::Image-->
-                                                            <div class="overlay-wrapper bgi-position-center bgi-no-repeat bgi-size-cover h-200px card-rounded mb-3"
-                                                                style="height: 266px;background-image:url('/bold-html-pro/assets/media/stock/900x600/42.jpg">
-                                                            </div>
-                                                            <!--end::Image-->
-
-                                                            <!--begin::Action-->
-                                                            <div
-                                                                class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                                                <i class="ki-duotone ki-eye fs-3x text-white"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span><span
-                                                                        class="path3"></span></i>
-                                                            </div>
-                                                            <!--end::Action-->
-                                                        </a>
-                                                        <!--end::Overlay-->
-
-                                                        <!--begin::Info-->
-                                                        <div class="m-0">
-                                                            <!--begin::Title-->
-                                                            <a href="#"
-                                                                class="text-gray-800 text-hover-primary fs-3 fw-bold d-block mb-2">Feeling
-                                                                Good</a>
-                                                            <!--end::Title-->
-
-                                                            <!--begin::Time-->
-                                                            <span class="fw-bold fs-6 text-gray-500 d-block lh-1">2
-                                                                hours</span>
-                                                            <!--end::Time-->
-                                                        </div>
-                                                        <!--end::Info-->
-                                                    </div>
-                                                    <!--end::Col-->
-
-                                                    <!--begin::Col-->
-                                                    <div class="col-md-4 mb-11 mb-md-0">
-                                                        <!--begin::Overlay-->
-                                                        <a class="d-block overlay"
-                                                            data-fslightbox="lightbox-hot-sales"
-                                                            href="assets/media/stock/900x600/40.jpg">
-                                                            <!--begin::Image-->
-                                                            <div class="overlay-wrapper bgi-position-center bgi-no-repeat bgi-size-cover h-200px card-rounded mb-3"
-                                                                style="height: 266px;background-image:url('/bold-html-pro/assets/media/stock/900x600/40.jpg">
-                                                            </div>
-                                                            <!--end::Image-->
-
-                                                            <!--begin::Action-->
-                                                            <div
-                                                                class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                                                <i class="ki-duotone ki-eye fs-3x text-white"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span><span
-                                                                        class="path3"></span></i>
-                                                            </div>
-                                                            <!--end::Action-->
-                                                        </a>
-                                                        <!--end::Overlay-->
-
-                                                        <!--begin::Info-->
-                                                        <div class="m-0">
-                                                            <!--begin::Title-->
-                                                            <a href="#"
-                                                                class="text-gray-800 text-hover-primary fs-3 fw-bold d-block mb-2">Both
-                                                                Sides</a>
-                                                            <!--end::Title-->
-
-                                                            <!--begin::Time-->
-                                                            <span class="fw-bold fs-6 text-gray-500 d-block lh-1">52
-                                                                mins</span>
-                                                            <!--end::Time-->
-                                                        </div>
-                                                        <!--end::Info-->
-                                                    </div>
-                                                    <!--end::Col-->
-
-                                                    <!--begin::Col-->
-                                                    <div class="col-md-4 ">
-                                                        <!--begin::Overlay-->
-                                                        <a class="d-block overlay"
-                                                            data-fslightbox="lightbox-hot-sales"
-                                                            href="assets/media/stock/900x600/41.jpg">
-                                                            <!--begin::Image-->
-                                                            <div class="overlay-wrapper bgi-position-center bgi-no-repeat bgi-size-cover h-200px card-rounded mb-3"
-                                                                style="height: 266px;background-image:url('/bold-html-pro/assets/media/stock/900x600/41.jpg">
-                                                            </div>
-                                                            <!--end::Image-->
-
-                                                            <!--begin::Action-->
-                                                            <div
-                                                                class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                                                <i class="ki-duotone ki-eye fs-3x text-white"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span><span
-                                                                        class="path3"></span></i>
-                                                            </div>
-                                                            <!--end::Action-->
-                                                        </a>
-                                                        <!--end::Overlay-->
-
-                                                        <!--begin::Info-->
-                                                        <div class="m-0">
-                                                            <!--begin::Title-->
-                                                            <a href="#"
-                                                                class="text-gray-800 text-hover-primary fs-3 fw-bold d-block mb-2">Birds
-                                                                in the Sky</a>
-                                                            <!--end::Title-->
-
-                                                            <!--begin::Time-->
-                                                            <span class="fw-bold fs-6 text-gray-500 d-block lh-1">5
-                                                                hours</span>
-                                                            <!--end::Time-->
-                                                        </div>
-                                                        <!--end::Info-->
-                                                    </div>
-                                                    <!--end::Col-->
-
-                                                </div>
-                                                <!--end::Row-->
-                                            </div>
-                                            <!--end::Card body-->
-                                        </div>
-                                        <!--end::Engage widget 7-->
-
-
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Content container-->
-                        </div>
+                        @yield('content')
                         <!--end::Content-->
 
                     </div>
