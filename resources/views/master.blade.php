@@ -2076,11 +2076,18 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::User menu-->
                         <div class="app-navbar-item ms-5" id="kt_header_user_menu_toggle">
                             <!--begin::Menu wrapper-->
+                            @php
+                                $name = optional(Auth::user()->detail)->name ?? 'U';
+                            @endphp
+
                             <div class="cursor-pointer symbol symbol-30px symbol-md-35px"
                                 data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                                 data-kt-menu-placement="bottom-end">
-                                <img class="symbol symbol-30px symbol-md-35px" src="assets/media/avatars/300-3.jpg"
-                                    alt="user" />
+
+                                <div class="symbol-label bg-light-primary text-primary fw-bold"
+                                    style="font-size: 12px;">
+                                    {{ strtoupper(substr($name, 0, 1)) }}
+                                </div>
                             </div>
 
                             <!--begin::User account menu-->
@@ -2090,8 +2097,15 @@ License: For each use you must have a valid license purchased only from above li
                                 <div class="menu-item px-3">
                                     <div class="menu-content d-flex align-items-center px-3">
                                         <!--begin::Avatar-->
+                                        @php
+                                            $name = Auth::user()->detail->name ?? (Auth::user()->email ?? 'U');
+                                            $initial = strtoupper(substr($name, 0, 1));
+                                        @endphp
+
                                         <div class="symbol symbol-50px me-5">
-                                            <img alt="Logo" src="assets/media/avatars/300-3.jpg" />
+                                            <div class="symbol-label bg-light-primary text-primary fw-bold">
+                                                {{ $initial }}
+                                            </div>
                                         </div>
                                         <!--end::Avatar-->
 
@@ -2102,8 +2116,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
                                             </div>
 
-                                            <a href="#"
-                                                class="fw-semibold text-muted text-hover-primary fs-7">
+                                            <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
                                                 max@kt.com </a>
                                         </div>
                                         <!--end::Username-->
@@ -2464,39 +2477,47 @@ License: For each use you must have a valid license purchased only from above li
                                 data-kt-scroll-dependencies="#kt_app_sidebar_header"
                                 data-kt-scroll-wrappers="#kt_app_sidebar_navs" data-kt-scroll-offset="5px">
 
-                                {{-- Profile Card --}}
-                                <div class="mx-3 mb-4 rounded-3 p-4 text-center" style="background:#E6F1FB;">
-                                    <div class="position-relative d-inline-block mb-2">
-                                        <div class="symbol symbol-55px symbol-circle mx-auto">
-                                            <img src="{{ Auth::user()->avatar ?? asset('assets/media/avatars/blank.png') }}"
-                                                alt="avatar" />
+                                {{-- Profile Section in Navbar --}}
+                                <div class="d-flex align-items-center gap-3 px-3 py-2">
+                                    {{-- Avatar with Status --}}
+                                    <div class="position-relative flex-shrink-0">
+                                        @php
+                                            $name = Auth::user()->detail->name ?? (Auth::user()->email ?? 'U');
+                                            $initial = strtoupper(substr($name, 0, 1));
+                                        @endphp
+
+                                        <div class="symbol symbol-40px symbol-circle">
+                                            <div class="symbol-label fs-6 fw-bold"
+                                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                                                {{ $initial }}
+                                            </div>
                                         </div>
+                                        {{-- Online Status Indicator --}}
                                         <span class="position-absolute bottom-0 end-0"
-                                            style="width:12px;height:12px;background:#1D9E75;border-radius:50%;border:2px solid #E6F1FB;display:block;"></span>
+                                            style="width: 10px; height: 10px; background: #10b981; border-radius: 50%; border: 2px solid white;">
+                                        </span>
                                     </div>
-                                    <div class="fw-bold fs-6 mb-1" style="color:#0C447C;">
-                                        {{ Auth::user()->detail->name }}
+
+                                    {{-- User Info --}}
+                                    <div class="flex-grow-1 min-w-0">
+                                        <div class="fw-semibold text-gray-900 fs-7 text-truncate">
+                                            {{ Auth::user()->detail->name }}
+                                        </div>
+                                        <div class="text-muted fs-8 text-truncate">
+                                            {{ Auth::user()->email }}
+                                        </div>
                                     </div>
-                                    <div class="fs-8 mb-3" style="color:#185FA5;">{{ Auth::user()->email }}</div>
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <span class="badge rounded-pill fs-8 px-3 py-2"
-                                            style="background:#B5D4F4;color:#0C447C;">{{ Auth::user()->role }}</span>
+
+                                    {{-- Role Badge --}}
+                                    <div class="flex-shrink-0">
+                                        <span class="badge badge-light-primary fs-9 px-2 py-1">
+                                            {{ Auth::user()->role }}
+                                        </span>
                                     </div>
                                 </div>
 
-                                {{-- Mini Stats --}}
-                                <div class="d-grid gap-2 mx-3 mb-3" style="grid-template-columns:1fr 1fr;">
-                                    <div class="rounded-2 p-3 text-center bg-light">
-                                        <span
-                                            class="d-block fw-bold fs-4 text-gray-800">{{ $totalPeminjaman ?? 24 }}</span>
-                                        <span class="fs-8 text-muted">Peminjaman</span>
-                                    </div>
-                                    <div class="rounded-2 p-3 text-center bg-light">
-                                        <span
-                                            class="d-block fw-bold fs-4 text-gray-800">{{ $kembaliHariIni ?? 8 }}</span>
-                                        <span class="fs-8 text-muted">Kembali hari ini</span>
-                                    </div>
-                                </div>
+                                {{-- Divider (optional) --}}
+                                <div class="separator my-2"></div>
 
                                 <div class="separator mx-3 mb-3"></div>
 
@@ -2521,55 +2542,69 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
 
                                     {{-- ================= ADMIN ================= --}}
-                                    @if (Auth::user()->role == 'admin')
-                                        {{-- Users Management --}}
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('petugas.index') }}">
-                                                <span class="menu-icon"><i
-                                                        class="ki-duotone ki-profile-user fs-2"></i></span>
-                                                <span class="menu-title">Users Management</span>
-                                            </a>
-                                        </div>
+@if (Auth::user()->role == 'admin')
 
-                                        {{-- Management Alat --}}
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-icon"><i
-                                                        class="ki-duotone ki-wrench fs-2"></i></span>
-                                                <span class="menu-title">Management Alat</span>
-                                            </a>
-                                        </div>
+    {{-- Users Management --}}
+    <div class="menu-item">
+        <a class="menu-link" href="{{ route('users.index') }}">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-people fs-2"></i>
+            </span>
+            <span class="menu-title">Users Management</span>
+        </a>
+    </div>
 
-                                        {{-- Kategori --}}
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-icon"><i
-                                                        class="ki-duotone ki-category fs-2"></i></span>
-                                                <span class="menu-title">Management Kategori</span>
-                                            </a>
-                                        </div>
+    {{-- Management Alat --}}
+    <div class="menu-item">
+        <a class="menu-link" href="{{ route('alat.index') }}">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-wrench fs-2"></i>
+            </span>
+            <span class="menu-title">Management Alat</span>
+        </a>
+    </div>
 
-                                        {{-- Data Peminjaman --}}
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Data Peminjaman</span>
-                                            </a>
-                                        </div>
+    {{-- Kategori --}}
+    <div class="menu-item">
+        <a class="menu-link" href="#">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-element-11 fs-2"></i>
+            </span>
+            <span class="menu-title">Management Kategori</span>
+        </a>
+    </div>
 
-                                        {{-- Pengembalian --}}
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Pengembalian</span>
-                                            </a>
-                                        </div>
+    {{-- Data Peminjaman --}}
+    <div class="menu-item">
+        <a class="menu-link" href="#">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-book fs-2"></i>
+            </span>
+            <span class="menu-title">Data Peminjaman</span>
+        </a>
+    </div>
 
-                                        {{-- Log Aktivitas --}}
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Log Aktivitas</span>
-                                            </a>
-                                        </div>
-                                    @endif
+    {{-- Pengembalian --}}
+    <div class="menu-item">
+        <a class="menu-link" href="#">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-arrows-loop fs-2"></i>
+            </span>
+            <span class="menu-title">Pengembalian</span>
+        </a>
+    </div>
+
+    {{-- Log Aktivitas --}}
+    <div class="menu-item">
+        <a class="menu-link" href="#">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-time fs-2"></i>
+            </span>
+            <span class="menu-title">Log Aktivitas</span>
+        </a>
+    </div>
+
+@endif
 
                                     {{-- ================= PETUGAS ================= --}}
                                     @if (Auth::user()->role == 'petugas')

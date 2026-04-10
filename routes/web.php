@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthC;
-use App\Http\Controllers\PetugasC;
+use App\Http\Controllers\UserC;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,11 +39,20 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     })->name('dashboard.peminjam');
 });
 
-Route::prefix('users-management/petugas')->name('petugas.')->group(function () {
-    Route::get('/', [PetugasC::class, 'index'])->name('index');
-    Route::get('/create', [PetugasC::class, 'create'])->name('form');
-    Route::post('/store', [PetugasC::class, 'store'])->name('store');
-    Route::get('/view/{id}', [PetugasC::class, 'view'])->name('view');
-    Route::put('/update/{id}', [PetugasC::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [PetugasC::class, 'delete'])->name('delete'); // <- hapus 'petugas/'
+Route::prefix('users-management/tabel')->name('users.')->group(function () {
+    Route::get('/', [UserC::class, 'index'])->name('index');
+    Route::get('/create', [UserC::class, 'create'])->name('form');
+    Route::post('/store', [UserC::class, 'store'])->name('store');
+    Route::get('/view/{id}', [UserC::class, 'view'])->name('view');
+    Route::put('/update/{id}', [UserC::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [UserC::class, 'delete'])->name('delete');
+});
+
+Route::prefix('management-alat/tabel')->name('alat.')->group(function () {
+    Route::get('/', [UserC::class, 'index'])->name('index');
+    Route::get('/create', [UserC::class, 'create'])->name('form');
+    Route::post('/store', [UserC::class, 'store'])->name('store');
+    Route::get('/view/{id}', [UserC::class, 'view'])->name('view');
+    Route::put('/update/{id}', [UserC::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [UserC::class, 'delete'])->name('delete');
 });
