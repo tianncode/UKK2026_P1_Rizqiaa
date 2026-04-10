@@ -45,9 +45,9 @@
 
                             <!--begin::Add user-->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_add_user">
+                                data-bs-target="#kt_modal_add_tool">
                                 <i class="ki-duotone ki-plus fs-2"></i>
-                                Add User
+                                Add Tools
                             </button>
                             <!--end::Add user-->
                         </div>
@@ -60,7 +60,7 @@
                 <div class="card-body py-4">
                     <!--begin::Table-->
                     <div class="table-responsive">
-                        <table id="kt_table_users" class="table align-middle table-row-dashed fs-6 gy-5">
+                        <table id="kt_table_tools" class="table align-middle table-row-dashed fs-6 gy-5">
                             <thead>
                                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                     <th class="w-10px pe-2">
@@ -68,668 +68,1068 @@
                                             <input class="form-check-input" type="checkbox" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">User</th>
-                                    <th class="min-w-125px">Contact</th>
-                                    <th class="min-w-125px">Role</th>
-                                    <th class="min-w-125px">Penalty Points</th>
-                                    <th class="min-w-100px">Status</th>
-                                    <th class="min-w-100px">Joined Date</th>
+                                    <th class="min-w-200px">Alat</th>
+                                    <th class="min-w-150px">kode</th>
+                                    <th class="min-w-150px">Kategori</th>
+                                    <th class="min-w-100px">Tipe</th>
+                                    <th class="min-w-150px">Deskripsi</th>
+                                    <th class="min-w-100px">Tanggal</th>
                                     <th class="min-w-100px">Actions</th>
                                 </tr>
                             </thead>
+
                             <tbody class="text-gray-600 fw-semibold">
-                                @foreach ($users as $user)
+                                @foreach ($tools as $tool)
                                     <tr>
+
+                                        <!-- Checkbox -->
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                                 <input class="form-check-input" type="checkbox" />
                                             </div>
                                         </td>
 
-                                        <!-- Nama + ID -->
+                                        <!-- Nama Alat + Foto -->
                                         <td class="d-flex align-items-center">
+                                            <!-- Ganti bagian ini -->
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                <div class="symbol-label bg-light-primary text-primary fw-bold">
-                                                    {{ strtoupper(substr($user->detail->name ?? 'U', 0, 1)) }}
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <a href="#" class="text-gray-800 text-hover-primary mb-1">
-                                                    {{ $user->detail->name ?? '-' }}
-                                                </a>
-                                                <span class="text-muted fs-7">
-                                                    ID: #USR-{{ str_pad($user->id, 3, '0', STR_PAD_LEFT) }}
-                                                </span>
-                                            </div>
-                                        </td>
-
-                                        <!-- Email + HP -->
-                                        <td>
-                                            <div class="d-flex flex-column">
-                                                <span class="text-gray-800 mb-1">{{ $user->email }}</span>
-                                                <span class="text-muted fs-7">
-                                                    {{ $user->detail->no_hp ?? '-' }}
-                                                </span>
-                                            </div>
-                                        </td>
-
-                                        <!-- Role -->
-                                        <td>
-                                            @php
-                                                $roleClass = match ($user->role) {
-                                                    'admin' => 'badge-light-danger',
-                                                    'manager' => 'badge-light-info',
-                                                    'employee' => 'badge-light-primary',
-                                                    'peminjam' => 'badge-light-warning',
-                                                    default => 'badge-light-secondary',
-                                                };
-                                            @endphp
-
-                                            <div class="badge {{ $roleClass }} fw-bold">
-                                                {{ ucfirst($user->role) }}
-                                            </div>
-                                        </td>
-
-                                        <!-- Penalty Points -->
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="progress h-6px w-100px me-2">
-                                                    <div class="progress-bar bg-success"
-                                                        style="width: {{ $user->penalty_points }}%">
+                                                @if ($tool->photo_path && file_exists(public_path($tool->photo_path)))
+                                                    <!-- Tampilkan foto jika ada -->
+                                                    <div class="symbol-label">
+                                                        <img src="{{ asset($tool->photo_path) }}" alt="{{ $tool->name }}"
+                                                            class="w-100">
                                                     </div>
-                                                </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="d-flex flex-column">
+                                                <span class="text-gray-800 mb-1">
+                                                    {{ $tool->name }}
+                                                </span>
                                                 <span class="text-muted fs-7">
-                                                    {{ $user->penalty_points }}/100
+                                                    ID: #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}
                                                 </span>
                                             </div>
                                         </td>
 
-                                        <!-- Status -->
+                                        <!-- Kode -->
                                         <td>
-                                            @if ($user->is_restricted)
-                                                <div class="badge badge-light-danger fw-bold">Restricted</div>
+                                            <span class="badge badge-light-primary">
+                                                {{ $tool->code_slug }}
+                                            </span>
+                                        </td>
+
+                                        <!-- Kategori -->
+                                        <td>
+                                            <span class="badge badge-light-info">
+                                                {{ $tool->category->name ?? '-' }}
+                                            </span>
+                                        </td>
+
+                                        <!-- Tipe -->
+                                        <td>
+                                            @if ($tool->item_type == 'single')
+                                                <span class="badge badge-light-success">Single</span>
                                             @else
-                                                <div class="badge badge-light-success fw-bold">Active</div>
+                                                <span class="badge badge-light-warning">Bundle</span>
                                             @endif
+                                        </td>
+
+                                        <!-- Deskripsi -->
+                                        <td>
+                                            {{ $tool->description ?? '-' }}
                                         </td>
 
                                         <!-- Tanggal -->
                                         <td>
-                                            <span class="text-gray-800">
-                                                {{ date('d M Y', strtotime($user->created_at)) }}
-                                            </span>
+                                            {{ date('d M Y', strtotime($tool->created_at)) }}
                                         </td>
 
+                                        <!-- Actions -->
                                         <td>
-                                            <!-- VIEW -->
-                                            <a href="#" class="btn btn-icon btn-light btn-sm me-2"
+                                            <!-- VIEW DETAIL -->
+                                            <a href="#" class="btn btn-icon btn-info btn-sm me-2"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#kt_modal_view_user{{ $user->id }}">
+                                                data-bs-target="#kt_modal_detail_tool{{ $tool->id }}"
+                                                title="Lihat Detail">
                                                 <i class="ki-duotone ki-eye"></i>
                                             </a>
-
                                             <!-- EDIT -->
                                             <a href="#" class="btn btn-icon btn-warning btn-sm me-2"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#kt_modal_edit_user{{ $user->id }}">
+                                                data-bs-target="#kt_modal_edit_tool{{ $tool->id }}">
                                                 <i class="ki-duotone ki-pencil"></i>
                                             </a>
 
                                             <!-- DELETE -->
-                                            <a href="#" class="btn btn-icon btn-danger btn-sm me-2"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#kt_modal_delete_user{{ $user->id }}">
+                                            <a href="#" class="btn btn-icon btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal_delete_tool{{ $tool->id }}">
                                                 <i class="ki-duotone ki-trash"></i>
                                             </a>
-
                                         </td>
                                     </tr>
-                                    {{-- MODAL VIEW USER --}}
-                                    <div class="modal fade" id="kt_modal_view_user{{ $user->id }}" tabindex="-1"
+                                    <div class="modal fade" id="kt_modal_edit_tool{{ $tool->id }}" tabindex="-1"
                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered mw-800px">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h2 class="fw-bold">User Details</h2>
-                                                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                        data-bs-dismiss="modal">
-                                                        <i class="ki-duotone ki-cross fs-1"><span
-                                                                class="path1"></span><span class="path2"></span></i>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-body px-5 py-10">
-                                                    <div class="card card-flush mb-8 shadow-sm">
-                                                        <div class="card-body p-8">
-                                                            {{-- User Header --}}
-                                                            <div class="d-flex align-items-center mb-7 pb-5 border-bottom">
-                                                                <div class="symbol symbol-60px me-5">
-                                                                    <div
-                                                                        class="symbol-label fs-2 fw-bold bg-light-primary text-primary">
-                                                                        {{ strtoupper(substr($user->name, 0, 2)) }}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-grow-1">
-                                                                    <span
-                                                                        class="text-gray-800 fs-4 fw-bold">{{ $user->detail->name ?? '-' }}</span>
-                                                                    <div class="text-muted fw-semibold fs-6">
-                                                                        {{ $user->email }}</div>
-                                                                </div>
-                                                                <span
-                                                                    class="badge badge-light-{{ $user->is_restricted ? 'danger' : 'success' }} fs-7 fw-bold">
-                                                                    {{ $user->is_restricted ? 'Restricted' : 'Active' }}
-                                                                </span>
-                                                            </div>
-
-                                                            {{-- Info Grid --}}
-                                                            <div class="row g-6">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Full
-                                                                        Name</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->detail->name ?? '-' }}</div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">NIK</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->detail->nik ?? '-' }}</div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Email</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->email }}</div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Phone
-                                                                        Number</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->detail->no_hp ?? '-' }}</div>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Address</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->detail->address ?? '-' }}</div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Birth
-                                                                        Date</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->detail->birth_date ? \Carbon\Carbon::parse($user->detail->birth_date)->isoFormat('D MMMM Y') : '-' }}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Role</label>
-                                                                    <div class="fs-6 fw-semibold">
-                                                                        <span
-                                                                            class="badge badge-light-primary">{{ ucfirst($user->role) }}</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Penalty
-                                                                        Points</label>
-                                                                    <div class="fs-6 fw-semibold">
-                                                                        <span
-                                                                            class="badge badge-light-warning">{{ $user->penalty_points ?? 0 }}
-                                                                            Points</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        class="fs-7 fw-bold text-muted text-uppercase ls-1 mb-1">Registered
-                                                                        At</label>
-                                                                    <div class="fs-6 fw-semibold text-gray-800">
-                                                                        {{ $user->created_at->isoFormat('D MMMM Y') }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="text-center pt-5">
-                                                        <button type="button" class="btn btn-light me-3"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- MODAL EDIT USER --}}
-                                    <div class="modal fade" id="kt_modal_edit_user{{ $user->id }}" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered mw-900px">
+                                        <div class="modal-dialog modal-dialog-centered mw-700px">
                                             <div class="modal-content">
 
+                                                <!-- Header -->
                                                 <div class="modal-header">
-                                                    <h2 class="fw-bold">Edit User</h2>
-                                                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">✕</div>
+                                                    <h2 class="fw-bold">Edit Alat</h2>
+                                                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
+                                                        <i class="ki-duotone ki-cross fs-1"></i>
+                                                    </div>
                                                 </div>
 
+                                                <!-- Body -->
                                                 <div class="modal-body px-5 py-10">
-                                                    <form method="POST" action="{{ route('users.update', $user->id) }}">
+
+                                                    <form method="POST" action="{{ route('tools.update', $tool->id) }}"
+                                                        enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
 
-                                                        <div class="d-flex flex-column scroll-y me-n7 pe-7">
+                                                        <div class="d-flex flex-column">
 
-                                                            {{-- PERSONAL --}}
-                                                            <div class="card mb-6">
-                                                                <div class="card-body">
-
-                                                                    <h5 class="mb-5">Personal Information</h5>
-
-                                                                    <div class="row mb-4">
-                                                                        <div class="col-md-6">
-                                                                            <label>Full Name</label>
-                                                                            <input type="text" name="name"
-                                                                                class="form-control"
-                                                                                value="{{ $user->detail->name ?? '' }}">
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <label>NIK</label>
-                                                                            <input type="text" name="nik"
-                                                                                class="form-control"
-                                                                                value="{{ $user->detail->nik ?? '' }}"
-                                                                                readonly>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-4">
-                                                                        <div class="col-md-6">
-                                                                            <label>Email</label>
-                                                                            <input type="email" name="email"
-                                                                                class="form-control"
-                                                                                value="{{ $user->email }}">
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <label>Phone</label>
-                                                                            <input type="text" name="no_hp"
-                                                                                class="form-control"
-                                                                                value="{{ $user->detail->no_hp ?? '' }}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mb-4">
-                                                                        <label>Address</label>
-                                                                        <textarea name="address" class="form-control">{{ $user->detail->address ?? '' }}</textarea>
-                                                                    </div>
-
-                                                                    <div>
-                                                                        <label>Birth Date</label>
-                                                                        <input type="date" name="birth_date"
-                                                                            class="form-control"
-                                                                            value="{{ $user->detail->birth_date ?? '' }}">
-                                                                    </div>
-
-                                                                </div>
+                                                            <!-- Foto -->
+                                                            <div class="fv-row mb-6">
+                                                                <label class="fw-semibold fs-6 mb-3">Foto Alat</label>
+                                                                <input type="file" name="photo"
+                                                                    class="form-control form-control-solid">
+                                                                @if ($tool->photo)
+                                                                    <small class="text-muted">Foto saat ini:
+                                                                        {{ $tool->photo }}</small>
+                                                                @endif
                                                             </div>
 
-                                                            {{-- PASSWORD --}}
-                                                            <div class="card mb-6">
-                                                                <div class="card-body">
-
-                                                                    <h5 class="mb-2">Reset Password</h5>
-                                                                    <small class="text-muted">Kosongkan jika tidak ingin
-                                                                        mengubah</small>
-
-                                                                    <div class="row mt-4">
-                                                                        <div class="col-md-6">
-                                                                            <input type="password" name="password"
-                                                                                class="form-control"
-                                                                                placeholder="New Password">
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <input type="password" name="confirm_password"
-                                                                                class="form-control"
-                                                                                placeholder="Confirm Password">
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
+                                                            <!-- Nama -->
+                                                            <div class="fv-row mb-6">
+                                                                <label class="required fw-semibold fs-6 mb-3">Nama
+                                                                    Alat</label>
+                                                                <input type="text" name="name"
+                                                                    class="form-control form-control-solid"
+                                                                    value="{{ $tool->name }}" required>
                                                             </div>
 
-                                                            {{-- ROLE --}}
-                                                            <div class="card">
-                                                                <div class="card-body">
+                                                            <!-- Kategori -->
+                                                            <div class="fv-row mb-6">
+                                                                <label
+                                                                    class="required fw-semibold fs-6 mb-3">Kategori</label>
+                                                                <select name="category_id"
+                                                                    class="form-select form-select-solid" required>
+                                                                    @foreach ($categories as $cat)
+                                                                        <option value="{{ $cat->id }}"
+                                                                            {{ $tool->category_id == $cat->id ? 'selected' : '' }}>
+                                                                            {{ $cat->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
 
-                                                                    <h5 class="mb-5">Role & Permissions</h5>
+                                                            <!-- Tipe -->
+                                                            <div class="fv-row mb-6">
+                                                                <label class="required fw-semibold fs-6 mb-3">Tipe
+                                                                    Alat</label>
+                                                                <select name="item_type"
+                                                                    class="form-select form-select-solid" required>
+                                                                    <option value="single"
+                                                                        {{ $tool->item_type == 'single' ? 'selected' : '' }}>
+                                                                        Single</option>
+                                                                    <option value="bundle"
+                                                                        {{ $tool->item_type == 'bundle' ? 'selected' : '' }}>
+                                                                        Bundle</option>
+                                                                </select>
+                                                            </div>
 
-                                                                    <div class="mb-4">
-                                                                        <label>Role</label>
-                                                                        <select name="role" class="form-select">
-                                                                            <option value="admin"
-                                                                                {{ $user->role == 'admin' ? 'selected' : '' }}>
-                                                                                Admin</option>
-                                                                            <option value="employee"
-                                                                                {{ $user->role == 'employee' ? 'selected' : '' }}>
-                                                                                Employee</option>
-                                                                            <option value="user"
-                                                                                {{ $user->role == 'user' ? 'selected' : '' }}>
-                                                                                User</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <label>Penalty Points</label>
-                                                                            <input type="number" name="penalty_points"
-                                                                                class="form-control"
-                                                                                value="{{ $user->penalty_points ?? 0 }}">
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-4">
-                                                                            <div class="form-check form-switch">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" name="is_restricted"
-                                                                                    {{ $user->is_restricted ? 'checked' : '' }}>
-                                                                                <label class="form-check-label">
-                                                                                    Restrict Account
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
+                                                            <!-- Deskripsi -->
+                                                            <div class="fv-row mb-6">
+                                                                <label class="fw-semibold fs-6 mb-3">Deskripsi</label>
+                                                                <textarea name="description" class="form-control form-control-solid" rows="3">{{ $tool->description }}</textarea>
                                                             </div>
 
                                                         </div>
 
-                                                        <div class="text-center mt-6">
+                                                        <!-- Actions -->
+                                                        <div class="text-center pt-5">
                                                             <button type="button" class="btn btn-light me-3"
                                                                 data-bs-dismiss="modal">
-                                                                Cancel
+                                                                Batal
                                                             </button>
                                                             <button type="submit" class="btn btn-primary">
-                                                                Save Changes
+                                                                Update
                                                             </button>
                                                         </div>
 
                                                     </form>
-                                                </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- MODAL DELETE USER --}}
-                                    <div class="modal fade" id="kt_modal_delete_user{{ $user->id }}" tabindex="-1"
+                                    <div class="modal fade" id="kt_modal_delete_tool{{ $tool->id }}" tabindex="-1"
                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered mw-480px">
+                                        <div class="modal-dialog modal-dialog-centered mw-500px">
                                             <div class="modal-content">
+
+                                                <!-- Header -->
                                                 <div class="modal-header">
-                                                    <h2 class="fw-bold">Delete User</h2>
-                                                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                        data-bs-dismiss="modal">
-                                                        <i class="ki-duotone ki-cross fs-1"><span
-                                                                class="path1"></span><span class="path2"></span></i>
+                                                    <h2 class="fw-bold text-danger">Hapus Alat</h2>
+                                                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
+                                                        <i class="ki-duotone ki-cross fs-1"></i>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body px-8 py-10 text-center">
-                                                    {{-- Icon --}}
-                                                    <div class="mb-6">
-                                                        <i class="ki-duotone ki-trash fs-5x text-danger">
-                                                            <span class="path1"></span><span class="path2"></span>
-                                                            <span class="path3"></span><span class="path4"></span><span
-                                                                class="path5"></span>
-                                                        </i>
-                                                    </div>
-                                                    <h3 class="fw-bold text-gray-800 fs-2 mb-3">Hapus User Ini?</h3>
-                                                    <p class="text-muted fs-6 mb-2">Anda akan menghapus user:</p>
-                                                    <p class="fw-bold text-danger fs-5 mb-4" id="delete_user_name">
-                                                        {{ $user->detail->name ?? '-' }}</p>
-                                                    <p class="text-muted fs-6 mb-0">
-                                                        Tindakan ini <strong class="text-danger">tidak dapat
-                                                            dibatalkan</strong>
-                                                        dan semua data terkait user ini akan dihapus secara permanen.
+
+                                                <!-- Body -->
+                                                <div class="modal-body p-10 text-center">
+
+                                                    <p class="fs-5 mb-8">
+                                                        Apakah kamu yakin ingin menghapus alat:
                                                     </p>
 
-                                                    <form method="POST" action="{{ route('users.delete', $user->id) }}"
-                                                        class="mt-8">
+                                                    <h3 class="fw-bold mb-8">
+                                                        {{ $tool->name }}
+                                                    </h3>
+
+                                                    <form method="POST" action="{{ route('tools.delete', $tool->id) }}">
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button type="button" class="btn btn-light me-3"
-                                                            data-bs-dismiss="modal">
-                                                            Batal
-                                                        </button>
+                                                        <div class="d-flex justify-content-center gap-3">
+                                                            <button type="button" class="btn btn-light"
+                                                                data-bs-dismiss="modal">
+                                                                Batal
+                                                            </button>
 
-                                                        <button type="submit" class="btn btn-danger">
-                                                            Ya, Hapus
-                                                        </button>
+                                                            <button type="submit" class="btn btn-danger">
+                                                                Ya, Hapus
+                                                            </button>
+                                                        </div>
                                                     </form>
+
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </tbody>
                         </table>
+                        @foreach ($tools as $tool)
+                            <!-- Modal Detail Tool -->
+                            <div class="modal fade" id="kt_modal_detail_tool{{ $tool->id }}" tabindex="-1"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered mw-900px">
+                                    <div class="modal-content">
+
+                                        <!-- Header -->
+                                        <div class="modal-header">
+                                            <h2 class="fw-bold">Detail Alat</h2>
+                                            <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
+                                                <i class="ki-duotone ki-cross fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                        </div>
+
+                                        <!-- Body -->
+                                        <div class="modal-body px-5 py-10">
+
+                                            <!-- Card Info Alat -->
+                                            <div class="card card-flush mb-8">
+                                                <div class="card-body p-8">
+                                                    <div class="d-flex align-items-start">
+
+                                                        <!-- Foto Alat -->
+                                                        <div class="me-7">
+                                                            @if ($tool->photo_path && file_exists(public_path($tool->photo_path)))
+                                                                <div class="symbol symbol-150px symbol-fixed">
+                                                                    <img src="{{ asset($tool->photo_path) }}"
+                                                                        alt="{{ $tool->name }}" class="rounded"
+                                                                        style="object-fit: cover; width: 150px; height: 150px;">
+                                                                </div>
+                                                            @else
+                                                                <div class="symbol symbol-150px symbol-fixed">
+                                                                    <div class="symbol-label bg-light-primary text-primary fw-bold fs-1 rounded"
+                                                                        style="width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                                                                        {{ strtoupper(substr($tool->name, 0, 2)) }}
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+
+                                                        <!-- Detail Info -->
+                                                        <div class="flex-grow-1">
+
+                                                            <!-- Nama Alat -->
+                                                            <div class="mb-5">
+                                                                <h3 class="fw-bold text-gray-800 mb-1">
+                                                                    {{ $tool->name }}</h3>
+                                                                <span class="text-muted fs-6">
+                                                                    ID:
+                                                                    #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}
+                                                                </span>
+                                                            </div>
+
+                                                            <!-- Info Grid -->
+                                                            <div class="row g-5">
+
+                                                                <!-- Kategori -->
+                                                                <div class="col-md-6">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="text-muted fs-7 mb-1">Kategori</span>
+                                                                        <span
+                                                                            class="badge badge-light-info align-self-start">
+                                                                            {{ $tool->category->name ?? '-' }}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Tipe -->
+                                                                <div class="col-md-6">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="text-muted fs-7 mb-1">Tipe
+                                                                            Alat</span>
+                                                                        @if ($tool->item_type == 'single')
+                                                                            <span
+                                                                                class="badge badge-light-success align-self-start">Single</span>
+                                                                        @else
+                                                                            <span
+                                                                                class="badge badge-light-warning align-self-start">Bundle</span>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Deskripsi -->
+                                                                <div class="col-12">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="text-muted fs-7 mb-1">Deskripsi</span>
+                                                                        <span class="text-gray-800 fs-6">
+                                                                            {{ $tool->description ?? 'Tidak ada deskripsi' }}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Tanggal Dibuat -->
+                                                                <div class="col-md-6">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="text-muted fs-7 mb-1">Tanggal
+                                                                            Dibuat</span>
+                                                                        <span class="text-gray-800 fw-semibold">
+                                                                            {{ date('d M Y', strtotime($tool->created_at)) }}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Total Unit -->
+                                                                <div class="col-md-6">
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="text-muted fs-7 mb-1">Total
+                                                                            Unit</span>
+                                                                        <span class="text-gray-800 fw-semibold">
+                                                                            {{ $tool->units?->count() ?? 0 }} Unit
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Separator -->
+                                            <div class="separator my-8"></div>
+
+                                            <!-- Header Tabel Unit -->
+                                            <div class="d-flex justify-content-between align-items-center mb-5">
+                                                <h3 class="fw-bold">Daftar Unit Alat</h3>
+
+                                                <!-- Button Tambah Unit -->
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#kt_modal_add_unit{{ $tool->id }}">
+                                                    <i class="ki-duotone ki-plus fs-2"></i>
+                                                    Tambah Unit
+                                                </button>
+                                            </div>
+
+                                            <!-- Tabel Unit -->
+                                            <div class="table-responsive">
+                                                <table
+                                                    class="table table-row-bordered table-row-gray-300 align-middle gs-0 gy-4">
+                                                    <thead>
+                                                        <tr class="fw-bold text-muted bg-light">
+                                                            <th class="ps-4 min-w-50px rounded-start">No</th>
+                                                            <th class="min-w-150px">Kode Unit</th>
+                                                            <th class="min-w-100px">Status</th>
+                                                            <th class="min-w-100px">Kondisi</th>
+                                                            <th class="min-w-100px text-end rounded-end pe-4">Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse($tool->units ?? [] as $index => $unit)
+                                                            <tr>
+                                                                <td class="ps-4">
+                                                                    <span
+                                                                        class="text-gray-800 fw-semibold">{{ $index + 1 }}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-gray-800 fw-bold">
+                                                                        {{ $unit->code ?? '-' }}
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    @if ($unit->status == 'available')
+                                                                        <span
+                                                                            class="badge badge-light-success">Tersedia</span>
+                                                                    @elseif($unit->status == 'borrowed')
+                                                                        <span
+                                                                            class="badge badge-light-warning">Dipinjam</span>
+                                                                    @elseif($unit->status == 'maintenance')
+                                                                        <span
+                                                                            class="badge badge-light-info">Maintenance</span>
+                                                                    @else
+                                                                        <span class="badge badge-light-danger">Rusak</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge badge-light">
+                                                                        {{ $unit->notes ?? '-' }}
+                                                                    </span>
+                                                                </td>
+                                                                <td class="text-end pe-4">
+                                                                    <button class="btn btn-sm btn-light-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#kt_modal_detail_unit{{ $unit->id }}">
+                                                                        <i class="fas fa-eye"></i> Detail
+                                                                    </button>
+
+                                                                    <button class="btn btn-sm btn-light-warning"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#kt_modal_edit_unit{{ $unit->id }}">
+                                                                        <i class="fas fa-pencil-alt"></i> Edit
+                                                                    </button>
+
+                                                                    <button class="btn btn-sm btn-light-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#kt_modal_delete_unit{{ $unit->id }}">
+                                                                        <i class="fas fa-trash-alt"></i> Hapus
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="5" class="text-center py-8">
+                                                                    <div class="d-flex flex-column align-items-center">
+                                                                        <i
+                                                                            class="ki-duotone ki-information fs-3x text-muted mb-3">
+                                                                            <span class="path1"></span>
+                                                                            <span class="path2"></span>
+                                                                            <span class="path3"></span>
+                                                                        </i>
+                                                                        <span class="text-muted fs-5">Belum ada unit
+                                                                            untuk alat ini</span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforelse
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- Footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Tambah Unit -->
+                            <div class="modal fade" id="kt_modal_add_unit{{ $tool->id }}" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <!-- Header -->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Tambah Unit</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Form -->
+                                        <form action="{{ route('tools.units-store') }}" method="POST">
+                                            @csrf
+
+                                            <div class="modal-body">
+
+                                                <!-- hidden tool id -->
+                                                <input type="hidden" name="tool_id" value="{{ $tool->id }}">
+
+                                                <!-- Code -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Kode Unit</label>
+                                                    <input type="text" name="code" class="form-control"
+                                                        value="{{ $tool->code_slug }}-{{ str_pad($tool->units->count() + 1, 3, '0', STR_PAD_LEFT) }}"
+                                                        readonly>
+                                                </div>
+
+                                                <!-- Status -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Status</label>
+                                                    <select name="status" class="form-select" required>
+                                                        <option value="">Pilih Status</option>
+                                                        <option value="available">Available</option>
+                                                        <option value="borrowed">Borrowed</option>
+                                                        <option value="maintenance">Maintenance</option>
+                                                        <option value="damaged">Damaged</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- Notes -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Catatan</label>
+                                                    <textarea name="notes" class="form-control" rows="3" placeholder="Opsional"></textarea>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach ($tool->units ?? [] as $unit)
+                                <div class="modal fade" id="kt_modal_detail_unit{{ $unit->id }}" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered mw-700px">
+                                        <div class="modal-content">
+
+                                            {{-- Header --}}
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    <i class="fas fa-info-circle me-2 text-primary"></i>Detail Unit
+                                                </h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            {{-- Body --}}
+                                            <div class="modal-body px-5 py-8">
+
+                                                {{-- ===== INFO UNIT ===== --}}
+                                                <div class="card card-flush border mb-6">
+                                                    <div class="card-header min-h-45px">
+                                                        <h6 class="card-title fw-bold text-gray-700">
+                                                            <i class="fas fa-box me-2 text-primary"></i>Informasi Unit
+                                                        </h6>
+                                                    </div>
+                                                    <div class="card-body py-4">
+                                                        <table class="table table-borderless mb-0 fs-6">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th class="text-muted fw-semibold py-2"
+                                                                        style="width:40%">Kode Unit</th>
+                                                                    <td class="py-2">
+                                                                        <span
+                                                                            class="badge badge-light-primary fs-7">{{ $unit->code }}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="text-muted fw-semibold py-2">Nama Alat</th>
+                                                                    <td class="py-2">{{ $unit->tool->name ?? '-' }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="text-muted fw-semibold py-2">Status</th>
+                                                                    <td class="py-2">
+                                                                        @php
+                                                                            $statusMap = [
+                                                                                'available' => [
+                                                                                    'label' => 'Available',
+                                                                                    'class' => 'badge-light-success',
+                                                                                ],
+                                                                                'borrowed' => [
+                                                                                    'label' => 'Borrowed',
+                                                                                    'class' => 'badge-light-warning',
+                                                                                ],
+                                                                                'maintenance' => [
+                                                                                    'label' => 'Maintenance',
+                                                                                    'class' => 'badge-light-info',
+                                                                                ],
+                                                                                'damaged' => [
+                                                                                    'label' => 'Damaged',
+                                                                                    'class' => 'badge-light-danger',
+                                                                                ],
+                                                                            ];
+                                                                            $s = $statusMap[$unit->status] ?? [
+                                                                                'label' => ucfirst($unit->status),
+                                                                                'class' => 'badge-light-secondary',
+                                                                            ];
+                                                                        @endphp
+                                                                        <span
+                                                                            class="badge {{ $s['class'] }}">{{ $s['label'] }}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="text-muted fw-semibold py-2">Catatan</th>
+                                                                    <td class="py-2">{{ $unit->notes ?: '-' }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="text-muted fw-semibold py-2">Dibuat</th>
+                                                                    <td class="py-2">
+                                                                        {{ $unit->created_at->format('d M Y, H:i') }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                {{-- ===== KONDISI SAAT INI ===== --}}
+                                                <div class="card card-flush border">
+                                                    <div class="card-header min-h-45px">
+                                                        <h6 class="card-title fw-bold text-gray-700">
+                                                            <i class="fas fa-clipboard-list me-2 text-warning"></i>
+                                                            Kondisi Unit Saat Ini
+                                                        </h6>
+                                                        <div class="card-toolbar">
+                                                            <span class="badge badge-light-secondary fs-8">
+                                                                {{ $unit->conditions->count() ?? 0 }} Catatan
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body py-4 px-0">
+                                                        <div class="table-responsive">
+                                                            <table
+                                                                class="table table-row-bordered table-row-gray-200 align-middle gs-5 gy-3 mb-0">
+                                                                <thead>
+                                                                    <tr
+                                                                        class="fw-bold text-muted bg-light fs-7 text-uppercase">
+                                                                        <th class="ps-5 min-w-30px">No</th>
+                                                                        <th class="min-w-120px">Kondisi</th>
+                                                                        <th class="min-w-150px">Catatan</th>
+                                                                        <th class="min-w-120px">Dicatat Pada</th>
+                                                                        <th class="min-w-100px pe-5">Return ID</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="text-gray-600 fw-semibold">
+                                                                    @forelse ($unit->conditions ?? [] as $i => $condition)
+                                                                        <tr>
+                                                                            <td class="ps-5">{{ $i + 1 }}</td>
+                                                                            <td>
+                                                                                @php
+                                                                                    $condMap = [
+                                                                                        'good' => [
+                                                                                            'label' => 'Baik',
+                                                                                            'class' =>
+                                                                                                'badge-light-success',
+                                                                                        ],
+                                                                                        'minor' => [
+                                                                                            'label' => 'Minor',
+                                                                                            'class' =>
+                                                                                                'badge-light-warning',
+                                                                                        ],
+                                                                                        'damaged' => [
+                                                                                            'label' => 'Rusak',
+                                                                                            'class' =>
+                                                                                                'badge-light-danger',
+                                                                                        ],
+                                                                                        'lost' => [
+                                                                                            'label' => 'Hilang',
+                                                                                            'class' =>
+                                                                                                'badge-light-dark',
+                                                                                        ],
+                                                                                    ];
+                                                                                    $c = $condMap[
+                                                                                        $condition->conditions
+                                                                                    ] ?? [
+                                                                                        'label' => ucfirst(
+                                                                                            $condition->conditions,
+                                                                                        ),
+                                                                                        'class' =>
+                                                                                            'badge-light-secondary',
+                                                                                    ];
+                                                                                @endphp
+                                                                                <span
+                                                                                    class="badge {{ $c['class'] }}">{{ $c['label'] }}</span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span class="text-gray-700">
+                                                                                    {{ $condition->notes ?: '-' }}
+                                                                                </span>
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ \Carbon\Carbon::parse($condition->recorded_at)->format('d M Y, H:i') }}
+                                                                            </td>
+                                                                            <td class="pe-5">
+                                                                                @if ($condition->return_id)
+                                                                                    <span
+                                                                                        class="badge badge-light-info">#{{ $condition->return_id }}</span>
+                                                                                @else
+                                                                                    <span class="text-muted">-</span>
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                    @empty
+                                                                        <tr>
+                                                                            <td colspan="5" class="text-center py-8">
+                                                                                <div
+                                                                                    class="d-flex flex-column align-items-center">
+                                                                                    <i
+                                                                                        class="ki-duotone ki-information fs-3x text-muted mb-3">
+                                                                                        <span class="path1"></span>
+                                                                                        <span class="path2"></span>
+                                                                                        <span class="path3"></span>
+                                                                                    </i>
+                                                                                    <span class="text-muted fs-6">Belum ada
+                                                                                        kondisi saat ini</span>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforelse
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {{-- ===== RIWAYAT KONDISI ===== --}}
+                                                <div class="card card-flush border">
+                                                    <div class="card-header min-h-45px">
+                                                        <h6 class="card-title fw-bold text-gray-700">
+                                                            <i class="fas fa-clipboard-list me-2 text-warning"></i>Riwayat
+                                                            Kondisi Unit
+                                                        </h6>
+                                                        <div class="card-toolbar">
+                                                            <span class="badge badge-light-secondary fs-8">
+                                                                {{ $unit->conditions->count() ?? 0 }} Catatan
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body py-4 px-0">
+                                                        <div class="table-responsive">
+                                                            <table
+                                                                class="table table-row-bordered table-row-gray-200 align-middle gs-5 gy-3 mb-0">
+                                                                <thead>
+                                                                    <tr
+                                                                        class="fw-bold text-muted bg-light fs-7 text-uppercase">
+                                                                        <th class="ps-5 min-w-30px">No</th>
+                                                                        <th class="min-w-120px">Kondisi</th>
+                                                                        <th class="min-w-150px">Catatan</th>
+                                                                        <th class="min-w-120px">Dicatat Pada</th>
+                                                                        <th class="min-w-100px pe-5">Return ID</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="text-gray-600 fw-semibold">
+                                                                    @forelse ($unit->conditions ?? [] as $i => $condition)
+                                                                        <tr>
+                                                                            <td class="ps-5">{{ $i + 1 }}</td>
+                                                                            <td>
+                                                                                @php
+                                                                                    $condMap = [
+                                                                                        'good' => [
+                                                                                            'label' => 'Baik',
+                                                                                            'class' =>
+                                                                                                'badge-light-success',
+                                                                                        ],
+                                                                                        'minor' => [
+                                                                                            'label' => 'Minor',
+                                                                                            'class' =>
+                                                                                                'badge-light-warning',
+                                                                                        ],
+                                                                                        'damaged' => [
+                                                                                            'label' => 'Rusak',
+                                                                                            'class' =>
+                                                                                                'badge-light-danger',
+                                                                                        ],
+                                                                                        'lost' => [
+                                                                                            'label' => 'Hilang',
+                                                                                            'class' =>
+                                                                                                'badge-light-dark',
+                                                                                        ],
+                                                                                    ];
+                                                                                    $c = $condMap[
+                                                                                        $condition->conditions
+                                                                                    ] ?? [
+                                                                                        'label' => ucfirst(
+                                                                                            $condition->conditions,
+                                                                                        ),
+                                                                                        'class' =>
+                                                                                            'badge-light-secondary',
+                                                                                    ];
+                                                                                @endphp
+                                                                                <span
+                                                                                    class="badge {{ $c['class'] }}">{{ $c['label'] }}</span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span class="text-gray-700">
+                                                                                    {{ $condition->notes ?: '-' }}
+                                                                                </span>
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ \Carbon\Carbon::parse($condition->recorded_at)->format('d M Y, H:i') }}
+                                                                            </td>
+                                                                            <td class="pe-5">
+                                                                                @if ($condition->return_id)
+                                                                                    <span
+                                                                                        class="badge badge-light-info">#{{ $condition->return_id }}</span>
+                                                                                @else
+                                                                                    <span class="text-muted">-</span>
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                    @empty
+                                                                        <tr>
+                                                                            <td colspan="5" class="text-center py-8">
+                                                                                <div
+                                                                                    class="d-flex flex-column align-items-center">
+                                                                                    <i
+                                                                                        class="ki-duotone ki-information fs-3x text-muted mb-3">
+                                                                                        <span class="path1"></span>
+                                                                                        <span class="path2"></span>
+                                                                                        <span class="path3"></span>
+                                                                                    </i>
+                                                                                    <span class="text-muted fs-6">Belum ada
+                                                                                        riwayat kondisi</span>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforelse
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            {{-- Footer --}}
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="kt_modal_edit_unit{{ $unit->id }}" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            {{-- Header --}}
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    <i class="fas fa-pencil-alt me-2 text-warning"></i>Edit Unit
+                                                </h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            {{-- Form --}}
+                                            <form action="{{ route('tools.units-update', $unit->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <div class="modal-body">
+
+                                                    {{-- Hidden tool id --}}
+                                                    <input type="hidden" name="tool_id" value="{{ $unit->tool_id }}">
+
+                                                    {{-- Kode Unit (readonly) --}}
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Kode Unit</label>
+                                                        <input type="text" name="code" class="form-control"
+                                                            value="{{ $unit->code }}" readonly>
+                                                        <div class="form-text text-muted">Kode unit tidak dapat diubah.
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Status --}}
+                                                    <div class="mb-3">
+                                                        <label class="form-label required">Status</label>
+                                                        <select name="status" class="form-select" required>
+                                                            <option value="">Pilih Status</option>
+                                                            <option value="available"
+                                                                {{ $unit->status === 'available' ? 'selected' : '' }}>
+                                                                Available</option>
+                                                            <option value="borrowed"
+                                                                {{ $unit->status === 'borrowed' ? 'selected' : '' }}>
+                                                                Borrowed</option>
+                                                            <option value="maintenance"
+                                                                {{ $unit->status === 'maintenance' ? 'selected' : '' }}>
+                                                                Maintenance</option>
+                                                            <option value="damaged"
+                                                                {{ $unit->status === 'damaged' ? 'selected' : '' }}>
+                                                                Damaged</option>
+                                                        </select>
+                                                    </div>
+
+                                                    {{-- Catatan --}}
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Catatan</label>
+                                                        <textarea name="notes" class="form-control" rows="3" placeholder="Opsional">{{ $unit->notes }}</textarea>
+                                                    </div>
+
+                                                </div>
+
+                                                {{-- Footer --}}
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-warning text-white">
+                                                        <i class="fas fa-save me-1"></i>Simpan Perubahan
+                                                    </button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="kt_modal_delete_unit{{ $unit->id }}" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                        <div class="modal-content">
+
+                                            {{-- Header --}}
+                                            <div class="modal-header border-0 pb-0">
+                                                <button type="button" class="btn-close ms-auto"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            {{-- Body --}}
+                                            <div class="modal-body text-center pt-0 pb-4 px-4">
+
+                                                {{-- Icon --}}
+                                                <div class="mb-4">
+                                                    <span class="svg-icon svg-icon-5tx svg-icon-danger">
+                                                        <i class="fas fa-trash-alt fa-3x text-danger"></i>
+                                                    </span>
+                                                </div>
+
+                                                <h4 class="fw-bold mb-2">Hapus Unit?</h4>
+                                                <p class="text-muted mb-0">
+                                                    Anda akan menghapus unit <strong>{{ $unit->code }}</strong>.
+                                                    Tindakan ini <span class="text-danger fw-semibold">tidak dapat
+                                                        dibatalkan</span>.
+                                                </p>
+
+                                            </div>
+
+                                            {{-- Footer --}}
+                                            <div class="modal-footer justify-content-center border-0 pt-0">
+                                                <button type="button" class="btn btn-light px-5"
+                                                    data-bs-dismiss="modal">Batal</button>
+
+                                                <form action="{{ route('tools.units-delete', $unit->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger px-5">
+                                                        <i class="fas fa-trash-alt me-1"></i>Ya, Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endforeach
                     </div>
-                    <!--end::Table-->
                 </div>
                 <!--end::Card body-->
             </div>
             <!--end::Card-->
         </div>
     </div>
-
-    <!--begin::Modal - Add User-->
-    <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered mw-900px">
+    <div class="modal fade" id="kt_modal_add_tool" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mw-700px">
             <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header" id="kt_modal_add_user_header">
-                    <h2 class="fw-bold">Add New User</h2>
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
+
+                <!-- Header -->
+                <div class="modal-header">
+                    <h2 class="fw-bold">Tambah Alat</h2>
+                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1"></i>
                     </div>
                 </div>
-                <!--end::Modal header-->
 
-                <!--begin::Modal body-->
+                <!-- Body -->
                 <div class="modal-body px-5 py-10">
-                    <!--begin::Form-->
-                    <form id="kt_modal_add_user_form" class="form" method="POST"
-                        action="{{ route('users.store') }}">
+
+                    <form method="POST" action="{{ route('tools.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <!--begin::Scroll-->
-                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll"
-                            data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
-                            data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header"
-                            data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
-                            <!--begin::Card - Personal Information-->
-                            <div class="card card-flush mb-8 shadow-sm">
-                                <div class="card-body p-8">
-                                    <h5 class="card-title text-gray-800 fw-bold mb-6">Personal Information</h5>
+                        <div class="d-flex flex-column">
 
-                                    <!--begin::Row - Name & NIK-->
-                                    <div class="row g-6 mb-6">
-                                        <!--begin::Col - Name-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="required fw-semibold fs-6 mb-3 text-gray-700">Full Name</label>
-                                            <input type="text" name="name" class="form-control form-control-solid"
-                                                placeholder="Enter full name" />
-                                        </div>
-                                        <!--end::Col-->
-
-                                        <!--begin::Col - NIK-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="required fw-semibold fs-6 mb-3 text-gray-700">NIK (ID
-                                                Number)</label>
-                                            <input type="text" name="nik" class="form-control form-control-solid"
-                                                placeholder="Enter NIK" maxlength="16" />
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Row-->
-
-                                    <!--begin::Row - Email & Phone-->
-                                    <div class="row g-6 mb-6">
-                                        <!--begin::Col - Email-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="required fw-semibold fs-6 mb-3 text-gray-700">Email
-                                                Address</label>
-                                            <input type="email" name="email" class="form-control form-control-solid"
-                                                placeholder="example@email.com" />
-                                        </div>
-                                        <!--end::Col-->
-
-                                        <!--begin::Col - Phone-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="fw-semibold fs-6 mb-3 text-gray-700">Phone Number</label>
-                                            <input type="text" name="no_hp" class="form-control form-control-solid"
-                                                placeholder="+62 812-xxxx-xxxx" />
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Row-->
-
-                                    <!--begin::Input group - Address-->
-                                    <div class="fv-row mb-6">
-                                        <label class="fw-semibold fs-6 mb-3 text-gray-700">Address</label>
-                                        <textarea name="address" class="form-control form-control-solid" rows="3" placeholder="Enter full address"></textarea>
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Row - Birth Date-->
-                                    <div class="row g-6">
-                                        <div class="col-md-6 fv-row">
-                                            <label class="fw-semibold fs-6 mb-3 text-gray-700">Birth Date</label>
-                                            <input type="date" name="birth_date"
-                                                class="form-control form-control-solid" />
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
+                            <div class="fv-row mb-6">
+                                <label class="fw-semibold fs-6 mb-3">Foto Alat</label>
+                                <input type="file" name="photo" class="form-control form-control-solid">
                             </div>
-                            <!--end::Card-->
 
-                            <!--begin::Card - Account Security-->
-                            <div class="card card-flush mb-8 shadow-sm">
-                                <div class="card-body p-8">
-                                    <h5 class="card-title text-gray-800 fw-bold mb-6">Account Security</h5>
-
-                                    <!--begin::Row - Password & Confirm Password-->
-                                    <div class="row g-6">
-                                        <!--begin::Col - Password-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="required fw-semibold fs-6 mb-3 text-gray-700">Password</label>
-                                            <div class="position-relative mb-2">
-                                                <input type="password" name="password"
-                                                    class="form-control form-control-solid"
-                                                    placeholder="Enter password" />
-                                                <span
-                                                    class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2">
-                                                    <i class="ki-duotone ki-eye-slash fs-2"></i>
-                                                    <i class="ki-duotone ki-eye fs-2 d-none"></i>
-                                                </span>
-                                            </div>
-                                            <div class="form-text">Minimum 8 characters with uppercase, lowercase and
-                                                number.</div>
-                                        </div>
-                                        <!--end::Col-->
-
-                                        <!--begin::Col - Confirm Password-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="required fw-semibold fs-6 mb-3 text-gray-700">Confirm
-                                                Password</label>
-                                            <input type="password" name="confirm_password"
-                                                class="form-control form-control-solid" placeholder="Re-enter password" />
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
+                            <div class="fv-row mb-6">
+                                <label class="required fw-semibold fs-6 mb-3">Kode Awal</label>
+                                <input type="text" name="code_prefix" class="form-control form-control-solid"
+                                    placeholder="Contoh: ALAT" required>
                             </div>
-                            <!--end::Card-->
 
-                            <!--begin::Card - Role & Permissions-->
-                            <div class="card card-flush shadow-sm">
-                                <div class="card-body p-8">
-                                    <h5 class="card-title text-gray-800 fw-bold mb-6">Role & Permissions</h5>
-
-                                    <!--begin::Row - Role-->
-                                    <div class="row g-6 mb-6">
-                                        <div class="col-md-12 fv-row">
-                                            <label class="required fw-semibold fs-6 mb-3 text-gray-700">Role</label>
-                                            <select name="role" class="form-select form-select-solid"
-                                                data-control="select2" data-placeholder="Select a role"
-                                                data-dropdown-parent="#kt_modal_add_user">
-
-                                                <option></option>
-                                                <option value="admin">Admin</option>
-                                                <option value="employee">Employee</option>
-                                                <option value="user">User</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-
-                                    <!--begin::Row - Penalty Points & Status-->
-                                    <div class="row g-6">
-                                        <!--begin::Col - Penalty Points-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="fw-semibold fs-6 mb-3 text-gray-700">Penalty Points</label>
-                                            <input type="number" name="penalty_points"
-                                                class="form-control form-control-solid" placeholder="0" value="0"
-                                                min="0" max="100" />
-                                            <div class="form-text mt-2">Range: 0 - 100 points</div>
-                                        </div>
-                                        <!--end::Col-->
-
-                                        <!--begin::Col - Status-->
-                                        <div class="col-md-6 fv-row">
-                                            <label class="fw-semibold fs-6 mb-3 text-gray-700">Account Status</label>
-                                            <div class="form-check form-switch form-check-custom form-check-solid mt-4">
-                                                <input class="form-check-input" type="checkbox" name="is_restricted"
-                                                    id="is_restricted" />
-                                                <label class="form-check-label fw-semibold text-gray-600 ms-3"
-                                                    for="is_restricted">
-                                                    Restrict this account
-                                                </label>
-                                            </div>
-                                            <div class="form-text mt-2">Restricted users have limited access.</div>
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
+                            <!-- Nama Alat -->
+                            <div class="fv-row mb-6">
+                                <label class="required fw-semibold fs-6 mb-3">Nama Alat</label>
+                                <input type="text" name="name" class="form-control form-control-solid"
+                                    placeholder="Contoh: Laptop" required>
                             </div>
-                            <!--end::Card-->
+
+                            <!-- Kategori -->
+                            <div class="fv-row mb-6">
+                                <label class="required fw-semibold fs-6 mb-3">Kategori</label>
+                                <select name="category_id" class="form-select form-select-solid" required>
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($categories as $cat)
+                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Tipe -->
+                            <div class="fv-row mb-6">
+                                <label class="required fw-semibold fs-6 mb-3">Tipe Alat</label>
+                                <select name="item_type" class="form-select form-select-solid" required>
+                                    <option value="single">Single</option>
+                                    <option value="bundle">Bundle</option>
+                                </select>
+                            </div>
+
+                            <!-- Deskripsi -->
+                            <div class="fv-row mb-6">
+                                <label class="fw-semibold fs-6 mb-3">Deskripsi</label>
+                                <textarea name="description" class="form-control form-control-solid" rows="3"
+                                    placeholder="Deskripsi alat (opsional)"></textarea>
+                            </div>
 
                         </div>
-                        <!--end::Scroll-->
 
-                        <!--begin::Actions-->
-                        <div class="text-center pt-10">
-                            <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">
-                                Cancel
+                        <!-- Actions -->
+                        <div class="text-center pt-5">
+                            <button type="button" class="btn btn-light me-3" data-bs-dismiss="modal">
+                                Batal
                             </button>
                             <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">Submit</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
+                                Simpan
                             </button>
                         </div>
-                        <!--end::Actions-->
+
                     </form>
-                    <!--end::Form-->
+
                 </div>
-                <!--end::Modal body-->
             </div>
         </div>
     </div>
-    <!--end::Modal - Add User-->
 @endsection

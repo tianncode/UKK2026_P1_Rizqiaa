@@ -2566,7 +2566,7 @@ License: For each use you must have a valid license purchased only from above li
 
     {{-- Management Alat --}}
     <div class="menu-item">
-        <a class="menu-link" href="{{ route('alat.index')}}">
+        <a class="menu-link" href="{{ route('tools.index')}}">
             <span class="menu-icon">
                 <i class="ki-duotone ki-wrench fs-2"></i>
             </span>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthC;
 use App\Http\Controllers\CategoriesC;
+use App\Http\Controllers\ToolsC;
+use App\Http\Controllers\UnitsC;
 use App\Http\Controllers\UserC;
 use Illuminate\Support\Facades\Route;
 
@@ -58,11 +60,14 @@ Route::prefix('management-categories/tabel')->name('categories.')->group(functio
     Route::delete('/delete/{id}', [CategoriesC::class, 'delete'])->name('delete');
 });
 
-Route::prefix('management-alat/tabel')->name('alat.')->group(function () {
-    Route::get('/', [UserC::class, 'index'])->name('index');
-    Route::get('/create', [UserC::class, 'create'])->name('form');
-    Route::post('/store', [UserC::class, 'store'])->name('store');
-    Route::get('/view/{id}', [UserC::class, 'view'])->name('view');
-    Route::put('/update/{id}', [UserC::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [UserC::class, 'delete'])->name('delete');
+Route::prefix('management-alat/tabel')->name('tools.')->group(function () {
+    Route::get('/', [ToolsC::class, 'index'])->name('index');
+    Route::get('/create', [ToolsC::class, 'create'])->name('form');
+    Route::post('/store', [ToolsC::class, 'store'])->name('store');
+    Route::get('/view/{id}', [ToolsC::class, 'view'])->name('view');
+    Route::put('/update/{id}', [ToolsC::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [ToolsC::class, 'delete'])->name('delete');
+    Route::post('/tool-units/store', [UnitsC::class, 'store'])->name('units-store');
+    Route::put('/tool-units/update/{id}', [UnitsC::class, 'update'])->name('units-update');
+    Route::delete('/tool-units/delete/{id}', [UnitsC::class, 'delete'])->name('units-delete');
 });

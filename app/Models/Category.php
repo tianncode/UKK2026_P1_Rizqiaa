@@ -12,4 +12,9 @@ class Category extends Model
         'name',
         'description'
     ];
+
+    public function tools()
+    {
+        return $this->hasMany(Tools::class);
+    }
 }
