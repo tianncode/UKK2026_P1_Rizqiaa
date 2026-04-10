@@ -2554,23 +2554,23 @@ License: For each use you must have a valid license purchased only from above li
         </a>
     </div>
 
-    {{-- Management Alat --}}
+        {{-- Kategori --}}
     <div class="menu-item">
-        <a class="menu-link" href="{{ route('alat.index') }}">
-            <span class="menu-icon">
-                <i class="ki-duotone ki-wrench fs-2"></i>
-            </span>
-            <span class="menu-title">Management Alat</span>
-        </a>
-    </div>
-
-    {{-- Kategori --}}
-    <div class="menu-item">
-        <a class="menu-link" href="#">
+        <a class="menu-link" href="{{ route('categories.index')}}">
             <span class="menu-icon">
                 <i class="ki-duotone ki-element-11 fs-2"></i>
             </span>
             <span class="menu-title">Management Kategori</span>
+        </a>
+    </div>
+
+    {{-- Management Alat --}}
+    <div class="menu-item">
+        <a class="menu-link" href="{{ route('alat.index')}}">
+            <span class="menu-icon">
+                <i class="ki-duotone ki-wrench fs-2"></i>
+            </span>
+            <span class="menu-title">Management Alat</span>
         </a>
     </div>
 

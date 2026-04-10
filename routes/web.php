@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthC;
+use App\Http\Controllers\CategoriesC;
 use App\Http\Controllers\UserC;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,15 @@ Route::prefix('users-management/tabel')->name('users.')->group(function () {
     Route::get('/view/{id}', [UserC::class, 'view'])->name('view');
     Route::put('/update/{id}', [UserC::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [UserC::class, 'delete'])->name('delete');
+});
+
+Route::prefix('management-categories/tabel')->name('categories.')->group(function () {
+    Route::get('/', [CategoriesC::class, 'index'])->name('index');
+    Route::get('/create', [CategoriesC::class, 'create'])->name('form');
+    Route::post('/store', [CategoriesC::class, 'store'])->name('store');
+    Route::get('/view/{id}', [CategoriesC::class, 'view'])->name('view');
+    Route::put('/update/{id}', [CategoriesC::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [CategoriesC::class, 'delete'])->name('delete');
 });
 
 Route::prefix('management-alat/tabel')->name('alat.')->group(function () {
