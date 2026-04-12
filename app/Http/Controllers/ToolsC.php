@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BundleTools;
 use App\Models\Category;
 use App\Models\Tools;
 use Illuminate\Http\Request;
@@ -14,26 +15,34 @@ class ToolsC extends Controller
   public function index()
   {
     $tools = Tools::with(['units.conditions', 'units.tool', 'category'])->get();
+    $singleTools = Tools::where('item_type', 'single')->get(['id', 'name']);
     $categories = Category::all();
 
-    return view('management-alat.tabel', compact('tools', 'categories'));
+    return view('management-alat.tabel', compact('tools', 'singleTools', 'categories'));
   }
 
   public function store(Request $request)
   {
-    // 🔍 Validasi
     $request->validate([
       'name' => 'required|string|max:255',
       'category_id' => 'required|exists:categories,id',
       'item_type' => 'required|in:single,bundle',
       'code_prefix' => 'required|string|max:20',
       'description' => 'nullable|string',
-      'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+      'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    // 🔹 Upload Foto
-    $photoPath = null;
+    // Validasi bundle items hanya jika tipe bundle
+    if ($request->item_type === 'bundle') {
+      $request->validate([
+        'bundle_items' => 'required|array|min:1',
+        'bundle_items.*.tool_id' => 'required|exists:tools,id',
+        'bundle_items.*.qty' => 'required|integer|min:1',
+      ]);
+    }
 
+    // Upload Foto
+    $photoPath = null;
     if ($request->hasFile('photo')) {
       $file = $request->file('photo');
       $filename = time() . '_' . $file->getClientOriginalName();
@@ -41,7 +50,8 @@ class ToolsC extends Controller
       $photoPath = 'assets/tools/' . $filename;
     }
 
-    Tools::create([
+    // Simpan Tool
+    $tool = Tools::create([
       'name' => $request->name,
       'category_id' => $request->category_id,
       'item_type' => $request->item_type,
@@ -50,6 +60,19 @@ class ToolsC extends Controller
       'photo_path' => $photoPath,
     ]);
 
+    // Simpan Bundle Items jika tipe bundle
+    if ($request->item_type === 'bundle' && $request->bundle_items) {
+      foreach ($request->bundle_items as $item) {
+        if (!empty($item['tool_id'])) {
+          BundleTools::create([
+            'bundle_id' => $tool->id,
+            'tool_id' => $item['tool_id'],
+            'qty' => $item['qty'] ?? 1,
+          ]);
+        }
+      }
+    }
+
     return redirect()->back()->with('success', 'Alat berhasil ditambahkan');
   }
 
@@ -57,7 +80,7 @@ class ToolsC extends Controller
   {
     $tool = Tools::findOrFail($id);
 
-    // 🔍 Validasi
+    //Validasi
     $request->validate([
       'name' => 'required|string|max:255',
       'category_id' => 'required|exists:categories,id',
@@ -68,7 +91,7 @@ class ToolsC extends Controller
 
     $photoPath = $tool->photo_path; // default pakai foto lama
 
-    // 📸 Jika upload foto baru
+    // Jika upload foto baru
     if ($request->hasFile('photo')) {
 
       // hapus foto lama kalau ada
@@ -83,7 +106,7 @@ class ToolsC extends Controller
       $photoPath = 'assets/tools/' . $filename;
     }
 
-    // 💾 Update data
+    // Update data
     $tool->update([
       'name' => $request->name,
       'category_id' => $request->category_id,
@@ -97,14 +120,19 @@ class ToolsC extends Controller
 
   public function delete($id)
   {
-    $tool = Tools::findOrFail($id);
+    $tool = Tools::with('units')->findOrFail($id);
 
-    // 🧹 hapus file foto jika ada
+    //Cek apakah masih ada unit
+    if ($tool->units()->count() > 0) {
+      return redirect()->back()->with('error', 'Alat tidak bisa dihapus karena masih memiliki unit!');
+    }
+
+    //hapus file foto jika ada
     if ($tool->photo_path && file_exists(public_path($tool->photo_path))) {
       unlink(public_path($tool->photo_path));
     }
 
-    // ❌ hapus data
+    //hapus data
     $tool->delete();
 
     return redirect()->back()->with('success', 'Alat berhasil dihapus');

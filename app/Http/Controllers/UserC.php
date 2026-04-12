@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tools;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class UserC extends Controller
   public function index()
   {
     $users = User::with('detail')->get();
-    return view('management-user.tabel', compact('users'));
+    $singleTools = Tools::where('item_type', 'single')->get();
+    return view('management-user.tabel', compact('users', 'singleTools'));
   }
 
   public function store(Request $request)

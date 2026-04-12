@@ -292,7 +292,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="text-center pt-5">
+                                                    <div class="text-center pt-5 pb-5">
                                                         <button type="button" class="btn btn-light me-3"
                                                             data-bs-dismiss="modal">Close</button>
                                                     </div>
@@ -442,7 +442,7 @@
 
                                                         </div>
 
-                                                        <div class="text-center mt-6">
+                                                        <div class="text-center pt-5 pb-5">
                                                             <button type="button" class="btn btn-light me-3"
                                                                 data-bs-dismiss="modal">
                                                                 Cancel
@@ -459,50 +459,34 @@
                                         </div>
                                     </div>
                                     {{-- MODAL DELETE USER --}}
-                                    <div class="modal fade" id="kt_modal_delete_user{{ $user->id }}" tabindex="-1"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered mw-480px">
+                                    <div class="modal fade slide-down" id="kt_modal_delete_user{{ $user->id }}"
+                                        tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered mw-400px">
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h2 class="fw-bold">Delete User</h2>
-                                                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                                        data-bs-dismiss="modal">
-                                                        <i class="ki-duotone ki-cross fs-1"><span
-                                                                class="path1"></span><span class="path2"></span></i>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-body px-8 py-10 text-center">
-                                                    {{-- Icon --}}
-                                                    <div class="mb-6">
-                                                        <i class="ki-duotone ki-trash fs-5x text-danger">
-                                                            <span class="path1"></span><span class="path2"></span>
-                                                            <span class="path3"></span><span class="path4"></span><span
-                                                                class="path5"></span>
-                                                        </i>
-                                                    </div>
-                                                    <h3 class="fw-bold text-gray-800 fs-2 mb-3">Hapus User Ini?</h3>
-                                                    <p class="text-muted fs-6 mb-2">Anda akan menghapus user:</p>
-                                                    <p class="fw-bold text-danger fs-5 mb-4" id="delete_user_name">
-                                                        {{ $user->detail->name ?? '-' }}</p>
-                                                    <p class="text-muted fs-6 mb-0">
-                                                        Tindakan ini <strong class="text-danger">tidak dapat
-                                                            dibatalkan</strong>
-                                                        dan semua data terkait user ini akan dihapus secara permanen.
+                                                <div class="modal-body text-center p-10">
+                                                    {{-- Content --}}
+                                                    <h3 class="fw-semibold text-gray-800 fs-3 mb-3">Apakah Anda yakin?</h3>
+                                                    <p class="text-gray-600 fs-6 mb-8">
+                                                        Data user <span
+                                                            class="fw-bold text-danger">{{ $user->detail->name ?? '-' }}</span> akan
+                                                        dihapus secara permanen.
                                                     </p>
 
                                                     <form method="POST" action="{{ route('users.delete', $user->id) }}"
-                                                        class="mt-8">
+                                                        class="w-100">
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button type="button" class="btn btn-light me-3"
-                                                            data-bs-dismiss="modal">
-                                                            Batal
-                                                        </button>
+                                                        <div class="d-flex justify-content-center gap-3 pb-3">
+                                                            <button type="button" class="btn btn-light btn-sm px-6"
+                                                                data-bs-dismiss="modal">
+                                                                Batal
+                                                            </button>
 
-                                                        <button type="submit" class="btn btn-danger">
-                                                            Ya, Hapus
-                                                        </button>
+                                                            <button type="submit" class="btn btn-danger btn-sm px-6">
+                                                                Ya, Hapus
+                                                            </button>
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -604,7 +588,7 @@
 
                                     <!--begin::Row - Birth Date-->
                                     <div class="row g-6">
-                                        <div class="col-md-6 fv-row">
+                                        <div class="col-md-12 fv-row">
                                             <label class="fw-semibold fs-6 mb-3 text-gray-700">Birth Date</label>
                                             <input type="date" name="birth_date"
                                                 class="form-control form-control-solid" />
@@ -712,7 +696,7 @@
                         <!--end::Scroll-->
 
                         <!--begin::Actions-->
-                        <div class="text-center pt-10">
+                        <div class="text-center pt-5 pb-5">
                             <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">
                                 Cancel
                             </button>

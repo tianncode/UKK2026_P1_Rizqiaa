@@ -28,4 +28,14 @@ class Tools extends Model
     {
         return $this->hasMany(ToolUnits::class, 'tool_id');
     }
+
+    public function bundleItems()
+    {
+        return $this->hasMany(BundleTools::class, 'bundle_id');
+    }
+
+    public function bundleOf()
+    {
+        return $this->hasMany(BundleTools::class, 'tool_id');
+    }
 }

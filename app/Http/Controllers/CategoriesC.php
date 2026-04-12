@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,8 @@ class CategoriesC extends Controller
   public function index()
   {
     $categories = Category::all();
-    return view('management-categories.tabel', compact('categories'));
+    $singleTools = Tools::where('item_type', 'single')->get();
+    return view('management-categories.tabel', compact('categories', 'singleTools'));
   }
 
   public function store(Request $request)
@@ -57,13 +59,13 @@ class CategoriesC extends Controller
         ->with('error', 'Kategori tidak ditemukan');
     }
 
-    // // cegah hapus jika masih dipakai
-    // $used = DB::table('tools')->where('category_id', $id)->count();
+    // cegah hapus jika masih dipakai
+    $used = DB::table('tools')->where('category_id', $id)->count();
 
-    // if ($used > 0) {
-    //   return redirect()->route('categories.index')
-    //     ->with('error', 'Kategori masih digunakan di data alat!');
-    // }
+    if ($used > 0) {
+      return redirect()->route('categories.index')
+        ->with('error', 'Kategori masih digunakan di data alat!');
+    }
 
     // hapus
     DB::table('categories')->where('id', $id)->delete();

@@ -167,12 +167,13 @@
                                                         </div>
 
                                                         <!-- Actions -->
-                                                        <div class="text-center">
+                                                        <div class="text-center pt-5 pb-5">
                                                             <button type="button" class="btn btn-light me-3"
                                                                 data-bs-dismiss="modal">
                                                                 Batal
                                                             </button>
-                                                            <button type="submit" class="btn btn-warning">
+
+                                                            <button type="submit" class="btn btn-warning me-3">
                                                                 Update
                                                             </button>
                                                         </div>
@@ -184,41 +185,36 @@
                                     </div>
                                     <div class="modal fade" id="kt_modal_delete_category{{ $category->id }}"
                                         tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered mw-500px">
+                                        <div class="modal-dialog modal-dialog-centered mw-400px">
                                             <div class="modal-content">
-
-                                                <!-- Header -->
-                                                <div class="modal-header">
-                                                    <h2 class="fw-bold text-danger">Hapus Kategori</h2>
-                                                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
-                                                        <i class="ki-duotone ki-cross fs-1"></i>
-                                                    </div>
-                                                </div>
-
                                                 <!-- Body -->
                                                 <div class="modal-body text-center px-5 py-10">
 
-                                                    <p class="fs-5 mb-5">
-                                                        Yakin ingin menghapus kategori:
+                                                    {{-- Content --}}
+                                                    <h3 class="fw-semibold text-gray-800 fs-3 mb-3">Apakah Anda yakin?</h3>
+                                                    <p class="text-gray-600 fs-6 mb-8">
+                                                        Data Category <span
+                                                            class="fw-bold text-danger">{{ $category->name ?? '-' }}</span>
+                                                        akan
+                                                        dihapus secara permanen.
                                                     </p>
 
-                                                    <h4 class="fw-bold text-gray-800 mb-5">
-                                                        {{ $category->name }}
-                                                    </h4>
-
                                                     <form method="POST"
-                                                        action="{{ route('categories.delete', $category->id) }}">
+                                                        action="{{ route('categories.delete', $category->id) }}"
+                                                        class="w-100">
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button type="button" class="btn btn-light me-3"
-                                                            data-bs-dismiss="modal">
-                                                            Batal
-                                                        </button>
+                                                        <div class="d-flex justify-content-center gap-3 pb-3">
+                                                            <button type="button" class="btn btn-light btn-sm px-6"
+                                                                data-bs-dismiss="modal">
+                                                                Batal
+                                                            </button>
 
-                                                        <button type="submit" class="btn btn-danger">
-                                                            Hapus
-                                                        </button>
+                                                            <button type="submit" class="btn btn-danger btn-sm px-6">
+                                                                Ya, Hapus
+                                                            </button>
+                                                        </div>
                                                     </form>
 
                                                 </div>
@@ -279,7 +275,7 @@
                         </div>
 
                         <!-- Actions -->
-                        <div class="text-center pt-5">
+                        <div class="text-center pt-5 pb-5">
                             <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">
                                 Batal
                             </button>
