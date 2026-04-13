@@ -952,6 +952,103 @@
 
         })();
     </script>
+
+    {{-- Script toggle bundle + preview foto --}}
+    <script>
+        document.querySelectorAll('[id^="edit_item_type_"]').forEach(function(select) {
+            const id = select.id.split('_').pop();
+
+            const bundleFields = document.getElementById('edit-bundle-fields_' + id);
+            const photoInput = document.getElementById('edit-photo-input_' + id);
+            const previewImg = document.getElementById('edit-preview-image_' + id);
+            const priceDisplay = document.getElementById('edit_price_display_' + id);
+            const priceRaw = document.getElementById('edit_price_raw_' + id);
+            const addBtn = document.getElementById('edit-add-bundle-item_' + id);
+            const wrapper = document.getElementById('edit-bundle-items-wrapper_' + id);
+
+            // Toggle bundle
+            select.addEventListener('change', function() {
+                bundleFields.style.display = this.value === 'bundle' ? '' : 'none';
+            });
+
+            // Preview foto
+            if (photoInput) {
+                photoInput.addEventListener('change', function() {
+                    const reader = new FileReader();
+                    reader.onload = e => previewImg.src = e.target.result;
+                    reader.readAsDataURL(this.files[0]);
+                });
+            }
+
+            // Format harga
+            if (priceDisplay) {
+                priceDisplay.addEventListener('input', function() {
+                    let raw = this.value.replace(/\D/g, '');
+                    priceRaw.value = raw;
+                    this.value = raw ? parseInt(raw).toLocaleString('id-ID') : '';
+                });
+            }
+
+            // Tambah bundle item
+            if (addBtn) {
+                addBtn.addEventListener('click', function() {
+                    const index = wrapper.querySelectorAll('.bundle-item-row').length;
+
+                    const html = `
+            <div class="bundle-item-row d-flex gap-3 align-items-center">
+                <span class="bundle-number">${index + 1}.</span>
+                <input type="text" name="bundle_items[${index}][name]" placeholder="Nama">
+                <input type="number" name="bundle_items[${index}][qty]" value="1" min="1">
+                <input type="hidden" name="bundle_items[${index}][price]">
+                <button type="button" class="remove-bundle-item">X</button>
+            </div>`;
+
+                    wrapper.insertAdjacentHTML('beforeend', html);
+                });
+            }
+
+            // Hapus item
+            if (wrapper) {
+                wrapper.addEventListener('click', function(e) {
+                    if (e.target.closest('.remove-bundle-item')) {
+                        const rows = wrapper.querySelectorAll('.bundle-item-row');
+                        if (rows.length > 1) {
+                            e.target.closest('.bundle-item-row').remove();
+                        }
+                    }
+                });
+            }
+        });
+
+        document.querySelectorAll('[id^="edit_price_display_"]').forEach(function(input) {
+            const id = input.id.split('_').pop();
+            const rawInput = document.getElementById('edit_price_raw_' + id);
+
+            input.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                rawInput.value = value;
+                this.value = value ? new Intl.NumberFormat('id-ID').format(value) : '';
+            });
+
+            // 🔥 INIT (penting!)
+            let initial = rawInput.value;
+            if (initial) {
+                input.value = new Intl.NumberFormat('id-ID').format(initial);
+            }
+        });
+
+        document.querySelectorAll('[id^="form_edit_tool_"]').forEach(function(form) {
+            form.addEventListener('submit', function() {
+                const id = this.id.split('_').pop();
+                const display = document.getElementById('edit_price_display_' + id);
+                const raw = document.getElementById('edit_price_raw_' + id);
+
+                if (display && raw && !raw.value) {
+                    raw.value = display.value.replace(/\D/g, '');
+                }
+            });
+        });
+    </script>
     <!--end::Javascript-->
 </body>
 <!--end::Body-->

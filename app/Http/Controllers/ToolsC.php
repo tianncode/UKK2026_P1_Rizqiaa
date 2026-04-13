@@ -101,44 +101,124 @@ class ToolsC extends Controller
 
   public function update(Request $request, $id)
   {
-    $tool = Tools::findOrFail($id);
-
-    //Validasi
+    // Validasi utama
     $request->validate([
-      'name' => 'required|string|max:255',
+      'name'        => 'required|string|max:255',
       'category_id' => 'required|exists:categories,id',
-      'item_type' => 'required|in:single,bundle',
+      'item_type'   => 'required|in:single,bundle',
+      'code_prefix' => 'required|string|max:20',
+      'price'       => 'required|numeric|min:0',
       'description' => 'nullable|string',
-      'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+      'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
+    // Validasi bundle items hanya jika tipe bundle
+    if ($request->item_type === 'bundle') {
+      $request->validate([
+        'bundle_items'        => 'required|array|min:1',
+        'bundle_items.*.name' => 'required|string|max:255',
+        'bundle_items.*.qty'  => 'required|integer|min:1',
+        'bundle_items.*.price' => 'nullable|numeric|min:0',
+      ]);
+    }
+
+    $tool = Tools::findOrFail($id);
+
+    // Upload Foto baru (jika ada)
     $photoPath = $tool->photo_path; // default pakai foto lama
-
-    // Jika upload foto baru
     if ($request->hasFile('photo')) {
-
-      // hapus foto lama kalau ada
+      // Hapus foto lama jika ada
       if ($tool->photo_path && file_exists(public_path($tool->photo_path))) {
         unlink(public_path($tool->photo_path));
       }
-
-      $file = $request->file('photo');
-      $filename = time() . '_' . $file->getClientOriginalName();
+      $file      = $request->file('photo');
+      $filename  = time() . '_' . $file->getClientOriginalName();
       $file->move(public_path('assets/tools'), $filename);
-
       $photoPath = 'assets/tools/' . $filename;
     }
 
-    // Update data
+    // Update Tool utama
     $tool->update([
-      'name' => $request->name,
+      'name'        => $request->name,
       'category_id' => $request->category_id,
-      'item_type' => $request->item_type,
+      'item_type'   => $request->item_type,
+      'price'       => $request->price,
       'description' => $request->description,
-      'photo_path' => $photoPath,
+      'code_slug'   => $request->item_type === 'bundle'
+        ? 'BDL-' . strtoupper($request->code_prefix)
+        : strtoupper($request->code_prefix),
+      'photo_path'  => $photoPath,
     ]);
 
-    return redirect()->back()->with('success', 'Alat berhasil diupdate');
+    // Sync Bundle Items
+    if ($request->item_type === 'bundle' && $request->bundle_items) {
+
+      // Kumpulkan ID bundle item yang dikirim dari form
+      $submittedIds = collect($request->bundle_items)
+        ->pluck('id')
+        ->filter()
+        ->values();
+
+      // Hapus komponen yang tidak ada di form (dihapus user)
+      $existingBundles = BundleTools::where('bundle_id', $tool->id)->get();
+
+      foreach ($existingBundles as $existing) {
+        if (!$submittedIds->contains($existing->id)) {
+          // Hapus tool komponen & relasinya
+          Tools::find($existing->tool_id)?->delete();
+          $existing->delete();
+        }
+      }
+
+      // Update atau buat komponen
+      foreach ($request->bundle_items as $item) {
+        if (empty($item['name'])) continue;
+
+        if (!empty($item['id'])) {
+          // Update komponen yang sudah ada
+          $bundleRow = BundleTools::find($item['id']);
+
+          if ($bundleRow) {
+            // Update tool komponen
+            Tools::where('id', $bundleRow->tool_id)->update([
+              'name'  => $item['name'],
+              'price' => $item['price'] ?? 0,
+            ]);
+
+            // Update qty di pivot
+            $bundleRow->update([
+              'qty' => $item['qty'] ?? 1,
+            ]);
+          }
+        } else {
+          // Buat komponen baru
+          $component = Tools::create([
+            'name'        => $item['name'],
+            'category_id' => $request->category_id,
+            'item_type'   => 'bundle_tools',
+            'price'       => $item['price'] ?? 0,
+            'code_slug'   => strtoupper($request->code_prefix) . '[COMP]',
+            'description' => null,
+            'photo_path'  => null,
+          ]);
+
+          BundleTools::create([
+            'bundle_id' => $tool->id,
+            'tool_id'   => $component->id,
+            'qty'       => $item['qty'] ?? 1,
+          ]);
+        }
+      }
+    } elseif ($request->item_type === 'single') {
+      // Jika diubah dari bundle ke single, hapus semua komponen
+      $existingBundles = BundleTools::where('bundle_id', $tool->id)->get();
+      foreach ($existingBundles as $existing) {
+        Tools::find($existing->tool_id)?->delete();
+        $existing->delete();
+      }
+    }
+
+    return redirect()->back()->with('success', 'Alat berhasil diperbarui');
   }
 
   public function delete($id)
@@ -177,7 +257,7 @@ class ToolsC extends Controller
 
   public function detail($id)
   {
-    $tool = Tools::with(['units.conditions', 'units.tool', 'category','bundleItems.tools'])
+    $tool = Tools::with(['units.conditions', 'units.tool', 'category', 'bundleItems.tools'])
       ->findOrFail($id);
     $singleTools = Tools::where('item_type', 'single')->get(['id', 'name']);
     $categories = Category::all();

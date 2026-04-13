@@ -168,57 +168,93 @@
                                     </tr>
                                     <div class="modal fade" id="kt_modal_edit_tool{{ $tool->id }}" tabindex="-1"
                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered mw-700px">
-                                            <div class="modal-content">
+                                        <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
+                                            <div class="modal-content border-0 shadow-lg">
 
-                                                <div class="modal-header">
-                                                    <h2 class="fw-bold">Edit Alat</h2>
-                                                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
-                                                        <i class="ki-duotone ki-cross fs-1"></i>
+                                                {{-- ===== HEADER ===== --}}
+                                                <div class="modal-header px-8 py-5 border-bottom border-gray-200">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <span class="bullet bullet-dot bg-warning h-8px w-8px"></span>
+                                                        <h2 class="fw-bold fs-4 mb-0">Edit Alat</h2>
+                                                    </div>
+                                                    <div class="btn btn-sm btn-icon btn-active-light-danger"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="ki-duotone ki-cross fs-2">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
                                                     </div>
                                                 </div>
 
-                                                <div class="modal-body px-5 py-10">
+                                                {{-- ===== BODY ===== --}}
+                                                <div class="modal-body px-8 py-7">
                                                     <form method="POST" action="{{ route('tools.update', $tool->id) }}"
-                                                        enctype="multipart/form-data">
+                                                        enctype="multipart/form-data"
+                                                        id="form_edit_tool_{{ $tool->id }}">
                                                         @csrf
                                                         @method('PUT')
 
-                                                        <div class="d-flex flex-column">
-
-                                                            <!-- Foto -->
-                                                            <div class="fv-row mb-6">
-                                                                <label class="fw-semibold fs-6 mb-3">Foto Alat</label>
-
-                                                                <!-- Preview -->
-                                                                <div class="mb-3 text-center">
-                                                                    <img id="preview-image-edit-{{ $tool->id }}"
-                                                                        src="{{ $tool->photo_path ? asset($tool->photo_path) : 'https://via.placeholder.com/150x150?text=Preview' }}"
-                                                                        class="rounded shadow-sm"
-                                                                        style="max-height:150px; object-fit:cover;">
+                                                        {{-- === FOTO === --}}
+                                                        <div class="fv-row mb-6">
+                                                            <label class="fw-semibold fs-7 text-gray-600 mb-2 d-block">Foto
+                                                                Alat</label>
+                                                            <div class="d-flex align-items-center gap-5">
+                                                                <div class="flex-shrink-0">
+                                                                    <img id="edit-preview-image_{{ $tool->id }}"
+                                                                        src="{{ $tool->photo ? asset('storage/' . $tool->photo) : 'https://via.placeholder.com/80x80?text=Photo' }}"
+                                                                        class="rounded-3 border border-gray-200"
+                                                                        style="width: 80px; height: 80px; object-fit: cover;">
                                                                 </div>
-
-                                                                <input type="file" name="photo"
-                                                                    id="photo-input-edit-{{ $tool->id }}"
-                                                                    class="form-control form-control-solid"
-                                                                    accept="image/*">
+                                                                <div class="flex-grow-1">
+                                                                    <input type="file" name="photo"
+                                                                        id="edit-photo-input_{{ $tool->id }}"
+                                                                        class="form-control form-control-solid form-control-sm"
+                                                                        accept="image/*">
+                                                                    <span class="text-muted fs-8 mt-1 d-block">Format: JPG,
+                                                                        PNG. Maks 2MB. Kosongkan jika tidak ingin mengubah
+                                                                        foto.</span>
+                                                                </div>
                                                             </div>
+                                                        </div>
 
-                                                            <!-- Nama -->
-                                                            <div class="fv-row mb-6">
-                                                                <label class="required fw-semibold fs-6 mb-3">Nama
+                                                        <div class="separator separator-dashed mb-6"></div>
+
+                                                        {{-- === ROW 1: Kode Awal & Nama Alat === --}}
+                                                        <div class="row g-5 mb-6">
+                                                            <div class="col-md-4">
+                                                                <label
+                                                                    class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Kode
+                                                                    Awal</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" name="code_prefix"
+                                                                        id="edit_code_prefix"
+                                                                        class="form-control form-control-solid form-control-sm"
+                                                                        value="{{ $tool->code_slug }}" required
+                                                                        style="text-transform: uppercase;">
+                                                                </div>
+                                                                <span class="text-muted fs-8 mt-1 d-block"
+                                                                    id="edit_code_preview"></span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <label
+                                                                    class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Nama
                                                                     Alat</label>
                                                                 <input type="text" name="name"
-                                                                    class="form-control form-control-solid"
-                                                                    value="{{ $tool->name }}" required>
+                                                                    class="form-control form-control-solid form-control-sm"
+                                                                    value="{{ $tool->name }}"
+                                                                    placeholder="Contoh: Laptop ASUS" required>
                                                             </div>
+                                                        </div>
 
-                                                            <!-- Kategori -->
-                                                            <div class="fv-row mb-6">
+                                                        {{-- === ROW 2: Kategori & Tipe === --}}
+                                                        <div class="row g-5 mb-6">
+                                                            <div class="col-md-6">
                                                                 <label
-                                                                    class="required fw-semibold fs-6 mb-3">Kategori</label>
+                                                                    class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Kategori</label>
                                                                 <select name="category_id"
-                                                                    class="form-select form-select-solid" required>
+                                                                    class="form-select form-select-solid form-select-sm"
+                                                                    required>
+                                                                    <option value="">Pilih Kategori</option>
                                                                     @foreach ($categories as $cat)
                                                                         <option value="{{ $cat->id }}"
                                                                             {{ $tool->category_id == $cat->id ? 'selected' : '' }}>
@@ -227,111 +263,225 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-
-                                                            <!-- Tipe -->
-                                                            <div class="fv-row mb-6">
-                                                                <label class="required fw-semibold fs-6 mb-3">Tipe
+                                                            <div class="col-md-6">
+                                                                <label
+                                                                    class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Tipe
                                                                     Alat</label>
                                                                 <select name="item_type"
-                                                                    id="item_type_edit_{{ $tool->id }}"
-                                                                    class="form-select form-select-solid" required>
+                                                                    id="edit_item_type_{{ $tool->id }}"
+                                                                    class="form-select form-select-solid form-select-sm"
+                                                                    required>
                                                                     <option value="single"
-                                                                        {{ $tool->item_type == 'single' ? 'selected' : '' }}>
+                                                                        {{ $tool->item_type === 'single' ? 'selected' : '' }}>
                                                                         Single</option>
                                                                     <option value="bundle"
-                                                                        {{ $tool->item_type == 'bundle' ? 'selected' : '' }}>
+                                                                        {{ $tool->item_type === 'bundle' ? 'selected' : '' }}>
                                                                         Bundle</option>
                                                                 </select>
                                                             </div>
-
-                                                            <!-- Bundle Fields -->
-                                                            <div id="bundle-fields-edit-{{ $tool->id }}"
-                                                                style="{{ $tool->item_type === 'bundle' ? 'display:block' : 'display:none' }}">
-                                                                <div class="fv-row mb-6">
-                                                                    <label class="fw-semibold fs-6 mb-3">Isi Bundle</label>
-
-                                                                    <div
-                                                                        id="bundle-items-wrapper-edit-{{ $tool->id }}">
-                                                                        @if ($tool->item_type === 'bundle' && $tool->bundleItems->count() > 0)
-                                                                            @foreach ($tool->bundleItems as $index => $item)
-                                                                                <div
-                                                                                    class="bundle-item-row d-flex gap-3 mb-3 align-items-center">
-                                                                                    <select
-                                                                                        name="bundle_items[{{ $index }}][tool_id]"
-                                                                                        class="form-select form-select-solid">
-                                                                                        <option value="">Pilih Alat
-                                                                                        </option>
-                                                                                        @foreach ($singleTools as $single)
-                                                                                            <option
-                                                                                                value="{{ $single->id }}"
-                                                                                                {{ $item->tool_id == $single->id ? 'selected' : '' }}>
-                                                                                                {{ $single->name }}
-                                                                                            </option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                    <input type="number"
-                                                                                        name="bundle_items[{{ $index }}][qty]"
-                                                                                        class="form-control form-control-solid w-100px"
-                                                                                        placeholder="Qty" min="1"
-                                                                                        value="{{ $item->qty }}">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-sm btn-light-danger remove-bundle-item">
-                                                                                        <i
-                                                                                            class="ki-duotone ki-trash fs-4"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            @endforeach
-                                                                        @else
-                                                                            <div
-                                                                                class="bundle-item-row d-flex gap-3 mb-3 align-items-center">
-                                                                                <select name="bundle_items[0][tool_id]"
-                                                                                    class="form-select form-select-solid">
-                                                                                    <option value="">Pilih Alat
-                                                                                    </option>
-                                                                                    @foreach ($singleTools as $single)
-                                                                                        <option
-                                                                                            value="{{ $single->id }}">
-                                                                                            {{ $single->name }}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                <input type="number"
-                                                                                    name="bundle_items[0][qty]"
-                                                                                    class="form-control form-control-solid w-100px"
-                                                                                    placeholder="Qty" min="1"
-                                                                                    value="1">
-                                                                                <button type="button"
-                                                                                    class="btn btn-sm btn-light-danger remove-bundle-item">
-                                                                                    <i
-                                                                                        class="ki-duotone ki-trash fs-4"></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        @endif
-                                                                    </div>
-
-                                                                    <button type="button"
-                                                                        class="btn btn-sm btn-light-primary mt-2 add-bundle-item-edit"
-                                                                        data-tool-id="{{ $tool->id }}">
-                                                                        <i class="ki-duotone ki-plus fs-4"></i> Tambah Item
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Deskripsi -->
-                                                            <div class="fv-row mb-6">
-                                                                <label class="fw-semibold fs-6 mb-3">Deskripsi</label>
-                                                                <textarea name="description" class="form-control form-control-solid" rows="3">{{ $tool->description }}</textarea>
-                                                            </div>
-
                                                         </div>
 
-                                                        <div class="text-center pt-5 pb-5">
-                                                            <button type="button" class="btn btn-light me-3"
-                                                                data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-primary">Update</button>
+                                                        {{-- === ROW 3: Harga === --}}
+                                                        <div class="fv-row mb-6">
+                                                            <label
+                                                                class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Price</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <span
+                                                                    class="input-group-text bg-light border-0 text-muted fw-semibold">Rp</span>
+                                                                <input type="text"
+                                                                    id="edit_price_display_{{ $tool->id }}"
+                                                                    class="form-control form-control-solid form-control-sm"
+                                                                    value="{{ number_format($tool->price, 0, ',', '.') }}"
+                                                                    autocomplete="off">
+                                                                <input type="hidden" name="price"
+                                                                    id="edit_price_raw_{{ $tool->id }}"
+                                                                    value="{{ $tool->price }}">
+                                                            </div>
+                                                            <span class="text-muted fs-8 mt-1 d-block"
+                                                                id="edit_price_terbilang"></span>
+                                                        </div>
+
+                                                        {{-- === BUNDLE FIELDS === --}}
+                                                        <div id="edit-bundle-fields_{{ $tool->id }}"
+                                                            style="{{ $tool->item_type === 'bundle' ? '' : 'display: none;' }}">
+                                                            <div class="separator separator-dashed mb-6"></div>
+
+                                                            <div class="fv-row mb-2">
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-between mb-3">
+                                                                    <div>
+                                                                        <span
+                                                                            class="fw-semibold fs-7 text-gray-600 d-block">Isi
+                                                                            Bundle</span>
+                                                                        <span class="text-muted fs-8">Tulis komponen / item
+                                                                            yang ada di dalam bundle ini</span>
+                                                                    </div>
+                                                                    <button type="button"
+                                                                        id="edit-add-bundle-item_{{ $tool->id }}"
+                                                                        class="btn btn-sm btn-light-primary">
+                                                                        <i class="ki-duotone ki-plus fs-4 me-1"></i> Tambah
+                                                                    </button>
+                                                                </div>
+
+                                                                {{-- Header kolom --}}
+                                                                <div class="d-flex gap-3 align-items-center mb-2 px-1">
+                                                                    <span class="text-muted fs-8 fw-semibold"
+                                                                        style="min-width: 18px;"></span>
+                                                                    <span
+                                                                        class="text-muted fs-8 fw-semibold flex-grow-1">Nama
+                                                                        Komponen</span>
+                                                                    <span class="text-muted fs-8 fw-semibold text-center"
+                                                                        style="width: 65px;">Qty</span>
+                                                                    <span class="text-muted fs-8 fw-semibold text-center"
+                                                                        style="width: 110px;">Harga Satuan</span>
+                                                                    <span style="width: 32px;"></span>
+                                                                </div>
+
+                                                                <div id="edit-bundle-items-wrapper_{{ $tool->id }}"
+                                                                    class="d-flex flex-column gap-2">
+                                                                    @forelse ($tool->bundleItems as $i => $item)
+                                                                        <div
+                                                                            class="bundle-item-row d-flex gap-3 align-items-center">
+                                                                            <div
+                                                                                class="d-flex align-items-center gap-3 flex-grow-1 bg-light rounded-2 px-4 py-2">
+                                                                                <span
+                                                                                    class="text-muted fs-8 fw-bold bundle-number"
+                                                                                    style="min-width: 18px;">{{ $i + 1 }}.</span>
+
+                                                                                <input type="hidden"
+                                                                                    name="bundle_items[{{ $i }}][id]"
+                                                                                    value="{{ $item->id }}">
+
+                                                                                <input type="text"
+                                                                                    name="bundle_items[{{ $i }}][name]"
+                                                                                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
+                                                                                    placeholder="Nama komponen"
+                                                                                    value="{{ $item->name ?? ($item->tools->name ?? '') }}">
+
+                                                                                <div
+                                                                                    class="d-flex align-items-center gap-1 flex-shrink-0">
+                                                                                    <input type="number"
+                                                                                        name="bundle_items[{{ $i }}][qty]"
+                                                                                        class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-center fw-semibold"
+                                                                                        style="width: 45px;"
+                                                                                        placeholder="1" min="1"
+                                                                                        value="{{ $item->qty }}">
+                                                                                    <span
+                                                                                        class="text-muted fs-8">pcs</span>
+                                                                                </div>
+
+                                                                                <div class="border-start border-gray-300 mx-1"
+                                                                                    style="height: 20px;"></div>
+
+                                                                                <div
+                                                                                    class="d-flex align-items-center gap-1 flex-shrink-0">
+                                                                                    <span
+                                                                                        class="text-muted fs-8 fw-semibold">Rp</span>
+                                                                                    <input type="text"
+                                                                                        name="bundle_items[{{ $i }}][price_display]"
+                                                                                        class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-end bundle-price-display"
+                                                                                        style="width: 90px;"
+                                                                                        placeholder="0"
+                                                                                        value="{{ number_format($item->price ?? 0, 0, ',', '.') }}"
+                                                                                        autocomplete="off">
+                                                                                    <input type="hidden"
+                                                                                        name="bundle_items[{{ $i }}][price]"
+                                                                                        class="bundle-price-raw"
+                                                                                        value="{{ $item->price ?? 0 }}">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <button type="button"
+                                                                                class="btn btn-sm btn-icon btn-light-danger flex-shrink-0 remove-bundle-item">
+                                                                                <i class="ki-duotone ki-trash fs-4">
+                                                                                    <span class="path1"></span><span
+                                                                                        class="path2"></span>
+                                                                                    <span class="path3"></span><span
+                                                                                        class="path4"></span>
+                                                                                    <span class="path5"></span>
+                                                                                </i>
+                                                                            </button>
+                                                                        </div>
+                                                                    @empty
+                                                                        {{-- Row kosong default jika belum ada bundle items --}}
+                                                                        <div
+                                                                            class="bundle-item-row d-flex gap-3 align-items-center">
+                                                                            <div
+                                                                                class="d-flex align-items-center gap-3 flex-grow-1 bg-light rounded-2 px-4 py-2">
+                                                                                <span
+                                                                                    class="text-muted fs-8 fw-bold bundle-number"
+                                                                                    style="min-width: 18px;">1.</span>
+                                                                                <input type="text"
+                                                                                    name="bundle_items[0][name]"
+                                                                                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
+                                                                                    placeholder="Nama komponen">
+                                                                                <div
+                                                                                    class="d-flex align-items-center gap-1 flex-shrink-0">
+                                                                                    <input type="number"
+                                                                                        name="bundle_items[0][qty]"
+                                                                                        class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-center fw-semibold"
+                                                                                        style="width: 45px;"
+                                                                                        placeholder="1" min="1"
+                                                                                        value="1">
+                                                                                    <span
+                                                                                        class="text-muted fs-8">pcs</span>
+                                                                                </div>
+                                                                                <div class="border-start border-gray-300 mx-1"
+                                                                                    style="height: 20px;"></div>
+                                                                                <div
+                                                                                    class="d-flex align-items-center gap-1 flex-shrink-0">
+                                                                                    <span
+                                                                                        class="text-muted fs-8 fw-semibold">Rp</span>
+                                                                                    <input type="text"
+                                                                                        name="bundle_items[0][price_display]"
+                                                                                        class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-end bundle-price-display"
+                                                                                        style="width: 90px;"
+                                                                                        placeholder="0"
+                                                                                        autocomplete="off">
+                                                                                    <input type="hidden"
+                                                                                        name="bundle_items[0][price]"
+                                                                                        class="bundle-price-raw">
+                                                                                </div>
+                                                                            </div>
+                                                                            <button type="button"
+                                                                                class="btn btn-sm btn-icon btn-light-danger flex-shrink-0 remove-bundle-item">
+                                                                                <i class="ki-duotone ki-trash fs-4">
+                                                                                    <span class="path1"></span><span
+                                                                                        class="path2"></span>
+                                                                                    <span class="path3"></span><span
+                                                                                        class="path4"></span>
+                                                                                    <span class="path5"></span>
+                                                                                </i>
+                                                                            </button>
+                                                                        </div>
+                                                                    @endforelse
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {{-- === DESKRIPSI === --}}
+                                                        <div class="separator separator-dashed my-6"></div>
+                                                        <div class="fv-row mb-2">
+                                                            <label
+                                                                class="fw-semibold fs-7 text-gray-600 mb-2 d-block">Deskripsi</label>
+                                                            <textarea name="description" class="form-control form-control-solid form-control-sm" rows="3"
+                                                                placeholder="Deskripsi alat (opsional)">{{ $tool->description }}</textarea>
                                                         </div>
 
                                                     </form>
                                                 </div>
+
+                                                {{-- ===== FOOTER ===== --}}
+                                                <div
+                                                    class="modal-footer px-8 py-4 border-top border-gray-200 justify-content-end gap-3">
+                                                    <button type="button" class="btn btn-sm btn-light px-7"
+                                                        data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" form="form_edit_tool_{{ $tool->id }}"
+                                                        class="btn btn-sm btn-warning px-7">
+                                                        <i class="ki-duotone ki-pencil fs-4 me-1"></i> Simpan Perubahan
+                                                    </button>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
