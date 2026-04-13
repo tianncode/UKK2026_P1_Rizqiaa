@@ -916,7 +916,7 @@
                                                                         data-bs-dismiss="modal">Batal</button>
                                                                     <button type="submit"
                                                                         class="btn btn-warning text-white">
-                                                                        <i class="fas fa-save me-1"></i>Simpan
+                                                                        Simpan
                                                                         Perubahan
                                                                     </button>
                                                                 </div>
@@ -940,13 +940,6 @@
                                                             {{-- Body --}}
                                                             <div class="modal-body text-center pt-0 pb-4 px-4">
 
-                                                                {{-- Icon --}}
-                                                                <div class="mb-4">
-                                                                    <span class="svg-icon svg-icon-5tx svg-icon-danger">
-                                                                        <i class="fas fa-trash-alt fa-3x text-danger"></i>
-                                                                    </span>
-                                                                </div>
-
                                                                 <h4 class="fw-bold mb-2">Hapus Unit?</h4>
                                                                 <p class="text-muted mb-0">
                                                                     Anda akan menghapus unit
@@ -969,7 +962,7 @@
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-danger px-5">
-                                                                        <i class="fas fa-trash-alt me-1"></i>Ya, Hapus
+                                                                       Ya, Hapus
                                                                     </button>
                                                                 </form>
                                                             </div>
