@@ -54,4 +54,30 @@ class UnitsC extends Controller
 
     return redirect()->back()->with('success', 'Unit berhasil ditambahkan');
   }
+
+  public function update(Request $request, $id)
+  {
+    $request->validate([
+      'tool_id' => 'required|exists:tools,id',
+      'status'  => 'required|in:available,borrowed,maintenance,damaged',
+      'notes'   => 'nullable|string',
+    ]);
+
+    $unit = ToolUnits::findOrFail($id);
+
+    $unit->update([
+      'status' => $request->status,
+      'notes'  => $request->notes,
+    ]);
+
+    return redirect()->back()->with('success', 'Unit berhasil diperbarui');
+  }
+
+  public function delete($id)  // ← pakai "delete" bukan "destroy"
+  {
+    $unit = ToolUnits::findOrFail($id);
+    $unit->delete();
+
+    return redirect()->back()->with('success', 'Unit berhasil dihapus');
+  }
 }

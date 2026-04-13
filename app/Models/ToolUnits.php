@@ -22,4 +22,22 @@ class ToolUnits extends Model
     {
         return $this->hasMany(UnitConditions::class, 'unit_code', 'code');
     }
+
+    /**
+     * Relasi ke Loans
+     */
+    public function loans()
+    {
+        return $this->hasMany(Loans::class, 'unit_code', 'code');
+    }
+
+    /**
+     * Get current active loan
+     */
+    public function currentLoan()
+    {
+        return $this->hasOne(Loans::class, 'unit_code', 'code')
+            ->where('status', 'borrowed')
+            ->latest();
+    }
 }

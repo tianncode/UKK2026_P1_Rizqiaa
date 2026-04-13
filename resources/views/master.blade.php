@@ -790,128 +790,167 @@
             }
         });
     </script>
+    {{-- ===== SCRIPT ===== --}}
+
+    {{-- ===== SCRIPT ===== --}}
     <script>
-        const singleTools = @json($singleTools);
-        let bundleIndex = 1;
+        (function() {
 
-        const modal = document.getElementById('kt_modal_add_tool');
-
-        modal.addEventListener('shown.bs.modal', function() {
-            // Reset
-            bundleIndex = 1;
-            document.getElementById('item_type').value = 'single';
-            document.getElementById('bundle-fields').style.display = 'none';
-
-            // Toggle bundle fields
-            document.getElementById('item_type').addEventListener('change', function() {
-                document.getElementById('bundle-fields').style.display =
-                    this.value === 'bundle' ? 'block' : 'none';
-            });
-        });
-
-        // Preview foto
-        document.getElementById('photo-input').addEventListener('change', function() {
-            const reader = new FileReader();
-            reader.onload = e => document.getElementById('preview-image').src = e.target.result;
-            reader.readAsDataURL(this.files[0]);
-        });
-
-        // Add item row
-        document.getElementById('add-bundle-item').addEventListener('click', function() {
-            const wrapper = document.getElementById('bundle-items-wrapper');
-
-            let options = '<option value="">Pilih Alat</option>';
-            singleTools.forEach(tool => {
-                options += `<option value="${tool.id}">${tool.name}</option>`;
-            });
-
-            const row = document.createElement('div');
-            row.className = 'bundle-item-row d-flex gap-3 mb-3 align-items-center';
-            row.innerHTML = `
-            <select name="bundle_items[${bundleIndex}][tool_id]" class="form-select form-select-solid">
-                ${options}
-            </select>
-            <input type="number" name="bundle_items[${bundleIndex}][qty]"
-                class="form-control form-control-solid w-100px" placeholder="Qty" min="1" value="1">
-            <button type="button" class="btn btn-sm btn-light-danger remove-bundle-item">
-                <i class="ki-duotone ki-trash fs-4"></i>
-            </button>
-        `;
-            wrapper.appendChild(row);
-            bundleIndex++;
-        });
-
-        // Remove item row
-        document.getElementById('bundle-items-wrapper').addEventListener('click', function(e) {
-            const btn = e.target.closest('.remove-bundle-item');
-            if (btn) {
-                const rows = this.querySelectorAll('.bundle-item-row');
-                if (rows.length > 1) btn.closest('.bundle-item-row').remove();
+            // Format angka ribuan dengan titik
+            function formatRupiah(val) {
+                return val.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             }
-        });
-    </script>
-    <script>
-        const singleTools = @json($singleTools);
 
-        // Toggle bundle fields edit — tiap modal punya ID unik
-        document.querySelectorAll('[id^="item_type_edit_"]').forEach(function(select) {
-            const toolId = select.id.replace('item_type_edit_', '');
-            const bundleFields = document.getElementById('bundle-fields-edit-' + toolId);
+            // Format price input (harga alat utama)
+            const priceDisplay = document.getElementById('price_display');
+            const priceRaw = document.getElementById('price_raw');
 
-            select.addEventListener('change', function() {
-                bundleFields.style.display = this.value === 'bundle' ? 'block' : 'none';
+            priceDisplay?.addEventListener('input', function() {
+                const raw = this.value.replace(/\D/g, '');
+                this.value = raw ? formatRupiah(raw) : '';
+                priceRaw.value = raw;
+                document.getElementById('price_terbilang').textContent =
+                    raw ? 'Rp ' + parseInt(raw).toLocaleString('id-ID') : '';
             });
-        });
 
-        // Preview foto edit
-        document.querySelectorAll('[id^="photo-input-edit-"]').forEach(function(input) {
-            input.addEventListener('change', function() {
-                const toolId = this.id.replace('photo-input-edit-', '');
-                const preview = document.getElementById('preview-image-edit-' + toolId);
+            priceDisplay?.addEventListener('keypress', function(e) {
+                if (!/[0-9]/.test(e.key)) e.preventDefault();
+            });
+
+            // Format price input bundle (event delegation)
+            document.getElementById('bundle-items-wrapper')?.addEventListener('input', function(e) {
+                if (!e.target.classList.contains('bundle-price-display')) return;
+                const raw = e.target.value.replace(/\D/g, '');
+                e.target.value = raw ? formatRupiah(raw) : '';
+                const hiddenInput = e.target.closest('.bundle-item-row').querySelector('.bundle-price-raw');
+                if (hiddenInput) hiddenInput.value = raw;
+            });
+
+            document.getElementById('bundle-items-wrapper')?.addEventListener('keypress', function(e) {
+                if (!e.target.classList.contains('bundle-price-display')) return;
+                if (!/[0-9]/.test(e.key)) e.preventDefault();
+            });
+
+            // Preview foto
+            document.getElementById('photo-input')?.addEventListener('change', function() {
+                const file = this.files[0];
+                if (!file) return;
                 const reader = new FileReader();
-                reader.onload = e => preview.src = e.target.result;
-                reader.readAsDataURL(this.files[0]);
+                reader.onload = e => document.getElementById('preview-image').src = e.target.result;
+                reader.readAsDataURL(file);
             });
-        });
 
-        // Add bundle item row edit
-        document.querySelectorAll('.add-bundle-item-edit').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const toolId = this.dataset.toolId;
-                const wrapper = document.getElementById('bundle-items-wrapper-edit-' + toolId);
-                const index = wrapper.querySelectorAll('.bundle-item-row').length;
+            // Toggle bundle fields + prefix kode BDL-
+            function updateCodePrefix(type) {
+                const label = document.getElementById('code_prefix_label');
+                if (label) label.style.display = type === 'bundle' ? 'flex' : 'none';
+                updateCodePreview(type, document.getElementById('code_prefix')?.value || '');
+            }
 
-                let options = '<option value="">Pilih Alat</option>';
-                singleTools.forEach(tool => {
-                    options += `<option value="${tool.id}">${tool.name}</option>`;
+            function updateCodePreview(type, val) {
+                const preview = document.getElementById('code_preview');
+                if (!preview) return;
+                const upper = val.toUpperCase();
+                preview.textContent = upper ?
+                    'Kode: ' + (type === 'bundle' ? 'BDL-' + upper : upper) :
+                    '';
+            }
+
+            document.getElementById('item_type')?.addEventListener('change', function() {
+                const isBundle = this.value === 'bundle';
+                document.getElementById('bundle-fields').style.display = isBundle ? 'block' : 'none';
+                updateCodePrefix(this.value);
+            });
+
+            document.getElementById('code_prefix')?.addEventListener('input', function() {
+                updateCodePreview(document.getElementById('item_type').value, this.value);
+            });
+
+            // Renumber baris bundle
+            function renumberRows() {
+                document.querySelectorAll('#bundle-items-wrapper .bundle-number').forEach((el, i) => {
+                    el.textContent = (i + 1) + '.';
                 });
+            }
 
+            // Tambah item bundle
+            let bundleIndex = 1;
+
+            document.getElementById('add-bundle-item')?.addEventListener('click', function() {
+                const wrapper = document.getElementById('bundle-items-wrapper');
                 const row = document.createElement('div');
-                row.className = 'bundle-item-row d-flex gap-3 mb-3 align-items-center';
+                row.className = 'bundle-item-row d-flex gap-3 align-items-center';
                 row.innerHTML = `
-                <select name="bundle_items[${index}][tool_id]" class="form-select form-select-solid">
-                    ${options}
-                </select>
-                <input type="number" name="bundle_items[${index}][qty]"
-                    class="form-control form-control-solid w-100px" placeholder="Qty" min="1" value="1">
-                <button type="button" class="btn btn-sm btn-light-danger remove-bundle-item">
-                    <i class="ki-duotone ki-trash fs-4"></i>
-                </button>
-            `;
+            <div class="d-flex align-items-center gap-3 flex-grow-1 bg-light rounded-2 px-4 py-2">
+                <span class="text-muted fs-8 fw-bold bundle-number" style="min-width: 18px;">${bundleIndex + 1}.</span>
+                <input type="text" name="bundle_items[${bundleIndex}][name]"
+                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
+                    placeholder="Nama komponen, contoh: Charger">
+                <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                    <input type="number" name="bundle_items[${bundleIndex}][qty]"
+                        class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-center fw-semibold"
+                        style="width: 45px;" placeholder="1" min="1" value="1">
+                    <span class="text-muted fs-8">pcs</span>
+                </div>
+                <div class="border-start border-gray-300 mx-1" style="height: 20px;"></div>
+                <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                    <span class="text-muted fs-8 fw-semibold">Rp</span>
+                    <input type="text" name="bundle_items[${bundleIndex}][price_display]"
+                        class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-end bundle-price-display"
+                        style="width: 90px;" placeholder="0" autocomplete="off">
+                    <input type="hidden" name="bundle_items[${bundleIndex}][price]" class="bundle-price-raw">
+                </div>
+            </div>
+            <button type="button" class="btn btn-sm btn-icon btn-light-danger flex-shrink-0 remove-bundle-item">
+                <i class="ki-duotone ki-trash fs-4">
+                    <span class="path1"></span><span class="path2"></span>
+                    <span class="path3"></span><span class="path4"></span>
+                    <span class="path5"></span>
+                </i>
+            </button>`;
                 wrapper.appendChild(row);
+                bundleIndex++;
+                renumberRows();
             });
-        });
 
-        // Remove bundle item row edit
-        document.querySelectorAll('[id^="bundle-items-wrapper-edit-"]').forEach(function(wrapper) {
-            wrapper.addEventListener('click', function(e) {
+            // Hapus item bundle
+            document.getElementById('bundle-items-wrapper')?.addEventListener('click', function(e) {
                 const btn = e.target.closest('.remove-bundle-item');
-                if (btn) {
-                    const rows = this.querySelectorAll('.bundle-item-row');
-                    if (rows.length > 1) btn.closest('.bundle-item-row').remove();
+                if (!btn) return;
+                if (this.querySelectorAll('.bundle-item-row').length > 1) {
+                    btn.closest('.bundle-item-row').remove();
+                    renumberRows();
                 }
             });
-        });
+
+        })();
+    </script>
+    <script>
+        (function() {
+
+            function updateCodePrefix(type) {
+                const label = document.getElementById('code_prefix_label');
+                label.style.display = type === 'bundle' ? 'flex' : 'none';
+                updateCodePreview(type, document.getElementById('code_prefix').value);
+            }
+
+            function updateCodePreview(type, val) {
+                const preview = document.getElementById('code_preview');
+                const upper = val.toUpperCase();
+                preview.textContent = upper ?
+                    'Kode: ' + (type === 'bundle' ? 'BDL-' + upper : upper) :
+                    '';
+            }
+
+            document.getElementById('item_type')?.addEventListener('change', function() {
+                updateCodePrefix(this.value);
+            });
+
+            document.getElementById('code_prefix')?.addEventListener('input', function() {
+                updateCodePreview(document.getElementById('item_type').value, this.value);
+            });
+
+        })();
     </script>
     <!--end::Javascript-->
 </body>

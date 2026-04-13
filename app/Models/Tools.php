@@ -11,11 +11,12 @@ class Tools extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'price',
         'item_type',
         'max_penalty_points',
         'description',
         'code_slug',
-        'photo_path'
+        'photo_path',
     ];
 
     // relasi ke category
@@ -37,5 +38,10 @@ class Tools extends Model
     public function bundleOf()
     {
         return $this->hasMany(BundleTools::class, 'tool_id');
+    }
+
+    public function loans()
+    {
+        return $this->hasMany(Loans::class);
     }
 }

@@ -148,10 +148,8 @@
                                         <!-- Actions -->
                                         <td>
                                             <!-- VIEW DETAIL -->
-                                            <a href="#" class="btn btn-icon btn-info btn-sm me-2"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#kt_modal_detail_tool{{ $tool->id }}"
-                                                title="Lihat Detail">
+                                            <a href="{{ route('tools.detail', $tool->id) }}"
+                                                class="btn btn-icon btn-info btn-sm me-2" title="Lihat Detail">
                                                 <i class="ki-duotone ki-eye"></i>
                                             </a>
                                             <!-- EDIT -->
@@ -377,757 +375,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        @foreach ($tools as $tool)
-                            <!-- Modal Detail Tool -->
-                            <div class="modal fade" id="kt_modal_detail_tool{{ $tool->id }}" tabindex="-1"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered mw-900px">
-                                    <div class="modal-content">
-
-                                        <!-- Header -->
-                                        <div class="modal-header">
-                                            <h2 class="fw-bold">Detail Alat</h2>
-                                            <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
-                                                <i class="ki-duotone ki-cross fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                        </div>
-
-                                        <!-- Body -->
-                                        <div class="modal-body px-5 py-10">
-
-                                            <!-- Card Info Alat -->
-                                            <div class="card card-flush mb-8">
-                                                <div class="card-body p-8">
-                                                    <div class="d-flex align-items-start">
-
-                                                        <!-- Foto Alat -->
-                                                        <div class="me-7">
-                                                            @if ($tool->photo_path && file_exists(public_path($tool->photo_path)))
-                                                                <div class="symbol symbol-150px symbol-fixed">
-                                                                    <img src="{{ asset($tool->photo_path) }}"
-                                                                        alt="{{ $tool->name }}" class="rounded"
-                                                                        style="object-fit: cover; width: 150px; height: 150px;">
-                                                                </div>
-                                                            @else
-                                                                <div class="symbol symbol-150px symbol-fixed">
-                                                                    <div class="symbol-label bg-light-primary text-primary fw-bold fs-1 rounded"
-                                                                        style="width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
-                                                                        {{ strtoupper(substr($tool->name, 0, 2)) }}
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-
-                                                        <!-- Detail Info -->
-                                                        <div class="flex-grow-1">
-
-                                                            <!-- Nama Alat -->
-                                                            <div class="mb-5">
-                                                                <h3 class="fw-bold text-gray-800 mb-1">
-                                                                    {{ $tool->name }}</h3>
-                                                                <span class="text-muted fs-6">
-                                                                    ID:
-                                                                    #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}
-                                                                </span>
-                                                            </div>
-
-                                                            <!-- Info Grid -->
-                                                            <div class="row g-5">
-
-                                                                <!-- Kategori -->
-                                                                <div class="col-md-6">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="text-muted fs-7 mb-1">Kategori</span>
-                                                                        <span
-                                                                            class="badge badge-light-info align-self-start">
-                                                                            {{ $tool->category->name ?? '-' }}
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Tipe -->
-                                                                <div class="col-md-6">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="text-muted fs-7 mb-1">Tipe
-                                                                            Alat</span>
-                                                                        @if ($tool->item_type == 'single')
-                                                                            <span
-                                                                                class="badge badge-light-success align-self-start">Single</span>
-                                                                        @else
-                                                                            <span
-                                                                                class="badge badge-light-warning align-self-start">Bundle</span>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Isi Bundle (hanya jika bundle) -->
-                                                                @if ($tool->item_type === 'bundle')
-                                                                    <div class="col-12">
-                                                                        <div class="d-flex flex-column">
-                                                                            <span class="text-muted fs-7 mb-2">Isi
-                                                                                Bundle</span>
-                                                                            <div class="d-flex flex-wrap gap-2">
-                                                                                @forelse ($tool->bundleItems as $item)
-                                                                                    <span
-                                                                                        class="badge badge-light-primary fs-7 px-3 py-2">
-                                                                                        {{ $item->tool->name ?? '-' }}
-                                                                                        <span
-                                                                                            class="badge badge-primary ms-1">{{ $item->qty }}x</span>
-                                                                                    </span>
-                                                                                @empty
-                                                                                    <span class="text-muted">Belum ada isi
-                                                                                        bundle</span>
-                                                                                @endforelse
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-
-                                                                <!-- Deskripsi -->
-                                                                <div class="col-12">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="text-muted fs-7 mb-1">Deskripsi</span>
-                                                                        <span class="text-gray-800 fs-6">
-                                                                            {{ $tool->description ?? 'Tidak ada deskripsi' }}
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Tanggal Dibuat -->
-                                                                <div class="col-md-6">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="text-muted fs-7 mb-1">Tanggal
-                                                                            Dibuat</span>
-                                                                        <span class="text-gray-800 fw-semibold">
-                                                                            {{ date('d M Y', strtotime($tool->created_at)) }}
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Total Unit -->
-                                                                <div class="col-md-6">
-                                                                    <div class="d-flex flex-column">
-                                                                        <span class="text-muted fs-7 mb-1">Total
-                                                                            Unit</span>
-                                                                        <span class="text-gray-800 fw-semibold">
-                                                                            {{ $tool->units?->count() ?? 0 }} Unit
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Separator -->
-                                            <div class="separator my-8"></div>
-
-
-                                            <!-- Header Tabel Unit -->
-                                            <div class="d-flex justify-content-between align-items-center mb-5">
-                                                <h3 class="fw-bold">Daftar Unit Alat</h3>
-
-                                                <!-- Button Tambah Unit -->
-                                                <button type="button" class="btn btn-sm btn-primary"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#kt_modal_add_unit{{ $tool->id }}">
-                                                    <i class="ki-duotone ki-plus fs-2"></i>
-                                                    Tambah Unit
-                                                </button>
-                                            </div>
-
-                                            <!-- Tabel Unit -->
-                                            <div class="table-responsive">
-                                                <table
-                                                    class="table table-row-bordered table-row-gray-300 align-middle gs-0 gy-4">
-                                                    <thead>
-                                                        <tr class="fw-bold text-muted bg-light">
-                                                            <th class="ps-4 min-w-50px rounded-start">No</th>
-                                                            <th class="min-w-150px">Kode Unit</th>
-                                                            <th class="min-w-100px">Status</th>
-                                                            <th class="min-w-100px">Kondisi</th>
-                                                            <th class="min-w-100px text-center  ">Aksi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @forelse($tool->units ?? [] as $index => $unit)
-                                                            <tr>
-                                                                <td class="ps-4">
-                                                                    <span
-                                                                        class="text-gray-800 fw-semibold">{{ $index + 1 }}</span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="text-gray-800 fw-bold">
-                                                                        {{ $unit->code ?? '-' }}
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    @if ($unit->status == 'available')
-                                                                        <span
-                                                                            class="badge badge-light-success">Tersedia</span>
-                                                                    @elseif($unit->status == 'borrowed')
-                                                                        <span
-                                                                            class="badge badge-light-warning">Dipinjam</span>
-                                                                    @elseif($unit->status == 'maintenance')
-                                                                        <span
-                                                                            class="badge badge-light-info">Maintenance</span>
-                                                                    @else
-                                                                        <span class="badge badge-light-danger">Rusak</span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    <span class="badge badge-light">
-                                                                        {{ $unit->notes ?? '-' }}
-                                                                    </span>
-                                                                </td>
-                                                                <td class="text-end pe-4">
-                                                                    <button class="btn btn-sm btn-light-primary"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#kt_modal_detail_unit{{ $unit->id }}">
-                                                                        <i class="ki-duotone ki-eye"></i> Detail
-                                                                    </button>
-
-                                                                    <button class="btn btn-sm btn-light-warning"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#kt_modal_edit_unit{{ $unit->id }}">
-                                                                        <i class="ki-duotone ki-pencil"></i> Edit
-                                                                    </button>
-
-                                                                    <button class="btn btn-sm btn-light-danger"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#kt_modal_delete_unit{{ $unit->id }}">
-                                                                        <i class="ki-duotone ki-trash"></i> Hapus
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                        @empty
-                                                            <tr>
-                                                                <td colspan="5" class="text-center py-8">
-                                                                    <div class="d-flex flex-column align-items-center">
-                                                                        <i
-                                                                            class="ki-duotone ki-information fs-3x text-muted mb-3">
-                                                                            <span class="path1"></span>
-                                                                            <span class="path2"></span>
-                                                                            <span class="path3"></span>
-                                                                        </i>
-                                                                        <span class="text-muted fs-5">Belum ada unit
-                                                                            untuk alat ini</span>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light me-6"
-                                                data-bs-dismiss="modal">Tutup</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal Tambah Unit -->
-                            <div class="modal fade" id="kt_modal_add_unit{{ $tool->id }}" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-
-                                        <!-- Header -->
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Tambah Unit</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-
-                                        <!-- Form -->
-                                        <form action="{{ route('tools.units-store') }}" method="POST">
-                                            @csrf
-
-                                            <div class="modal-body">
-
-                                                <!-- hidden tool id -->
-                                                <input type="hidden" name="tool_id" value="{{ $tool->id }}">
-
-                                                <!-- Code -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Kode Unit</label>
-                                                    <input type="text" name="code" class="form-control"
-                                                        value="{{ $tool->code_slug }}-{{ str_pad($tool->units->count() + 1, 3, '0', STR_PAD_LEFT) }}"
-                                                        readonly>
-                                                </div>
-
-                                                <!-- Status -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Status</label>
-                                                    <select name="status" class="form-select" required>
-                                                        <option value="">Pilih Status</option>
-                                                        <option value="available">Available</option>
-                                                        <option value="borrowed">Borrowed</option>
-                                                        <option value="maintenance">Maintenance</option>
-                                                        <option value="damaged">Damaged</option>
-                                                    </select>
-                                                </div>
-
-                                                <!-- Notes -->
-                                                <div class="mb-3">
-                                                    <label class="form-label">Catatan</label>
-                                                    <textarea name="notes" class="form-control" rows="3" placeholder="Opsional"></textarea>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
-                            @foreach ($tool->units ?? [] as $unit)
-                                <div class="modal fade" id="kt_modal_detail_unit{{ $unit->id }}" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered mw-700px">
-                                        <div class="modal-content">
-
-                                            {{-- Header --}}
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">
-                                                    <i class="fas fa-info-circle me-2 text-primary"></i>Detail Unit
-                                                </h5>
-                                                <button type="button" class="btn-close"
-                                                    data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            {{-- Body --}}
-                                            <div class="modal-body px-5 py-8">
-
-                                                {{-- ===== INFO UNIT ===== --}}
-                                                <div class="card card-flush border mb-6">
-                                                    <div class="card-header min-h-45px">
-                                                        <h6 class="card-title fw-bold text-gray-700">
-                                                            <i class="fas fa-box me-2 text-primary"></i>Informasi Unit
-                                                        </h6>
-                                                    </div>
-                                                    <div class="card-body py-4">
-                                                        <table class="table table-borderless mb-0 fs-6">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th class="text-muted fw-semibold py-2"
-                                                                        style="width:40%">Kode Unit</th>
-                                                                    <td class="py-2">
-                                                                        <span
-                                                                            class="badge badge-light-primary fs-7">{{ $unit->code }}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="text-muted fw-semibold py-2">Nama Alat</th>
-                                                                    <td class="py-2">{{ $unit->tool->name ?? '-' }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="text-muted fw-semibold py-2">Status</th>
-                                                                    <td class="py-2">
-                                                                        @php
-                                                                            $statusMap = [
-                                                                                'available' => [
-                                                                                    'label' => 'Available',
-                                                                                    'class' => 'badge-light-success',
-                                                                                ],
-                                                                                'borrowed' => [
-                                                                                    'label' => 'Borrowed',
-                                                                                    'class' => 'badge-light-warning',
-                                                                                ],
-                                                                                'maintenance' => [
-                                                                                    'label' => 'Maintenance',
-                                                                                    'class' => 'badge-light-info',
-                                                                                ],
-                                                                                'damaged' => [
-                                                                                    'label' => 'Damaged',
-                                                                                    'class' => 'badge-light-danger',
-                                                                                ],
-                                                                            ];
-                                                                            $s = $statusMap[$unit->status] ?? [
-                                                                                'label' => ucfirst($unit->status),
-                                                                                'class' => 'badge-light-secondary',
-                                                                            ];
-                                                                        @endphp
-                                                                        <span
-                                                                            class="badge {{ $s['class'] }}">{{ $s['label'] }}</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="text-muted fw-semibold py-2">Catatan</th>
-                                                                    <td class="py-2">{{ $unit->notes ?: '-' }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="text-muted fw-semibold py-2">Dibuat</th>
-                                                                    <td class="py-2">
-                                                                        {{ $unit->created_at->format('d M Y, H:i') }}</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                                {{-- ===== KONDISI SAAT INI ===== --}}
-                                                <div class="card card-flush border">
-                                                    <div class="card-header min-h-45px">
-                                                        <h6 class="card-title fw-bold text-gray-700">
-                                                            <i class="fas fa-clipboard-list me-2 text-warning"></i>
-                                                            Kondisi Unit Saat Ini
-                                                        </h6>
-                                                        <div class="card-toolbar">
-                                                            <span class="badge badge-light-secondary fs-8">
-                                                                {{ $unit->conditions->count() ?? 0 }} Catatan
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body py-4 px-0">
-                                                        <div class="table-responsive">
-                                                            <table
-                                                                class="table table-row-bordered table-row-gray-200 align-middle gs-5 gy-3 mb-0">
-                                                                <thead>
-                                                                    <tr
-                                                                        class="fw-bold text-muted bg-light fs-7 text-uppercase">
-                                                                        <th class="ps-5 min-w-30px">No</th>
-                                                                        <th class="min-w-120px">Kondisi</th>
-                                                                        <th class="min-w-150px">Catatan</th>
-                                                                        <th class="min-w-120px">Dicatat Pada</th>
-                                                                        <th class="min-w-100px pe-5">Return ID</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody class="text-gray-600 fw-semibold">
-                                                                    @forelse ($unit->conditions ?? [] as $i => $condition)
-                                                                        <tr>
-                                                                            <td class="ps-5">{{ $i + 1 }}</td>
-                                                                            <td>
-                                                                                @php
-                                                                                    $condMap = [
-                                                                                        'good' => [
-                                                                                            'label' => 'Baik',
-                                                                                            'class' =>
-                                                                                                'badge-light-success',
-                                                                                        ],
-                                                                                        'minor' => [
-                                                                                            'label' => 'Minor',
-                                                                                            'class' =>
-                                                                                                'badge-light-warning',
-                                                                                        ],
-                                                                                        'damaged' => [
-                                                                                            'label' => 'Rusak',
-                                                                                            'class' =>
-                                                                                                'badge-light-danger',
-                                                                                        ],
-                                                                                        'lost' => [
-                                                                                            'label' => 'Hilang',
-                                                                                            'class' =>
-                                                                                                'badge-light-dark',
-                                                                                        ],
-                                                                                    ];
-                                                                                    $c = $condMap[
-                                                                                        $condition->conditions
-                                                                                    ] ?? [
-                                                                                        'label' => ucfirst(
-                                                                                            $condition->conditions,
-                                                                                        ),
-                                                                                        'class' =>
-                                                                                            'badge-light-secondary',
-                                                                                    ];
-                                                                                @endphp
-                                                                                <span
-                                                                                    class="badge {{ $c['class'] }}">{{ $c['label'] }}</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span class="text-gray-700">
-                                                                                    {{ $condition->notes ?: '-' }}
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>
-                                                                                {{ \Carbon\Carbon::parse($condition->recorded_at)->format('d M Y, H:i') }}
-                                                                            </td>
-                                                                            <td class="pe-5">
-                                                                                @if ($condition->return_id)
-                                                                                    <span
-                                                                                        class="badge badge-light-info">#{{ $condition->return_id }}</span>
-                                                                                @else
-                                                                                    <span class="text-muted">-</span>
-                                                                                @endif
-                                                                            </td>
-                                                                        </tr>
-                                                                    @empty
-                                                                        <tr>
-                                                                            <td colspan="5" class="text-center py-8">
-                                                                                <div
-                                                                                    class="d-flex flex-column align-items-center">
-                                                                                    <i
-                                                                                        class="ki-duotone ki-information fs-3x text-muted mb-3">
-                                                                                        <span class="path1"></span>
-                                                                                        <span class="path2"></span>
-                                                                                        <span class="path3"></span>
-                                                                                    </i>
-                                                                                    <span class="text-muted fs-6">Belum ada
-                                                                                        kondisi saat ini</span>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    @endforelse
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {{-- ===== RIWAYAT KONDISI ===== --}}
-                                                <div class="card card-flush border">
-                                                    <div class="card-header min-h-45px">
-                                                        <h6 class="card-title fw-bold text-gray-700">
-                                                            <i class="fas fa-clipboard-list me-2 text-warning"></i>Riwayat
-                                                            Kondisi Unit
-                                                        </h6>
-                                                        <div class="card-toolbar">
-                                                            <span class="badge badge-light-secondary fs-8">
-                                                                {{ $unit->conditions->count() ?? 0 }} Catatan
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body py-4 px-0">
-                                                        <div class="table-responsive">
-                                                            <table
-                                                                class="table table-row-bordered table-row-gray-200 align-middle gs-5 gy-3 mb-0">
-                                                                <thead>
-                                                                    <tr
-                                                                        class="fw-bold text-muted bg-light fs-7 text-uppercase">
-                                                                        <th class="ps-5 min-w-30px">No</th>
-                                                                        <th class="min-w-120px">Kondisi</th>
-                                                                        <th class="min-w-150px">Catatan</th>
-                                                                        <th class="min-w-120px">Dicatat Pada</th>
-                                                                        <th class="min-w-100px pe-5">Return ID</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody class="text-gray-600 fw-semibold">
-                                                                    @forelse ($unit->conditions ?? [] as $i => $condition)
-                                                                        <tr>
-                                                                            <td class="ps-5">{{ $i + 1 }}</td>
-                                                                            <td>
-                                                                                @php
-                                                                                    $condMap = [
-                                                                                        'good' => [
-                                                                                            'label' => 'Baik',
-                                                                                            'class' =>
-                                                                                                'badge-light-success',
-                                                                                        ],
-                                                                                        'minor' => [
-                                                                                            'label' => 'Minor',
-                                                                                            'class' =>
-                                                                                                'badge-light-warning',
-                                                                                        ],
-                                                                                        'damaged' => [
-                                                                                            'label' => 'Rusak',
-                                                                                            'class' =>
-                                                                                                'badge-light-danger',
-                                                                                        ],
-                                                                                        'lost' => [
-                                                                                            'label' => 'Hilang',
-                                                                                            'class' =>
-                                                                                                'badge-light-dark',
-                                                                                        ],
-                                                                                    ];
-                                                                                    $c = $condMap[
-                                                                                        $condition->conditions
-                                                                                    ] ?? [
-                                                                                        'label' => ucfirst(
-                                                                                            $condition->conditions,
-                                                                                        ),
-                                                                                        'class' =>
-                                                                                            'badge-light-secondary',
-                                                                                    ];
-                                                                                @endphp
-                                                                                <span
-                                                                                    class="badge {{ $c['class'] }}">{{ $c['label'] }}</span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <span class="text-gray-700">
-                                                                                    {{ $condition->notes ?: '-' }}
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>
-                                                                                {{ \Carbon\Carbon::parse($condition->recorded_at)->format('d M Y, H:i') }}
-                                                                            </td>
-                                                                            <td class="pe-5">
-                                                                                @if ($condition->return_id)
-                                                                                    <span
-                                                                                        class="badge badge-light-info">#{{ $condition->return_id }}</span>
-                                                                                @else
-                                                                                    <span class="text-muted">-</span>
-                                                                                @endif
-                                                                            </td>
-                                                                        </tr>
-                                                                    @empty
-                                                                        <tr>
-                                                                            <td colspan="5" class="text-center py-8">
-                                                                                <div
-                                                                                    class="d-flex flex-column align-items-center">
-                                                                                    <i
-                                                                                        class="ki-duotone ki-information fs-3x text-muted mb-3">
-                                                                                        <span class="path1"></span>
-                                                                                        <span class="path2"></span>
-                                                                                        <span class="path3"></span>
-                                                                                    </i>
-                                                                                    <span class="text-muted fs-6">Belum ada
-                                                                                        riwayat kondisi</span>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    @endforelse
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            {{-- Footer --}}
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light"
-                                                    data-bs-dismiss="modal">Tutup</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="kt_modal_edit_unit{{ $unit->id }}" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-
-                                            {{-- Header --}}
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">
-                                                    <i class="fas fa-pencil-alt me-2 text-warning"></i>Edit Unit
-                                                </h5>
-                                                <button type="button" class="btn-close"
-                                                    data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            {{-- Form --}}
-                                            <form action="{{ route('tools.units-update', $unit->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-
-                                                <div class="modal-body">
-
-                                                    {{-- Hidden tool id --}}
-                                                    <input type="hidden" name="tool_id" value="{{ $unit->tool_id }}">
-
-                                                    {{-- Kode Unit (readonly) --}}
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Kode Unit</label>
-                                                        <input type="text" name="code" class="form-control"
-                                                            value="{{ $unit->code }}" readonly>
-                                                        <div class="form-text text-muted">Kode unit tidak dapat diubah.
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- Status --}}
-                                                    <div class="mb-3">
-                                                        <label class="form-label required">Status</label>
-                                                        <select name="status" class="form-select" required>
-                                                            <option value="">Pilih Status</option>
-                                                            <option value="available"
-                                                                {{ $unit->status === 'available' ? 'selected' : '' }}>
-                                                                Available</option>
-                                                            <option value="borrowed"
-                                                                {{ $unit->status === 'borrowed' ? 'selected' : '' }}>
-                                                                Borrowed</option>
-                                                            <option value="maintenance"
-                                                                {{ $unit->status === 'maintenance' ? 'selected' : '' }}>
-                                                                Maintenance</option>
-                                                            <option value="damaged"
-                                                                {{ $unit->status === 'damaged' ? 'selected' : '' }}>
-                                                                Damaged</option>
-                                                        </select>
-                                                    </div>
-
-                                                    {{-- Catatan --}}
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Catatan</label>
-                                                        <textarea name="notes" class="form-control" rows="3" placeholder="Opsional">{{ $unit->notes }}</textarea>
-                                                    </div>
-
-                                                </div>
-
-                                                {{-- Footer --}}
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-warning text-white">
-                                                        <i class="fas fa-save me-1"></i>Simpan Perubahan
-                                                    </button>
-                                                </div>
-
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="kt_modal_delete_unit{{ $unit->id }}" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered modal-sm">
-                                        <div class="modal-content">
-
-                                            {{-- Header --}}
-                                            <div class="modal-header border-0 pb-0">
-                                                <button type="button" class="btn-close ms-auto"
-                                                    data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            {{-- Body --}}
-                                            <div class="modal-body text-center pt-0 pb-4 px-4">
-
-                                                {{-- Icon --}}
-                                                <div class="mb-4">
-                                                    <span class="svg-icon svg-icon-5tx svg-icon-danger">
-                                                        <i class="fas fa-trash-alt fa-3x text-danger"></i>
-                                                    </span>
-                                                </div>
-
-                                                <h4 class="fw-bold mb-2">Hapus Unit?</h4>
-                                                <p class="text-muted mb-0">
-                                                    Anda akan menghapus unit <strong>{{ $unit->code }}</strong>.
-                                                    Tindakan ini <span class="text-danger fw-semibold">tidak dapat
-                                                        dibatalkan</span>.
-                                                </p>
-
-                                            </div>
-
-                                            {{-- Footer --}}
-                                            <div class="modal-footer justify-content-center border-0 pt-0">
-                                                <button type="button" class="btn btn-light px-5"
-                                                    data-bs-dismiss="modal">Batal</button>
-
-                                                <form action="{{ route('tools.units-delete', $unit->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger px-5">
-                                                        <i class="fas fa-trash-alt me-1"></i>Ya, Hapus
-                                                    </button>
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endforeach
                     </div>
                 </div>
                 <!--end::Card body-->
@@ -1136,112 +383,198 @@
         </div>
     </div>
     <div class="modal fade" id="kt_modal_add_tool" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered mw-700px">
-            <div class="modal-content">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
+            <div class="modal-content border-0 shadow-lg">
 
-                <div class="modal-header">
-                    <h2 class="fw-bold">Tambah Alat</h2>
-                    <div class="btn btn-icon btn-sm" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"></i>
+                {{-- ===== HEADER ===== --}}
+                <div class="modal-header px-8 py-5 border-bottom border-gray-200">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="bullet bullet-dot bg-primary h-8px w-8px"></span>
+                        <h2 class="fw-bold fs-4 mb-0">Tambah Alat</h2>
+                    </div>
+                    <div class="btn btn-sm btn-icon btn-active-light-danger" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
                     </div>
                 </div>
 
-                <div class="modal-body px-5 py-10">
-                    <form method="POST" action="{{ route('tools.store') }}" enctype="multipart/form-data">
+                {{-- ===== BODY ===== --}}
+                <div class="modal-body px-8 py-7">
+                    <form method="POST" action="{{ route('tools.store') }}" enctype="multipart/form-data"
+                        id="form_add_tool">
                         @csrf
 
-                        <div class="d-flex flex-column">
-
-                            <!-- Foto -->
-                            <div class="fv-row mb-6">
-                                <label class="fw-semibold fs-6 mb-3">Foto Alat</label>
-                                <div class="mb-3 text-center">
-                                    <img id="preview-image" src="https://via.placeholder.com/150x150?text=Preview"
-                                        class="rounded shadow-sm" style="max-height:150px; object-fit:cover;">
+                        {{-- === FOTO === --}}
+                        <div class="fv-row mb-6">
+                            <label class="fw-semibold fs-7 text-gray-600 mb-2 d-block">Foto Alat</label>
+                            <div class="d-flex align-items-center gap-5">
+                                <div class="flex-shrink-0">
+                                    <img id="preview-image" src="https://via.placeholder.com/80x80?text=Photo"
+                                        class="rounded-3 border border-gray-200"
+                                        style="width: 80px; height: 80px; object-fit: cover;">
                                 </div>
-                                <input type="file" name="photo" id="photo-input"
-                                    class="form-control form-control-solid" accept="image/*">
+                                <div class="flex-grow-1">
+                                    <input type="file" name="photo" id="photo-input"
+                                        class="form-control form-control-solid form-control-sm" accept="image/*">
+                                    <span class="text-muted fs-8 mt-1 d-block">Format: JPG, PNG. Maks 2MB.</span>
+                                </div>
                             </div>
+                        </div>
 
-                            <!-- Kode Awal -->
-                            <div class="fv-row mb-6">
-                                <label class="required fw-semibold fs-6 mb-3">Kode Awal</label>
-                                <input type="text" name="code_prefix" class="form-control form-control-solid"
-                                    placeholder="Contoh: ALAT" required>
+                        <div class="separator separator-dashed mb-6"></div>
+
+                        {{-- === ROW 1: Kode Awal & Nama Alat === --}}
+                        <div class="row g-5 mb-6">
+                            <div class="col-md-4">
+                                <label class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Kode Awal</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text bg-light border-0 text-muted fw-bold fs-8"
+                                        id="code_prefix_label" style="display: none; letter-spacing: 0.5px;">BDL-</span>
+                                    <input type="text" name="code_prefix" id="code_prefix"
+                                        class="form-control form-control-solid form-control-sm" placeholder="Contoh: ALAT"
+                                        required style="text-transform: uppercase;">
+                                </div>
+                                <span class="text-muted fs-8 mt-1 d-block" id="code_preview"></span>
                             </div>
-
-                            <!-- Nama Alat -->
-                            <div class="fv-row mb-6">
-                                <label class="required fw-semibold fs-6 mb-3">Nama Alat</label>
-                                <input type="text" name="name" class="form-control form-control-solid"
-                                    placeholder="Contoh: Laptop" required>
+                            <div class="col-md-8">
+                                <label class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Nama Alat</label>
+                                <input type="text" name="name"
+                                    class="form-control form-control-solid form-control-sm"
+                                    placeholder="Contoh: Laptop ASUS" required>
                             </div>
+                        </div>
 
-                            <!-- Kategori -->
-                            <div class="fv-row mb-6">
-                                <label class="required fw-semibold fs-6 mb-3">Kategori</label>
-                                <select name="category_id" class="form-select form-select-solid" required>
+                        {{-- === ROW 2: Kategori & Tipe === --}}
+                        <div class="row g-5 mb-6">
+                            <div class="col-md-6">
+                                <label class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Kategori</label>
+                                <select name="category_id" class="form-select form-select-solid form-select-sm" required>
                                     <option value="">Pilih Kategori</option>
                                     @foreach ($categories as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
-                            <!-- Tipe -->
-                            <div class="fv-row mb-6">
-                                <label class="required fw-semibold fs-6 mb-3">Tipe Alat</label>
-                                <select name="item_type" id="item_type" class="form-select form-select-solid" required>
+                            <div class="col-md-6">
+                                <label class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Tipe Alat</label>
+                                <select name="item_type" id="item_type"
+                                    class="form-select form-select-solid form-select-sm" required>
                                     <option value="single">Single</option>
                                     <option value="bundle">Bundle</option>
                                 </select>
                             </div>
-
-                            <!-- Bundle Fields -->
-                            <div id="bundle-fields" style="display: none;">
-                                <div class="fv-row mb-6">
-                                    <label class="fw-semibold fs-6 mb-3">Isi Bundle</label>
-
-                                    <div id="bundle-items-wrapper">
-                                        <div class="bundle-item-row d-flex gap-3 mb-3 align-items-center">
-                                            <select name="bundle_items[0][tool_id]" class="form-select form-select-solid">
-                                                <option value="">Pilih Alat</option>
-                                                @foreach ($singleTools as $tool)
-                                                    <option value="{{ $tool->id }}">{{ $tool->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <input type="number" name="bundle_items[0][qty]"
-                                                class="form-control form-control-solid w-100px" placeholder="Qty"
-                                                min="1" value="1">
-                                            <button type="button" class="btn btn-sm btn-light-danger remove-bundle-item">
-                                                <i class="ki-duotone ki-trash fs-4"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <button type="button" id="add-bundle-item"
-                                        class="btn btn-sm btn-light-primary mt-2">
-                                        <i class="ki-duotone ki-plus fs-4"></i> Tambah Item
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Deskripsi -->
-                            <div class="fv-row mb-6">
-                                <label class="fw-semibold fs-6 mb-3">Deskripsi</label>
-                                <textarea name="description" class="form-control form-control-solid" rows="3"
-                                    placeholder="Deskripsi alat (opsional)"></textarea>
-                            </div>
-
                         </div>
 
-                        <div class="text-center pt-5 pb-5">
-                            <button type="button" class="btn btn-light me-3" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        {{-- === ROW 3: Harga === --}}
+                        <div class="fv-row mb-6">
+                            <label class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Price</label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bg-light border-0 text-muted fw-semibold">Rp</span>
+                                {{-- Input display (formatted) --}}
+                                <input type="text" id="price_display"
+                                    class="form-control form-control-solid form-control-sm" placeholder="0"
+                                    autocomplete="off">
+                                {{-- Input hidden (raw value) --}}
+                                <input type="hidden" name="price" id="price_raw">
+                            </div>
+                            <span class="text-muted fs-8 mt-1 d-block" id="price_terbilang"></span>
+                        </div>
+
+                        {{-- === BUNDLE FIELDS (hidden by default) === --}}
+                        <div id="bundle-fields" style="display: none;">
+                            <div class="separator separator-dashed mb-6"></div>
+
+                            <div class="fv-row mb-2">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div>
+                                        <span class="fw-semibold fs-7 text-gray-600 d-block">Isi Bundle</span>
+                                        <span class="text-muted fs-8">Tulis komponen / item yang ada di dalam bundle
+                                            ini</span>
+                                    </div>
+                                    <button type="button" id="add-bundle-item" class="btn btn-sm btn-light-primary">
+                                        <i class="ki-duotone ki-plus fs-4 me-1"></i> Tambah
+                                    </button>
+                                </div>
+
+                                {{-- Header kolom --}}
+                                <div class="d-flex gap-3 align-items-center mb-2 px-1">
+                                    <span class="text-muted fs-8 fw-semibold" style="min-width: 18px;"></span>
+                                    <span class="text-muted fs-8 fw-semibold flex-grow-1">Nama Komponen</span>
+                                    <span class="text-muted fs-8 fw-semibold text-center" style="width: 65px;">Qty</span>
+                                    <span class="text-muted fs-8 fw-semibold text-center" style="width: 110px;">Harga
+                                        Satuan</span>
+                                    <span style="width: 32px;"></span>
+                                </div>
+
+                                <div id="bundle-items-wrapper" class="d-flex flex-column gap-2">
+                                    {{-- Row pertama (default) --}}
+                                    <div class="bundle-item-row d-flex gap-3 align-items-center">
+                                        <div
+                                            class="d-flex align-items-center gap-3 flex-grow-1 bg-light rounded-2 px-4 py-2">
+                                            <span class="text-muted fs-8 fw-bold bundle-number"
+                                                style="min-width: 18px;">1.</span>
+
+                                            {{-- Nama komponen --}}
+                                            <input type="text" name="bundle_items[0][name]"
+                                                class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
+                                                placeholder="Nama komponen, contoh: Kabel HDMI">
+
+                                            {{-- Qty --}}
+                                            <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                                                <input type="number" name="bundle_items[0][qty]"
+                                                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-center fw-semibold"
+                                                    style="width: 45px;" placeholder="1" min="1" value="1">
+                                                <span class="text-muted fs-8">pcs</span>
+                                            </div>
+
+                                            {{-- Divider --}}
+                                            <div class="border-start border-gray-300 mx-1" style="height: 20px;"></div>
+
+                                            {{-- Harga Satuan --}}
+                                            <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                                                <span class="text-muted fs-8 fw-semibold">Rp</span>
+                                                <input type="text" name="bundle_items[0][price_display]"
+                                                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-end bundle-price-display"
+                                                    style="width: 90px;" placeholder="0" autocomplete="off">
+                                                <input type="hidden" name="bundle_items[0][price]"
+                                                    class="bundle-price-raw">
+                                            </div>
+                                        </div>
+
+                                        <button type="button"
+                                            class="btn btn-sm btn-icon btn-light-danger flex-shrink-0 remove-bundle-item">
+                                            <i class="ki-duotone ki-trash fs-4">
+                                                <span class="path1"></span><span class="path2"></span>
+                                                <span class="path3"></span><span class="path4"></span>
+                                                <span class="path5"></span>
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- === DESKRIPSI === --}}
+                        <div class="separator separator-dashed my-6"></div>
+                        <div class="fv-row mb-2">
+                            <label class="fw-semibold fs-7 text-gray-600 mb-2 d-block">Deskripsi</label>
+                            <textarea name="description" class="form-control form-control-solid form-control-sm" rows="3"
+                                placeholder="Deskripsi alat (opsional)"></textarea>
                         </div>
 
                     </form>
                 </div>
+
+                {{-- ===== FOOTER ===== --}}
+                <div class="modal-footer px-8 py-4 border-top border-gray-200 justify-content-end gap-3">
+                    <button type="button" class="btn btn-sm btn-light px-7" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" form="form_add_tool" class="btn btn-sm btn-primary px-7">
+                        <i class="ki-duotone ki-check fs-4 me-1"></i> Simpan
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>

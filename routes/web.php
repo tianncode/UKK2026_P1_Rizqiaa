@@ -3,9 +3,11 @@
 use App\Http\Controllers\AuthC;
 use App\Http\Controllers\CategoriesC;
 use App\Http\Controllers\ToolsC;
+use App\Http\Controllers\UnitConditionsC;
 use App\Http\Controllers\UnitsC;
 use App\Http\Controllers\UserC;
 use App\Models\Tools;
+use App\Models\UnitConditions;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -65,11 +67,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/', [ToolsC::class, 'index'])->name('index');
         Route::get('/create', [ToolsC::class, 'create'])->name('form');
         Route::post('/store', [ToolsC::class, 'store'])->name('store');
-        Route::get('/view/{id}', [ToolsC::class, 'view'])->name('view');
+        Route::get('/detail/{id}', [ToolsC::class, 'detail'])->name('detail');
         Route::put('/update/{id}', [ToolsC::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ToolsC::class, 'delete'])->name('delete');
         Route::post('/tool-units/store', [UnitsC::class, 'store'])->name('units-store');
         Route::put('/tool-units/update/{id}', [UnitsC::class, 'update'])->name('units-update');
         Route::delete('/tool-units/delete/{id}', [UnitsC::class, 'delete'])->name('units-delete');
+        Route::post('/unit-conditions', [UnitConditionsC::class, 'store'])->name('unit-conditions.store');
+        Route::delete('/unit-conditions/{id}', [UnitConditionsC::class, 'delete'])->name('unit-conditions.delete');
     });
 });

@@ -17,7 +17,7 @@ class BundleTools extends Model
         return $this->belongsTo(Tools::class, 'bundle_id');
     }
 
-    public function tool()
+    public function tools()
     {
         return $this->belongsTo(Tools::class, 'tool_id');
     }

@@ -24,16 +24,16 @@ class UnitConditions extends Model
         'recorded_at' => 'datetime',
     ];
 
-    public function unit(): BelongsTo
+    public function unit()
     {
         return $this->belongsTo(ToolUnits::class, 'unit_code', 'code');
     }
 
-    // /**
-    //  * Kondisi ini terkait dengan return mana (opsional).
-    //  */
-    // public function return(): BelongsTo
-    // {
-    //     return $this->belongsTo(ToolReturn::class, 'return_id');
-    // }
+    /**
+     * Kondisi ini terkait dengan return mana (opsional).
+     */
+    public function return()
+    {
+        return $this->belongsTo(Returns::class, 'return_id');
+    }
 }
