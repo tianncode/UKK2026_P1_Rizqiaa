@@ -266,4 +266,53 @@ class ToolsC extends Controller
     // Pass $tool as a single object — no need to loop over it
     return view('management-alat.detail', compact('tool', 'singleTools', 'categories', 'returns'));
   }
+
+  public function daftar()
+  {
+    $tools = Tools::with(['units.conditions', 'units.tool', 'category'])
+      ->where('item_type', '!=', 'bundle_tools')
+      ->paginate(15);
+    $categories = Category::orderBy('name')->get();
+
+    return view('management-alat.daftar', compact('tools', 'categories'));
+  }
+
+  public function checkAvailability(Request $request, Tools $tool)
+  {
+    $request->validate([
+      'borrow_date' => 'required|date|after_or_equal:today',
+      'return_date' => 'required|date|after:borrow_date',
+    ]);
+
+    $borrowDate = $request->borrow_date;
+    $returnDate = $request->return_date;
+
+    $takenUnitCodes = DB::table('loans')
+      ->whereIn('status', ['pending', 'approved', 'borrowed'])
+      ->where('loan_date', '<=', $returnDate)
+      ->where('due_date',  '>=', $borrowDate)
+      ->pluck('unit_code')
+      ->toArray();
+
+    // Ambil SEMUA unit, bukan hanya yang available
+    $allUnits = $tool->units()->get();
+
+    $units = $allUnits->map(fn($u) => [
+      'id'        => $u->id,
+      'code'      => $u->code,
+      'condition' => $u->condition ?? 'Baik',
+      // Status efektif: kalau unit available tapi sedang dipinjam di rentang ini → borrowed
+      'status'    => ($u->status === 'available' && !in_array($u->code, $takenUnitCodes))
+        ? 'available'
+        : ($u->status === 'available' ? 'borrowed' : $u->status),
+    ])->values();
+
+    $availableCount = $units->where('status', 'available')->count();
+
+    return response()->json([
+      'available' => $availableCount > 0,
+      'count'     => $availableCount,
+      'units'     => $units,
+    ]);
+  }
 }

@@ -44,4 +44,28 @@ class Tools extends Model
     {
         return $this->hasMany(Loans::class);
     }
+
+    /** Mengembalikan unit yang tersedia dalam rentang tanggal tertentu */
+    public function availableUnits(string $borrowDate, string $returnDate)
+    {
+        // Kode unit yang sedang dipinjam pada rentang tanggal tersebut
+        $busyCodes = Loans::where('tool_id', $this->id)
+            ->conflictingDates($borrowDate, $returnDate)
+            ->pluck('unit_code')
+            ->toArray();
+
+        return $this->units()
+            ->where('status', 'available')
+            ->whereNotIn('code', $busyCodes)
+            ->get();
+    }
+
+    /** Foto URL atau null */
+    public function getPhotoUrlAttribute(): ?string
+    {
+        if ($this->photo_path && file_exists(public_path($this->photo_path))) {
+            return asset($this->photo_path);
+        }
+        return null;
+    }
 }

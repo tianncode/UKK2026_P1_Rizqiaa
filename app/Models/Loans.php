@@ -22,10 +22,29 @@ class Loans extends Model
     'notes',
   ];
 
+  const STATUS_PENDING   = 'pending';
+  const STATUS_APPROVED  = 'approved';
+  const STATUS_RETURNED  = 'returned';
+  const STATUS_REJECTED  = 'rejected';
+  const STATUS_CANCELLED = 'cancelled';
+
   protected $casts = [
     'loan_date' => 'date',
     'due_date' => 'date',
   ];
+
+  protected static function booted(): void
+  {
+    static::creating(function (Loans $loan) {
+      if (empty($loan->loan_code)) {
+        // Format: LN-20240101-XXXX  (tanggal + 4 digit acak)
+        $loan->loan_code = 'LN-'
+          . now()->format('Ymd')
+          . '-'
+          . strtoupper(substr(uniqid(), -4));
+      }
+    });
+  }
 
   /**
    * Relasi ke User (Peminjam)
@@ -67,12 +86,18 @@ class Loans extends Model
     return $this->hasOne(Returns::class);
   }
 
+  // public function violations()
+  // {
+  //   return $this->hasMany(Violation::class);
+  // }
+
   /**
    * Check if loan is overdue
    */
   public function isOverdue()
   {
-    return $this->status === 'borrowed' && $this->due_date < now();
+    // 'borrowed' → 'approved'
+    return $this->status === self::STATUS_APPROVED && $this->due_date < now();
   }
 
   /**
@@ -80,9 +105,28 @@ class Loans extends Model
    */
   public function getLateDaysAttribute()
   {
-    if ($this->status === 'borrowed' && $this->due_date < now()) {
+    // 'borrowed' → 'approved'
+    if ($this->status === self::STATUS_APPROVED && $this->due_date < now()) {
       return now()->diffInDays($this->due_date);
     }
     return 0;
+  }
+
+  /** Hanya peminjaman yang sedang aktif / belum dikembalikan */
+  public function scopeActive($query)
+  {
+    // Removed STATUS_ACTIVE — STATUS_APPROVED already represents active loans
+    return $query->where('status', self::STATUS_APPROVED);
+  }
+
+  /** Filter berdasarkan rentang tanggal yang bentrok */
+  public function scopeConflictingDates($query, string $borrowDate, string $returnDate)
+  {
+    // Removed STATUS_ACTIVE
+    return $query->whereIn('status', [self::STATUS_PENDING, self::STATUS_APPROVED])
+      ->where(function ($q) use ($borrowDate, $returnDate) {
+        $q->where('loan_date', '<=', $returnDate)
+          ->where('due_date', '>=', $borrowDate);
+      });
   }
 }

@@ -376,30 +376,27 @@
                                 <div id="kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
                                     class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary px-3">
 
-                                    {{-- ================= MENU UTAMA ================= --}}
                                     <div class="menu-item mb-1">
                                         <div class="menu-heading text-uppercase fs-8 fw-bolder text-muted">
                                             Menu Utama
                                         </div>
                                     </div>
 
-                                    {{-- ================= DASHBOARD ================= --}}
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="/admin">
-                                            <span class="menu-icon"><i
-                                                    class="ki-duotone ki-element-11 fs-2"></i></span>
-                                            <span class="menu-title">Dashboard</span>
-                                        </a>
-                                    </div>
-
-                                    {{-- ================= ADMIN ================= --}}
                                     @if (Auth::user()->role == 'admin')
-                                        {{-- Users Management --}}
+                                        {{-- Dashboard --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="/admin">
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-element-11 fs-2"></i></span>
+                                                <span class="menu-title">Dashboard</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Users --}}
                                         <div class="menu-item">
                                             <a class="menu-link" href="{{ route('users.index') }}">
-                                                <span class="menu-icon">
-                                                    <i class="ki-duotone ki-people fs-2"></i>
-                                                </span>
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-people fs-2"></i></span>
                                                 <span class="menu-title">Users Management</span>
                                             </a>
                                         </div>
@@ -407,30 +404,130 @@
                                         {{-- Kategori --}}
                                         <div class="menu-item">
                                             <a class="menu-link" href="{{ route('categories.index') }}">
-                                                <span class="menu-icon">
-                                                    <i class="ki-duotone ki-element-11 fs-2"></i>
-                                                </span>
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-element-11 fs-2"></i></span>
                                                 <span class="menu-title">Management Kategori</span>
                                             </a>
                                         </div>
 
-                                        {{-- Management Alat --}}
+                                        {{-- Alat --}}
                                         <div class="menu-item">
                                             <a class="menu-link" href="{{ route('tools.index') }}">
-                                                <span class="menu-icon">
-                                                    <i class="ki-duotone ki-wrench fs-2"></i>
-                                                </span>
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-wrench fs-2"></i></span>
                                                 <span class="menu-title">Management Alat</span>
                                             </a>
                                         </div>
 
                                         {{-- Data Peminjaman --}}
                                         <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('loans.index') }}">
+                                                <span class="menu-icon"><i class="ki-duotone ki-book fs-2"></i></span>
+                                                <span class="menu-title">Data Peminjaman</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Pengembalian (CRUD) --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon"><i
+                                                        class="ki-duotone ki-arrows-loop fs-2"></i></span>
+                                                <span class="menu-title">Data Pengembalian</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Log Aktivitas --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon"><i class="ki-duotone ki-time fs-2"></i></span>
+                                                <span class="menu-title">Log Aktivitas</span>
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    @if (Auth::user()->role == 'employee')
+                                        {{-- Dashboard --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="/employee">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-element-11 fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                        <span class="path4"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Dashboard</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Monitoring Peminjaman --}}
+                                        <div class="menu-item">
                                             <a class="menu-link" href="#">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-book fs-2"></i>
+                                                    <i class="ki-duotone ki-notepad fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
                                                 </span>
-                                                <span class="menu-title">Data Peminjaman</span>
+                                                <span class="menu-title">Monitoring Peminjaman</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Monitoring Pengembalian --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-arrow-circle-left fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Monitoring Pengembalian</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Pelanggaran --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-shield-cross fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Pelanggaran</span>
+                                            </a>
+                                        </div>
+
+                                        {{-- Laporan --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-chart-simple fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                        <span class="path4"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Laporan</span>
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    @if (Auth::user()->role == 'user')
+                                        {{-- Daftar Alat --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="{{ route('tools.daftar') }}">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-wrench fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Daftar Alat</span>
                                             </a>
                                         </div>
 
@@ -438,72 +535,24 @@
                                         <div class="menu-item">
                                             <a class="menu-link" href="#">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-arrows-loop fs-2"></i>
+                                                    <i class="ki-duotone ki-arrow-circle-left fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
                                                 </span>
                                                 <span class="menu-title">Pengembalian</span>
                                             </a>
                                         </div>
 
-                                        {{-- Log Aktivitas --}}
+                                        {{-- Riwayat Peminjaman --}}
                                         <div class="menu-item">
                                             <a class="menu-link" href="#">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-time fs-2"></i>
+                                                    <i class="ki-duotone ki-time fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
                                                 </span>
-                                                <span class="menu-title">Log Aktivitas</span>
-                                            </a>
-                                        </div>
-                                    @endif
-
-                                    {{-- ================= PETUGAS ================= --}}
-                                    @if (Auth::user()->role == 'petugas')
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Pengajuan Peminjaman</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Pengembalian</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Pelanggaran</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Laporan</span>
-                                            </a>
-                                        </div>
-                                    @endif
-
-                                    {{-- ================= PEMINJAM ================= --}}
-                                    @if (Auth::user()->role == 'peminjam')
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Daftar Alat</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Ajukan Peminjaman</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
-                                                <span class="menu-title">Pengembalian</span>
-                                            </a>
-                                        </div>
-
-                                        <div class="menu-item">
-                                            <a class="menu-link" href="#">
                                                 <span class="menu-title">Riwayat Peminjaman</span>
                                             </a>
                                         </div>
@@ -952,8 +1001,6 @@
 
         })();
     </script>
-
-    {{-- Script toggle bundle + preview foto --}}
     <script>
         document.querySelectorAll('[id^="edit_item_type_"]').forEach(function(select) {
             const id = select.id.split('_').pop();

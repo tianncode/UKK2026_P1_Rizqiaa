@@ -13,6 +13,11 @@ class ToolUnits extends Model
         'notes'
     ];
 
+    const STATUS_AVAILABLE = 'available';
+    const STATUS_BORROWED  = 'borrowed';
+    const STATUS_DAMAGED   = 'damaged';
+    const STATUS_LOST      = 'lost';
+
     public function tool()
     {
         return $this->belongsTo(Tools::class, 'tool_id');
@@ -39,5 +44,15 @@ class ToolUnits extends Model
         return $this->hasOne(Loans::class, 'unit_code', 'code')
             ->where('status', 'borrowed')
             ->latest();
+    }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('status', self::STATUS_AVAILABLE);
+    }
+
+    public function isAvailable(): bool
+    {
+        return $this->status === self::STATUS_AVAILABLE;
     }
 }

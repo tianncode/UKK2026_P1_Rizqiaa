@@ -14,20 +14,6 @@
                         <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
                             <!--begin::Tool Detail content-->
                             <div class="mt-n1">
-                                <!--begin::Top-->
-                                <div class="d-flex flex-stack pb-10">
-                                    <!--begin::Logo-->
-                                    <a href="#">
-                                        <img alt="Logo"
-                                            src="{{ asset('assets/media/svg/brand-logos/code-lab.svg') }}" />
-                                    </a>
-                                    <!--end::Logo-->
-
-                                    <!--begin::Action-->
-                                    <a href="#" class="btn btn-sm btn-success">Kembali</a>
-                                    <!--end::Action-->
-                                </div>
-                                <!--end::Top-->
 
                                 <!--begin::Wrapper-->
                                 <div class="m-0">
@@ -37,123 +23,90 @@
 
                                     <!--begin::Card Info Alat-->
                                     <div class="card card-flush mb-8">
-                                        <div class="card-body p-8">
-                                            <div class="d-flex align-items-start">
-                                                <!--begin::Foto Alat-->
-                                                <div class="me-7">
-                                                    <div class="symbol symbol-150px symbol-fixed">
-                                                        @if (!empty($tool->photo_path) && file_exists(public_path($tool->photo_path)))
-                                                            <img src="{{ asset($tool->photo_path) }}"
-                                                                alt="{{ $tool->name }}" class="rounded w-100 h-100"
-                                                                style="object-fit: cover;">
-                                                        @else
-                                                            <div
-                                                                class="symbol-label bg-light-primary text-primary fw-bold fs-1 rounded d-flex align-items-center justify-content-center w-100 h-100">
-                                                                {{ strtoupper(substr($tool->name, 0, 2)) }}
+                                        <div class="card-body p-0">
+                                            <div class="d-flex">
+                                                <!--begin::Foto-->
+                                                <div class="flex-shrink-0" style="width: 180px; min-height: 180px;">
+                                                    @if (!empty($tool->photo_path) && file_exists(public_path($tool->photo_path)))
+                                                        <img src="{{ asset($tool->photo_path) }}" alt="{{ $tool->name }}"
+                                                            style="width: 180px; height: 100%; min-height: 180px; object-fit: cover; border-radius: var(--bs-card-border-radius) 0 0 var(--bs-card-border-radius);">
+                                                    @else
+                                                        <div class="bg-light-primary text-primary fw-bold fs-1 d-flex align-items-center justify-content-center h-100"
+                                                            style="width: 180px; min-height: 180px; border-radius: var(--bs-card-border-radius) 0 0 var(--bs-card-border-radius);">
+                                                            {{ strtoupper(substr($tool->name, 0, 2)) }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <!--end::Foto-->
+
+                                                <!--begin::Info-->
+                                                <div class="flex-grow-1 p-7" style="min-width: 0;">
+                                                    <div class="d-flex align-items-start justify-content-between mb-5">
+                                                        <div>
+                                                            <h3 class="fw-bold text-gray-800 mb-1">{{ $tool->name }}</h3>
+                                                            <span class="text-muted fs-7">ID:
+                                                                #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}</span>
+                                                        </div>
+                                                        <div class="d-flex gap-2">
+                                                            @if ($tool->item_type == 'single')
+                                                                <span class="badge badge-light-success">Single</span>
+                                                            @else
+                                                                <span class="badge badge-light-warning">Bundle</span>
+                                                            @endif
+                                                            <span
+                                                                class="badge badge-light-info">{{ $tool->category->name ?? '-' }}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="text-gray-600 fs-6 mb-5">
+                                                        {{ $tool->description ?? 'Tidak ada deskripsi.' }}
+                                                    </div>
+
+                                                    @if ($tool->item_type === 'bundle')
+                                                        <div class="mb-5">
+                                                            <span class="text-muted fs-7 d-block mb-2">Isi Bundle</span>
+                                                            <div class="d-flex flex-wrap gap-2">
+                                                                @forelse ($tool->bundleItems as $item)
+                                                                    <span class="badge badge-light-primary fs-7 px-3 py-2">
+                                                                        {{ $item->tools->name ?? '-' }}
+                                                                        <span
+                                                                            class="badge badge-primary ms-1">{{ $item->qty }}x</span>
+                                                                    </span>
+                                                                @empty
+                                                                    <span class="text-muted fs-7">Belum ada isi
+                                                                        bundle</span>
+                                                                @endforelse
                                                             </div>
-                                                        @endif
+                                                        </div>
+                                                    @endif
+
+                                                    <div class="d-flex gap-6 pt-4 border-top">
+                                                        <div class="d-flex flex-column">
+                                                            <span class="text-muted fs-8 mb-1">Tanggal Dibuat</span>
+                                                            <span
+                                                                class="text-gray-800 fw-semibold fs-7">{{ date('d M Y', strtotime($tool->created_at)) }}</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <span class="text-muted fs-8 mb-1">Total Unit</span>
+                                                            <span
+                                                                class="text-gray-800 fw-semibold fs-7">{{ $tool->units?->count() ?? 0 }}
+                                                                Unit</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <span class="text-muted fs-8 mb-1">Unit Tersedia</span>
+                                                            <span
+                                                                class="text-success fw-semibold fs-7">{{ $tool->units?->where('status', 'available')->count() ?? 0 }}
+                                                                Unit</span>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <span class="text-muted fs-8 mb-1">Sedang Dipinjam</span>
+                                                            <span
+                                                                class="text-warning fw-semibold fs-7">{{ $tool->units?->where('status', 'borrowed')->count() ?? 0 }}
+                                                                Unit</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <!--end::Foto Alat-->
-
-                                                <!--begin::Detail Info-->
-                                                <div class="flex-grow-1">
-                                                    <!--begin::Nama Alat-->
-                                                    <div class="mb-5">
-                                                        <h3 class="fw-bold text-gray-800 mb-1">{{ $tool->name }}</h3>
-                                                        <span class="text-muted fs-6">
-                                                            ID: #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Nama Alat-->
-
-                                                    <!--begin::Info Grid-->
-                                                    <div class="row g-5">
-                                                        <!--begin::Kategori-->
-                                                        <div class="col-md-6">
-                                                            <div class="d-flex flex-column">
-                                                                <span class="text-muted fs-7 mb-1">Kategori</span>
-                                                                <span class="badge badge-light-info align-self-start">
-                                                                    {{ $tool->category->name ?? '-' }}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Kategori-->
-
-                                                        <!--begin::Tipe-->
-                                                        <div class="col-md-6">
-                                                            <div class="d-flex flex-column">
-                                                                <span class="text-muted fs-7 mb-1">Tipe Alat</span>
-                                                                @if ($tool->item_type == 'single')
-                                                                    <span
-                                                                        class="badge badge-light-success align-self-start">Single</span>
-                                                                @else
-                                                                    <span
-                                                                        class="badge badge-light-warning align-self-start">Bundle</span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Tipe-->
-
-                                                        <!--begin::Isi Bundle-->
-                                                        @if ($tool->item_type === 'bundle')
-                                                            <div class="col-12">
-                                                                <div class="d-flex flex-column">
-                                                                    <span class="text-muted fs-7 mb-2">Isi Bundle</span>
-                                                                    <div class="d-flex flex-wrap gap-2">
-                                                                        @forelse ($tool->bundleItems as $item)
-                                                                            <span
-                                                                                class="badge badge-light-primary fs-7 px-3 py-2">
-                                                                                {{ $item->tools->name ?? '-' }}
-                                                                                <span
-                                                                                    class="badge badge-primary ms-1">{{ $item->qty }}x</span>
-                                                                            </span>
-                                                                        @empty
-                                                                            <span class="text-muted">Belum ada isi
-                                                                                bundle</span>
-                                                                        @endforelse
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endif
-                                                        <!--end::Isi Bundle-->
-
-                                                        <!--begin::Deskripsi-->
-                                                        <div class="col-12">
-                                                            <div class="d-flex flex-column">
-                                                                <span class="text-muted fs-7 mb-1">Deskripsi</span>
-                                                                <span class="text-gray-800 fs-6">
-                                                                    {{ $tool->description ?? 'Tidak ada deskripsi' }}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Deskripsi-->
-
-                                                        <!--begin::Tanggal Dibuat-->
-                                                        <div class="col-md-6">
-                                                            <div class="d-flex flex-column">
-                                                                <span class="text-muted fs-7 mb-1">Tanggal Dibuat</span>
-                                                                <span class="text-gray-800 fw-semibold">
-                                                                    {{ date('d M Y', strtotime($tool->created_at)) }}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Tanggal Dibuat-->
-
-                                                        <!--begin::Total Unit-->
-                                                        <div class="col-md-6">
-                                                            <div class="d-flex flex-column">
-                                                                <span class="text-muted fs-7 mb-1">Total Unit</span>
-                                                                <span class="text-gray-800 fw-semibold">
-                                                                    {{ $tool->units?->count() ?? 0 }} Unit
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Total Unit-->
-                                                    </div>
-                                                    <!--end::Info Grid-->
-                                                </div>
-                                                <!--end::Detail Info-->
+                                                <!--end::Info-->
                                             </div>
                                         </div>
                                     </div>
@@ -962,7 +915,7 @@
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-danger px-5">
-                                                                       Ya, Hapus
+                                                                        Ya, Hapus
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -984,93 +937,120 @@
 
                         <!--begin::Sidebar-->
                         <div class="m-0">
-                            <!--begin::Tool Detail sidebar-->
                             <div
                                 class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
-                                <!--begin::Labels-->
-                                <div class="mb-8">
-                                    @if ($tool->item_type == 'single')
-                                        <span class="badge badge-light-success me-2">Single</span>
-                                    @else
-                                        <span class="badge badge-light-warning me-2">Bundle</span>
-                                    @endif
 
+                                <div class="d-flex gap-2 mb-8">
+                                    @if ($tool->item_type == 'single')
+                                        <span class="badge badge-light-success">Single</span>
+                                    @else
+                                        <span class="badge badge-light-warning">Bundle</span>
+                                    @endif
                                     @if ($tool->units?->count() > 0)
                                         <span class="badge badge-light-primary">{{ $tool->units->count() }} Unit</span>
                                     @else
                                         <span class="badge badge-light-danger">Tidak Ada Unit</span>
                                     @endif
                                 </div>
-                                <!--end::Labels-->
 
-                                <!--begin::Title-->
-                                <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary">INFORMASI ALAT</h6>
-                                <!--end::Title-->
-
-                                <!--begin::Item-->
-                                <div class="mb-6">
-                                    <div class="fw-semibold text-gray-600 fs-7">Kategori:</div>
+                                <h6 class="mb-5 fw-bolder text-gray-600 text-hover-primary">INFORMASI ALAT</h6>
+                                <div class="mb-4">
+                                    <div class="fw-semibold text-gray-600 fs-7">Kategori</div>
                                     <div class="fw-bold text-gray-800 fs-6">{{ $tool->category->name ?? '-' }}</div>
                                 </div>
-                                <!--end::Item-->
-
-                                <!--begin::Item-->
-                                <div class="mb-6">
-                                    <div class="fw-semibold text-gray-600 fs-7">Kode Alat:</div>
+                                <div class="mb-4">
+                                    <div class="fw-semibold text-gray-600 fs-7">Kode Alat</div>
                                     <div class="fw-bold text-gray-800 fs-6">
-                                        #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}
-                                    </div>
+                                        #TL-{{ str_pad($tool->id, 3, '0', STR_PAD_LEFT) }}</div>
                                 </div>
-                                <!--end::Item-->
-
-                                <!--begin::Item-->
-                                <div class="mb-15">
-                                    <div class="fw-semibold text-gray-600 fs-7">Tanggal Dibuat:</div>
-                                    <div class="fw-bold fs-6 text-gray-800">
-                                        {{ date('d M Y', strtotime($tool->created_at)) }}
-                                    </div>
-                                </div>
-                                <!--end::Item-->
-
-                                <!--begin::Title-->
-                                <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary">STATUS UNIT</h6>
-                                <!--end::Title-->
-
-                                <!--begin::Item-->
-                                <div class="mb-6">
-                                    <div class="fw-semibold text-gray-600 fs-7">Total Unit:</div>
-                                    <div class="fw-bold fs-6 text-gray-800">
-                                        {{ $tool->units?->count() ?? 0 }} Unit
-                                    </div>
-                                </div>
-                                <!--end::Item-->
-
-                                <!--begin::Item-->
-                                <div class="mb-6">
-                                    <div class="fw-semibold text-gray-600 fs-7">Unit Tersedia:</div>
+                                <div class="mb-8">
+                                    <div class="fw-semibold text-gray-600 fs-7">Tanggal Dibuat</div>
                                     <div class="fw-bold text-gray-800 fs-6">
-                                        {{ $tool->units?->where('status', 'available')->count() ?? 0 }} Unit
+                                        {{ date('d M Y', strtotime($tool->created_at)) }}</div>
+                                </div>
+
+                                <h6 class="mb-5 fw-bolder text-gray-600 text-hover-primary">STATUS UNIT</h6>
+
+                                @php
+                                    $total = $tool->units?->count() ?? 0;
+                                    $tersedia = $tool->units?->where('status', 'available')->count() ?? 0;
+                                    $dipinjam = $tool->units?->where('status', 'borrowed')->count() ?? 0;
+                                    $rusak = $total - $tersedia - $dipinjam;
+                                    $pctTersedia = $total > 0 ? round(($tersedia / $total) * 100) : 0;
+                                @endphp
+
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-semibold text-gray-600 fs-7">Ketersediaan</span>
+                                        <span class="fw-bold text-gray-800 fs-7">{{ $pctTersedia }}%</span>
+                                    </div>
+                                    <div class="h-6px rounded" style="background: var(--bs-gray-200);">
+                                        <div class="h-6px rounded bg-success" style="width: {{ $pctTersedia }}%;"></div>
                                     </div>
                                 </div>
-                                <!--end::Item-->
 
-                                <!--begin::Item-->
-                                <div class="m-0">
-                                    <div class="fw-semibold text-gray-600 fs-7">Unit Dipinjam:</div>
-                                    <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center">
-                                        {{ $tool->units?->where('status', 'borrowed')->count() ?? 0 }} Unit
-
-                                        @if ($tool->units?->where('status', 'borrowed')->count() > 0)
-                                            <span class="fs-7 text-warning d-flex align-items-center">
-                                                <span class="bullet bullet-dot bg-warning mx-2"></span>
-                                                Sedang Dipinjam
-                                            </span>
-                                        @endif
+                                <div class="d-flex flex-column gap-3 mb-8">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-gray-400"></span>
+                                            <span class="text-gray-600 fs-7">Total Unit</span>
+                                        </div>
+                                        <span class="fw-bold text-gray-800 fs-7">{{ $total }} Unit</span>
                                     </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-success"></span>
+                                            <span class="text-gray-600 fs-7">Tersedia</span>
+                                        </div>
+                                        <span class="fw-bold text-success fs-7">{{ $tersedia }} Unit</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-warning"></span>
+                                            <span class="text-gray-600 fs-7">Dipinjam</span>
+                                        </div>
+                                        <span class="fw-bold text-warning fs-7">{{ $dipinjam }} Unit</span>
+                                    </div>
+                                    @if ($rusak > 0)
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="bullet bullet-dot bg-danger"></span>
+                                                <span class="text-gray-600 fs-7">Tidak Tersedia</span>
+                                            </div>
+                                            <span class="fw-bold text-danger fs-7">{{ $rusak }} Unit</span>
+                                        </div>
+                                    @endif
                                 </div>
-                                <!--end::Item-->
+
+                                @if ($tersedia > 0)
+                                    <div
+                                        class="notice d-flex bg-light-success rounded border-success border border-dashed p-4">
+                                        <i class="ki-duotone ki-check-circle fs-2tx text-success me-4">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                        <div>
+                                            <div class="fw-bold text-gray-800 fs-7">Alat Tersedia</div>
+                                            <div class="text-gray-600 fs-8">{{ $tersedia }} unit siap dipinjam
+                                                sekarang</div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div
+                                        class="notice d-flex bg-light-danger rounded border-danger border border-dashed p-4">
+                                        <i class="ki-duotone ki-information-5 fs-2tx text-danger me-4">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                        <div>
+                                            <div class="fw-bold text-gray-800 fs-7">Tidak Tersedia</div>
+                                            <div class="text-gray-600 fs-8">Semua unit sedang dipinjam</div>
+                                        </div>
+                                    </div>
+                                @endif
+
                             </div>
-                            <!--end::Tool Detail sidebar-->
                         </div>
                         <!--end::Sidebar-->
                     </div>
