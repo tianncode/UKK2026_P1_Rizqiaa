@@ -771,7 +771,5 @@
             document.getElementById('btnBatalPinjam').addEventListener('click', closeForm);
             document.getElementById('btnBatalPinjam2').addEventListener('click', closeForm);
         });
-
-
     </script>
 @endsection

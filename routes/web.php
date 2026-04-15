@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthC;
 use App\Http\Controllers\CategoriesC;
 use App\Http\Controllers\LoansC;
+use App\Http\Controllers\ReturnC;
 use App\Http\Controllers\ToolsC;
 use App\Http\Controllers\UnitConditionsC;
 use App\Http\Controllers\UnitsC;
@@ -86,7 +87,20 @@ Route::prefix('management-loans/form')->name('loans.')->group(function () {
     Route::put('/update/{id}', [LoansC::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [LoansC::class, 'delete'])->name('delete');
     Route::get('/monitoring', [LoansC::class, 'monitoring'])->name('monitoring');
-    Route::get('/{id}', [LoansC::class, 'show'])->name('monitoring.show');
+    Route::get('/show', [LoansC::class, 'show'])->name('show');
     Route::post('/{id}/approve', [LoansC::class, 'approve'])->name('monitoring.approve');
     Route::post('/{id}/reject', [LoansC::class, 'reject'])->name('monitoring.reject');
+});
+
+Route::prefix('management-return/form')->name('return.')->group(function () {
+    Route::get('/', [ReturnC::class, 'index'])->name('index');
+    Route::get('/create/{toolId}', [ReturnC::class, 'create'])->name('form');
+    Route::post('/store', [ReturnC::class, 'store'])->name('store');
+    Route::get('/view/{id}', [ReturnC::class, 'view'])->name('view');
+    Route::put('/update/{id}', [ReturnC::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [ReturnC::class, 'delete'])->name('delete');
+    Route::get('/monitoring', [ReturnC::class, 'monitoring'])->name('monitoring');
+    Route::get('/show', [ReturnC::class, 'show'])->name('show');
+    Route::post('/{id}/approve', [ReturnC::class, 'approve'])->name('monitoring.approve');
+    Route::post('/{id}/reject', [ReturnC::class, 'reject'])->name('monitoring.reject');
 });

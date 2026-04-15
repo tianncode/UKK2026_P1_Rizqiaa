@@ -225,4 +225,15 @@ class LoansC extends Controller
 
     return redirect()->back()->with('success', "Peminjaman #{$loan->loan_code} ditolak.");
   }
+
+  public function show()
+  {
+    $loans = Loans::with(['tool', 'user'])
+      ->where('user_id', Auth::id())
+      ->latest()
+      ->first();
+
+
+    return view('management-loans.show', compact('loans'));
+  }
 }

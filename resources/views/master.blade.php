@@ -531,9 +531,23 @@
                                             </a>
                                         </div>
 
+                                        {{-- Pengajuan Peminjaman --}}
+                                        <div class="menu-item">
+                                            <a class="menu-link"
+                                                href="{{ route('loans.show') }}">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-arrow-circle-left fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Pengajuan</span>
+                                            </a>
+                                        </div>
+
                                         {{-- Pengembalian --}}
                                         <div class="menu-item">
-                                            <a class="menu-link" href="#">
+                                            <a class="menu-link" href="{{ route('return.index') }}">
                                                 <span class="menu-icon">
                                                     <i class="ki-duotone ki-arrow-circle-left fs-2">
                                                         <span class="path1"></span>
