@@ -463,7 +463,7 @@
 
                                         {{-- Monitoring Peminjaman --}}
                                         <div class="menu-item">
-                                            <a class="menu-link" href="#">
+                                            <a class="menu-link" href="{{ route('loans.monitoring') }}">
                                                 <span class="menu-icon">
                                                     <i class="ki-duotone ki-notepad fs-2">
                                                         <span class="path1"></span>
@@ -839,9 +839,6 @@
             }
         });
     </script>
-    {{-- ===== SCRIPT ===== --}}
-
-    {{-- ===== SCRIPT ===== --}}
     <script>
         (function() {
 
@@ -1018,6 +1015,15 @@
                 bundleFields.style.display = this.value === 'bundle' ? '' : 'none';
             });
 
+            document.querySelectorAll('[name="code_prefix"]').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                    if (this.value.length > 20) {
+                        this.value = this.value.slice(0, 20);
+                    }
+                });
+            });
+
             // Preview foto
             if (photoInput) {
                 photoInput.addEventListener('change', function() {
@@ -1027,7 +1033,7 @@
                 });
             }
 
-            // Format harga
+            // Format harga utama
             if (priceDisplay) {
                 priceDisplay.addEventListener('input', function() {
                     let raw = this.value.replace(/\D/g, '');
@@ -1036,21 +1042,73 @@
                 });
             }
 
+            // ✅ Event delegation untuk bundle price (handle semua row, termasuk dari Blade)
+            if (wrapper) {
+                wrapper.addEventListener('input', function(e) {
+                    if (!e.target.classList.contains('bundle-price-display')) return;
+                    const numeric = e.target.value.replace(/\D/g, '');
+                    e.target.value = numeric ? parseInt(numeric).toLocaleString('id-ID') : '';
+                    const rawInput = e.target.closest('.bundle-item-row').querySelector(
+                        '.bundle-price-raw');
+                    if (rawInput) rawInput.value = numeric;
+                });
+            }
+
             // Tambah bundle item
             if (addBtn) {
                 addBtn.addEventListener('click', function() {
                     const index = wrapper.querySelectorAll('.bundle-item-row').length;
+                    const number = index + 1;
 
                     const html = `
-            <div class="bundle-item-row d-flex gap-3 align-items-center">
-                <span class="bundle-number">${index + 1}.</span>
-                <input type="text" name="bundle_items[${index}][name]" placeholder="Nama">
-                <input type="number" name="bundle_items[${index}][qty]" value="1" min="1">
-                <input type="hidden" name="bundle_items[${index}][price]">
-                <button type="button" class="remove-bundle-item">X</button>
-            </div>`;
+                    <div class="bundle-item-row d-flex gap-3 align-items-center">
+                        <input type="hidden" name="bundle_items[${index}][id]" value="">
+                        <div class="d-flex align-items-center gap-3 flex-grow-1 bg-light rounded-2 px-4 py-2">
+                            <span class="text-muted fs-8 fw-bold bundle-number" style="min-width: 18px;">${number}.</span>
+
+                            <input type="text"
+                                name="bundle_items[${index}][name]"
+                                class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
+                                placeholder="Nama komponen, contoh: Kabel HDMI">
+
+                            <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                                <input type="number"
+                                    name="bundle_items[${index}][qty]"
+                                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-center fw-semibold"
+                                    style="width: 45px;"
+                                    placeholder="1" min="1" value="1">
+                                <span class="text-muted fs-8">pcs</span>
+                            </div>
+
+                            <div class="border-start border-gray-300 mx-1" style="height: 20px;"></div>
+
+                            <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                                <span class="text-muted fs-8 fw-semibold">Rp</span>
+                                <input type="text"
+                                    name="bundle_items[${index}][price_display]"
+                                    class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-end bundle-price-display"
+                                    style="width: 90px;"
+                                    placeholder="0"
+                                    autocomplete="off">
+                                <input type="hidden"
+                                    name="bundle_items[${index}][price]"
+                                    class="bundle-price-raw"
+                                    value="0">
+                            </div>
+                        </div>
+
+                        <button type="button"
+                            class="btn btn-sm btn-icon btn-light-danger flex-shrink-0 remove-bundle-item">
+                            <i class="ki-duotone ki-trash fs-4">
+                                <span class="path1"></span><span class="path2"></span>
+                                <span class="path3"></span><span class="path4"></span>
+                                <span class="path5"></span>
+                            </i>
+                        </button>
+                    </div>`;
 
                     wrapper.insertAdjacentHTML('beforeend', html);
+                    // ✅ Tidak perlu bind listener lagi, sudah ditangani event delegation di atas
                 });
             }
 
@@ -1061,12 +1119,17 @@
                         const rows = wrapper.querySelectorAll('.bundle-item-row');
                         if (rows.length > 1) {
                             e.target.closest('.bundle-item-row').remove();
+                            wrapper.querySelectorAll('.bundle-item-row').forEach(function(row, i) {
+                                const num = row.querySelector('.bundle-number');
+                                if (num) num.textContent = (i + 1) + '.';
+                            });
                         }
                     }
                 });
             }
         });
 
+        // Format & init harga utama
         document.querySelectorAll('[id^="edit_price_display_"]').forEach(function(input) {
             const id = input.id.split('_').pop();
             const rawInput = document.getElementById('edit_price_raw_' + id);
@@ -1077,20 +1140,21 @@
                 this.value = value ? new Intl.NumberFormat('id-ID').format(value) : '';
             });
 
-            // 🔥 INIT (penting!)
+            // Init nilai awal dari hidden raw
             let initial = rawInput.value;
             if (initial) {
                 input.value = new Intl.NumberFormat('id-ID').format(initial);
             }
         });
 
+        // ✅ Submit handler — selalu sync, tidak pakai kondisi !raw.value
         document.querySelectorAll('[id^="form_edit_tool_"]').forEach(function(form) {
             form.addEventListener('submit', function() {
                 const id = this.id.split('_').pop();
                 const display = document.getElementById('edit_price_display_' + id);
                 const raw = document.getElementById('edit_price_raw_' + id);
 
-                if (display && raw && !raw.value) {
+                if (display && raw) {
                     raw.value = display.value.replace(/\D/g, '');
                 }
             });

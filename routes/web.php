@@ -85,4 +85,8 @@ Route::prefix('management-loans/form')->name('loans.')->group(function () {
     Route::get('/view/{id}', [LoansC::class, 'view'])->name('view');
     Route::put('/update/{id}', [LoansC::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [LoansC::class, 'delete'])->name('delete');
+    Route::get('/monitoring', [LoansC::class, 'monitoring'])->name('monitoring');
+    Route::get('/{id}', [LoansC::class, 'show'])->name('monitoring.show');
+    Route::post('/{id}/approve', [LoansC::class, 'approve'])->name('monitoring.approve');
+    Route::post('/{id}/reject', [LoansC::class, 'reject'])->name('monitoring.reject');
 });

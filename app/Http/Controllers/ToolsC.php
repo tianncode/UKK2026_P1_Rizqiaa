@@ -15,7 +15,7 @@ class ToolsC extends Controller
 {
   public function index()
   {
-    $tools = Tools::with(['units.conditions', 'units.tool', 'category'])
+    $tools = Tools::with(['units.conditions', 'units.tool', 'category', 'bundleItems'])
       ->where('item_type', '!=', 'bundle_tools')
       ->get();
     $singleTools = Tools::where('item_type', 'single')->get(['id', 'name']);
@@ -138,6 +138,9 @@ class ToolsC extends Controller
     }
 
     // Update Tool utama
+    $prefix = strtoupper($request->code_prefix);
+    $prefix = str_replace(['BDL-', '[COMP]'], '', $prefix);
+
     $tool->update([
       'name'        => $request->name,
       'category_id' => $request->category_id,
@@ -145,8 +148,8 @@ class ToolsC extends Controller
       'price'       => $request->price,
       'description' => $request->description,
       'code_slug'   => $request->item_type === 'bundle'
-        ? 'BDL-' . strtoupper($request->code_prefix)
-        : strtoupper($request->code_prefix),
+        ? 'BDL-' . $prefix
+        : $prefix,
       'photo_path'  => $photoPath,
     ]);
 

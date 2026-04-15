@@ -9,6 +9,7 @@ use App\Models\Tools;
 use App\Models\ToolUnits;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -135,5 +136,93 @@ class LoansC extends Controller
     ]);
 
     return back()->with('success', 'Peminjaman berhasil dibatalkan.');
+  }
+
+  public function monitoring(Request $request)
+  {
+    // ── Statistik ─────────────────────────────────────────────────────
+    $stats = [
+      'total'    => Loans::count(),
+      'pending'  => Loans::where('status', 'pending')->count(),
+      'approved' => Loans::where('status', 'approved')->count(),
+      'returned' => Loans::where('status', 'returned')->count(),
+      'rejected' => Loans::where('status', 'rejected')->count(),
+      'canceled' => Loans::where('status', 'canceled')->count(),
+      'overdue'  => Loans::where('status', 'approved')
+        ->where('due_date', '<', Carbon::today())
+        ->count(),
+    ];
+
+    // ── Query dengan filter ───────────────────────────────────────────
+    $query = Loans::with(['tool', 'user.detail'])->latest();
+
+    if ($request->filled('status')) {
+      $query->where('status', $request->status);
+    }
+
+    if ($request->filled('search')) {
+      $search = $request->search;
+      $query->where(function ($q) use ($search) {
+        $q->where('loan_code', 'like', "%{$search}%")
+          ->orWhereHas(
+            'user.detail',
+            fn($q) =>
+            $q->where('name', 'like', "%{$search}%")
+          );
+      });
+    }
+
+    if ($request->filled('date_from')) {
+      $query->whereDate('loan_date', '>=', $request->date_from);
+    }
+    if ($request->filled('date_to')) {
+      $query->whereDate('loan_date', '<=', $request->date_to);
+    }
+
+    $loans = $query->paginate(15)->withQueryString();
+
+    // ── Loan terlambat (5 teratas untuk alert) ────────────────────────
+    $overdueLoans = Loans::with(['user.detail', 'tool'])
+      ->where('status', 'approved')
+      ->where('due_date', '<', Carbon::today())
+      ->orderBy('due_date')
+      ->take(5)
+      ->get();
+
+    return view('management-loans.monitoring', compact('stats', 'loans', 'overdueLoans'));
+  }
+
+  // ── Method approve ────────────────────────────────────────────────────────
+  public function approve(Request $request, $id)
+  {
+    $loan = Loans::where('status', 'pending')->findOrFail($id);
+    $loan->update([
+      'status'      => 'approved',
+      'employee_id' => Auth::id(),
+    ]);
+
+    // ← Update status unit menjadi borrowed
+    ToolUnits::where('id', $loan->tool_id)
+      ->update(['status' => 'borrowed']);
+
+    return redirect()->back()->with('success', "Peminjaman #{$loan->loan_code} berhasil di-approve.");
+  }
+
+  // ── Method reject ─────────────────────────────────────────────────────────
+  public function reject(Request $request, $id)
+  {
+    $request->validate(['notes' => 'nullable|string|max:500']);
+    $loan = Loans::where('status', 'pending')->findOrFail($id);
+    $loan->update([
+      'status'      => 'rejected',
+      'employee_id' => Auth::id(),
+      'notes'       => $request->notes,
+    ]);
+
+    // Saat returned/canceled → kembalikan unit ke available
+    ToolUnits::where('id', $loan->tool_id)
+      ->update(['status' => 'available']);
+
+    return redirect()->back()->with('success', "Peminjaman #{$loan->loan_code} ditolak.");
   }
 }

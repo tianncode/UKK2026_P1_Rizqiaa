@@ -201,7 +201,7 @@
                                                             <div class="d-flex align-items-center gap-5">
                                                                 <div class="flex-shrink-0">
                                                                     <img id="edit-preview-image_{{ $tool->id }}"
-                                                                        src="{{ $tool->photo ? asset('storage/' . $tool->photo) : 'https://via.placeholder.com/80x80?text=Photo' }}"
+                                                                        src="{{ $tool->photo_path ? asset('assets/tools/' . $tool->photo_path) : 'https://via.placeholder.com/80x80?text=Photo' }}"
                                                                         class="rounded-3 border border-gray-200"
                                                                         style="width: 80px; height: 80px; object-fit: cover;">
                                                                 </div>
@@ -225,12 +225,17 @@
                                                                 <label
                                                                     class="required fw-semibold fs-7 text-gray-600 mb-2 d-block">Kode
                                                                     Awal</label>
+                                                                @php
+                                                                    $prefix = $tool->code_slug;
+                                                                    $prefix = str_replace('BDL-', '', $prefix);
+                                                                    $prefix = str_replace('[COMP]', '', $prefix);
+                                                                @endphp
                                                                 <div class="input-group input-group-sm">
                                                                     <input type="text" name="code_prefix"
                                                                         id="edit_code_prefix"
                                                                         class="form-control form-control-solid form-control-sm"
-                                                                        value="{{ $tool->code_slug }}" required
-                                                                        style="text-transform: uppercase;">
+                                                                        value="{{ $prefix }}" maxlength="20"
+                                                                        required style="text-transform: uppercase;">
                                                                 </div>
                                                                 <span class="text-muted fs-8 mt-1 d-block"
                                                                     id="edit_code_preview"></span>
@@ -342,22 +347,26 @@
                                                                     @forelse ($tool->bundleItems as $i => $item)
                                                                         <div
                                                                             class="bundle-item-row d-flex gap-3 align-items-center">
+
+                                                                            {{-- Hidden id dipindah ke LUAR flex inner agar tidak ganggu layout --}}
+                                                                            <input type="hidden"
+                                                                                name="bundle_items[{{ $i }}][id]"
+                                                                                value="{{ $item->id }}">
+
                                                                             <div
                                                                                 class="d-flex align-items-center gap-3 flex-grow-1 bg-light rounded-2 px-4 py-2">
                                                                                 <span
                                                                                     class="text-muted fs-8 fw-bold bundle-number"
                                                                                     style="min-width: 18px;">{{ $i + 1 }}.</span>
 
-                                                                                <input type="hidden"
-                                                                                    name="bundle_items[{{ $i }}][id]"
-                                                                                    value="{{ $item->id }}">
-
+                                                                                {{-- Nama komponen --}}
                                                                                 <input type="text"
                                                                                     name="bundle_items[{{ $i }}][name]"
                                                                                     class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
-                                                                                    placeholder="Nama komponen"
-                                                                                    value="{{ $item->name ?? ($item->tools->name ?? '') }}">
+                                                                                    placeholder="Nama komponen, contoh: Kabel HDMI"
+                                                                                    value="{{ $item->tools->name }}">
 
+                                                                                {{-- Qty --}}
                                                                                 <div
                                                                                     class="d-flex align-items-center gap-1 flex-shrink-0">
                                                                                     <input type="number"
@@ -370,9 +379,11 @@
                                                                                         class="text-muted fs-8">pcs</span>
                                                                                 </div>
 
+                                                                                {{-- Divider --}}
                                                                                 <div class="border-start border-gray-300 mx-1"
                                                                                     style="height: 20px;"></div>
 
+                                                                                {{-- Harga Satuan --}}
                                                                                 <div
                                                                                     class="d-flex align-items-center gap-1 flex-shrink-0">
                                                                                     <span
@@ -382,12 +393,12 @@
                                                                                         class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0 text-end bundle-price-display"
                                                                                         style="width: 90px;"
                                                                                         placeholder="0"
-                                                                                        value="{{ number_format($item->price ?? 0, 0, ',', '.') }}"
+                                                                                        value="{{ number_format($item->tools->price ?? 0, 0, ',', '.') }}"
                                                                                         autocomplete="off">
                                                                                     <input type="hidden"
                                                                                         name="bundle_items[{{ $i }}][price]"
                                                                                         class="bundle-price-raw"
-                                                                                        value="{{ $item->price ?? 0 }}">
+                                                                                        value="{{ $item->tools->price ?? 0 }}">
                                                                                 </div>
                                                                             </div>
 
@@ -403,7 +414,6 @@
                                                                             </button>
                                                                         </div>
                                                                     @empty
-                                                                        {{-- Row kosong default jika belum ada bundle items --}}
                                                                         <div
                                                                             class="bundle-item-row d-flex gap-3 align-items-center">
                                                                             <div
@@ -411,10 +421,12 @@
                                                                                 <span
                                                                                     class="text-muted fs-8 fw-bold bundle-number"
                                                                                     style="min-width: 18px;">1.</span>
+
                                                                                 <input type="text"
                                                                                     name="bundle_items[0][name]"
                                                                                     class="form-control form-control-flush form-control-sm bg-transparent border-0 p-0"
-                                                                                    placeholder="Nama komponen">
+                                                                                    placeholder="Nama komponen, contoh: Kabel HDMI">
+
                                                                                 <div
                                                                                     class="d-flex align-items-center gap-1 flex-shrink-0">
                                                                                     <input type="number"
@@ -426,8 +438,10 @@
                                                                                     <span
                                                                                         class="text-muted fs-8">pcs</span>
                                                                                 </div>
+
                                                                                 <div class="border-start border-gray-300 mx-1"
                                                                                     style="height: 20px;"></div>
+
                                                                                 <div
                                                                                     class="d-flex align-items-center gap-1 flex-shrink-0">
                                                                                     <span
@@ -443,6 +457,7 @@
                                                                                         class="bundle-price-raw">
                                                                                 </div>
                                                                             </div>
+
                                                                             <button type="button"
                                                                                 class="btn btn-sm btn-icon btn-light-danger flex-shrink-0 remove-bundle-item">
                                                                                 <i class="ki-duotone ki-trash fs-4">

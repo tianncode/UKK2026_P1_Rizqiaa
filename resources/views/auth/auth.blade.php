@@ -18,7 +18,7 @@ License: For each use you must have a valid license purchased only from above li
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Bold | Bootstrap 5 HTML Admin Dashboard Theme by KeenThemes</title>
+    <title>UKK 2026 P1-Rizqia</title>
     <meta charset="utf-8" />
     <meta name="description"
         content="Bold admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
