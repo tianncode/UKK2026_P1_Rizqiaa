@@ -11,11 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('unit_conditions', function (Blueprint $table) {
-            $table->foreign('return_id')
-                ->references('id')->on('returns')
-                ->onDelete('cascade');
-        });
+        //
     }
 
     /**

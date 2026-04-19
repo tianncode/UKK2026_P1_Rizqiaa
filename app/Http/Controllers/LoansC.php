@@ -140,7 +140,6 @@ class LoansC extends Controller
 
   public function monitoring(Request $request)
   {
-    // ── Statistik ─────────────────────────────────────────────────────
     $stats = [
       'total'    => Loans::count(),
       'pending'  => Loans::where('status', 'pending')->count(),
@@ -153,11 +152,14 @@ class LoansC extends Controller
         ->count(),
     ];
 
-    // ── Query dengan filter ───────────────────────────────────────────
-    $query = Loans::with(['tool', 'user.detail'])->latest();
+    $query = Loans::with(['tool', 'user.detail'])
+      ->whereNotIn('status', ['pending_return', 'returned']) // ⬅️
+      ->latest();
 
     if ($request->filled('status')) {
-      $query->where('status', $request->status);
+      if (!in_array($request->status, ['pending_return', 'returned'])) { // ⬅️
+        $query->where('status', $request->status);
+      }
     }
 
     if ($request->filled('search')) {
@@ -166,8 +168,7 @@ class LoansC extends Controller
         $q->where('loan_code', 'like', "%{$search}%")
           ->orWhereHas(
             'user.detail',
-            fn($q) =>
-            $q->where('name', 'like', "%{$search}%")
+            fn($q) => $q->where('name', 'like', "%{$search}%")
           );
       });
     }
@@ -181,7 +182,6 @@ class LoansC extends Controller
 
     $loans = $query->paginate(15)->withQueryString();
 
-    // ── Loan terlambat (5 teratas untuk alert) ────────────────────────
     $overdueLoans = Loans::with(['user.detail', 'tool'])
       ->where('status', 'approved')
       ->where('due_date', '<', Carbon::today())
@@ -192,7 +192,6 @@ class LoansC extends Controller
     return view('management-loans.monitoring', compact('stats', 'loans', 'overdueLoans'));
   }
 
-  // ── Method approve ────────────────────────────────────────────────────────
   public function approve(Request $request, $id)
   {
     $loan = Loans::where('status', 'pending')->findOrFail($id);
@@ -208,7 +207,6 @@ class LoansC extends Controller
     return redirect()->back()->with('success', "Peminjaman #{$loan->loan_code} berhasil di-approve.");
   }
 
-  // ── Method reject ─────────────────────────────────────────────────────────
   public function reject(Request $request, $id)
   {
     $request->validate(['notes' => 'nullable|string|max:500']);
@@ -228,12 +226,23 @@ class LoansC extends Controller
 
   public function show()
   {
-    $loans = Loans::with(['tool', 'user'])
+    $loans = Loans::with(['tool', 'user', 'unit'])
       ->where('user_id', Auth::id())
+      ->whereNotIn('status', ['returned', 'cancelled', 'pending_return']) // ✅ hapus 'rejected'
       ->latest()
       ->first();
 
-
     return view('management-loans.show', compact('loans'));
+  }
+
+  public function history()
+  {
+    $loans = Loans::with(['tool', 'unit', 'return.unitConditions'])
+      ->where('user_id', Auth::id())
+      ->whereIn('status', ['returned', 'rejected', 'cancelled'])
+      ->latest()
+      ->paginate(10);
+
+    return view('management-loans.history', compact('loans'));
   }
 }

@@ -30,4 +30,20 @@ class ActivityLogs extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // ── Scope helper ────────────────────────────────
+    public function scopeModule($query, string $module)
+    {
+        return $query->where('module', $module);
+    }
+
+    public function scopeAction($query, string $action)
+    {
+        return $query->where('action', $action);
+    }
+
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', today());
+    }
 }

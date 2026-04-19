@@ -55,4 +55,5 @@ class ToolUnits extends Model
     {
         return $this->status === self::STATUS_AVAILABLE;
     }
+
 }

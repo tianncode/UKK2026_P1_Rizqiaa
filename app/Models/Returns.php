@@ -14,7 +14,6 @@ class Returns extends Model
     protected $fillable = [
         'loan_id',
         'employee_id',
-        'condition_id',
         'return_date',
         'late_days',
         'notes',
@@ -30,7 +29,7 @@ class Returns extends Model
      */
     public function loan()
     {
-        return $this->belongsTo(Loans::class);
+        return $this->belongsTo(Loans::class , 'loan_id');
     }
 
     /**

@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->role === 'employee'; // Sesuaikan dengan sistem role Anda
     }
+
+    public function violations()
+    {
+        return $this->hasMany(Violations::class, 'user_id');
+    }
 }

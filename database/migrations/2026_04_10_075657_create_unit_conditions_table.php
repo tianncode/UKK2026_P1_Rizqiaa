@@ -11,12 +11,13 @@ return new class extends Migration
         Schema::create('unit_conditions', function (Blueprint $table) {
             $table->id();
             $table->string('unit_code', 255);
-            $table->foreignId('return_id')->nullable();
+            $table->unsignedBigInteger('return_id')->nullable();
             $table->enum('conditions', ['good', 'minor', 'damaged', 'lost'])->default('good');
             $table->text('notes')->nullable();
             $table->timestamp('recorded_at')->useCurrent();
 
             $table->foreign('unit_code')->references('code')->on('tool_units')->cascadeOnDelete();
+            // ⬅️ FK return_id dihapus dari sini
         });
     }
 

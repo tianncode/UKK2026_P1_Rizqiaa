@@ -26,6 +26,21 @@
                 <div class="alert alert-info">
                     Kamu belum memiliki pengajuan peminjaman.
                 </div>
+            @elseif ($loans->status === 'rejected')
+                <div class="alert alert-danger d-flex align-items-center gap-3">
+                    <i class="ki-duotone ki-cross-circle fs-2tx text-danger">
+                        <span class="path1"></span><span class="path2"></span>
+                    </i>
+                    <div>
+                        <h5 class="mb-1 text-danger">Pengajuan Ditolak</h5>
+                        <span class="fs-7 text-gray-700">
+                            Pengajuan peminjaman kamu telah ditolak.
+                            @if ($loans->notes)
+                                Alasan: <strong>{{ $loans->notes }}</strong>
+                            @endif
+                        </span>
+                    </div>
+                </div>
             @endif
 
             @if ($loans)

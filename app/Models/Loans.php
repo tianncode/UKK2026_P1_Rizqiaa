@@ -83,7 +83,7 @@ class Loans extends Model
    */
   public function return()
   {
-    return $this->hasOne(Returns::class);
+    return $this->hasOne(Returns::class, 'loan_id');
   }
 
   // public function violations()
@@ -128,5 +128,10 @@ class Loans extends Model
         $q->where('loan_date', '<=', $returnDate)
           ->where('due_date', '>=', $borrowDate);
       });
+  }
+
+  public function violations()
+  {
+    return $this->hasMany(Violations::class, 'loan_id');
   }
 }

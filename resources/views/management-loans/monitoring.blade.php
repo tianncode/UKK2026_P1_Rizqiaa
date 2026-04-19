@@ -275,13 +275,14 @@
                                             <div class="d-flex justify-content-end gap-2">
 
                                                 {{-- Detail --}}
-                                                <a href="{{ route('loans.monitoring.show', $loan->id) }}"
-                                                    class="btn btn-icon btn-light btn-sm" title="Detail">
+                                                <button type="button" class="btn btn-icon btn-light btn-sm"
+                                                    title="Detail" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDetailPeminjaman{{ $loan->id }}">
                                                     <i class="ki-duotone ki-eye fs-4 text-gray-600">
                                                         <span class="path1"></span><span class="path2"></span><span
                                                             class="path3"></span>
                                                     </i>
-                                                </a>
+                                                </button>
 
                                                 @if ($loan->status === 'pending')
                                                     {{-- Approve --}}
@@ -325,9 +326,246 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        @foreach ($loans as $loan)
+                            <div class="modal fade" id="modalDetailPeminjaman{{ $loan->id }}" tabindex="-1"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered mw-800px">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="symbol symbol-40px">
+                                                    <span class="symbol-label bg-light-primary">
+                                                        <i class="ki-duotone ki-calendar-add fs-2 text-primary">
+                                                            <span class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <h2 class="fw-bold mb-0">Detail Peminjaman</h2>
+                                                    <span
+                                                        class="text-muted fs-8">#LN-{{ str_pad($loan->id, 4, '0', STR_PAD_LEFT) }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center gap-3">
+                                                @php
+                                                    $statusMap = [
+                                                        'pending' => [
+                                                            'label' => 'Menunggu',
+                                                            'class' => 'badge-light-warning',
+                                                        ],
+                                                        'approved' => [
+                                                            'label' => 'Disetujui',
+                                                            'class' => 'badge-light-success',
+                                                        ],
+                                                        'rejected' => [
+                                                            'label' => 'Ditolak',
+                                                            'class' => 'badge-light-danger',
+                                                        ],
+                                                        'returned' => [
+                                                            'label' => 'Dikembalikan',
+                                                            'class' => 'badge-light-info',
+                                                        ],
+                                                        'active' => [
+                                                            'label' => 'Aktif',
+                                                            'class' => 'badge-light-primary',
+                                                        ],
+                                                    ];
+                                                    $s = $statusMap[$loan->status] ?? [
+                                                        'label' => $loan->status,
+                                                        'class' => 'badge-light-secondary',
+                                                    ];
+                                                @endphp
+                                                <span class="badge {{ $s['class'] }} fs-7">{{ $s['label'] }}</span>
+                                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span
+                                                            class="path2"></span></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-body px-7 py-8">
+
+                                            {{-- Tool Info --}}
+                                            <div class="d-flex align-items-center gap-4 p-5 rounded mb-6"
+                                                style="background: var(--bs-gray-100);">
+                                                <div class="symbol symbol-50px flex-shrink-0">
+                                                    <span class="symbol-label bg-light-primary text-primary fw-bold fs-4">
+                                                        {{ strtoupper(substr($loan->tool->name ?? 'NA', 0, 2)) }}
+                                                    </span>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="fw-bold text-gray-800 fs-6 mb-1">
+                                                        {{ $loan->tool->name ?? '-' }}</div>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span
+                                                            class="text-muted fs-8">#TL-{{ str_pad($loan->tool->id ?? 0, 3, '0', STR_PAD_LEFT) }}</span>
+                                                        <span class="bullet bullet-dot bg-gray-400"></span>
+                                                        <span class="text-muted fs-8">Unit: <strong
+                                                                class="text-gray-700">{{ $loan->unit->code ?? '-' }}</strong></span>
+                                                    </div>
+                                                </div>
+                                                @if (($loan->tool->item_type ?? 'single') === 'bundle')
+                                                    <span class="badge badge-light-warning fs-8">Bundle</span>
+                                                @else
+                                                    <span class="badge badge-light-success fs-8">Single</span>
+                                                @endif
+                                            </div>
+
+                                            {{-- Date Grid --}}
+                                            <div class="row g-4 mb-6">
+                                                <div class="col-6 col-md-3">
+                                                    <div
+                                                        class="d-flex flex-column p-4 rounded border border-dashed border-gray-300 h-100">
+                                                        <span class="text-muted fs-8 mb-1">Tanggal Pinjam</span>
+                                                        <span
+                                                            class="fw-bold text-gray-800 fs-7">{{ $loan->loan_date?->format('d M Y') ?? '-' }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3">
+                                                    <div
+                                                        class="d-flex flex-column p-4 rounded border border-dashed border-gray-300 h-100">
+                                                        <span class="text-muted fs-8 mb-1">Rencana Kembali</span>
+                                                        <span
+                                                            class="fw-bold text-gray-800 fs-7">{{ $loan->due_date?->format('d M Y') ?? '-' }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3">
+                                                    <div
+                                                        class="d-flex flex-column p-4 rounded border border-dashed border-gray-300 h-100">
+                                                        <span class="text-muted fs-8 mb-1">Durasi</span>
+                                                        <span class="fw-bold text-gray-800 fs-7">
+                                                            {{ $loan->loan_date && $loan->due_date ? $loan->loan_date->diffInDays($loan->due_date) . ' Hari' : '-' }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3">
+                                                    <div
+                                                        class="d-flex flex-column p-4 rounded border border-dashed border-gray-300 h-100">
+                                                        <span class="text-muted fs-8 mb-1">Diajukan</span>
+                                                        <span
+                                                            class="fw-bold text-gray-800 fs-7">{{ $loan->created_at->format('d M Y, H:i') }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{-- Profil Peminjam --}}
+                                            <div class="d-flex align-items-center mb-5">
+                                                <span
+                                                    class="fw-bold text-gray-500 fs-8 text-uppercase ls-1 me-3 text-nowrap">Profil
+                                                    Peminjam</span>
+                                                <div class="flex-grow-1 border-bottom border-dashed border-gray-300"></div>
+                                            </div>
+
+                                            <div
+                                                class="d-flex align-items-center gap-4 p-5 rounded border border-dashed border-gray-300 mb-5">
+                                                <div class="symbol symbol-50px flex-shrink-0">
+                                                    <span class="symbol-label bg-light-success text-success fw-bold fs-5">
+                                                        {{ strtoupper(substr($loan->user->detail->name ?? ($loan->user->name ?? 'NA'), 0, 2)) }}
+                                                    </span>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="fw-bold text-gray-800 fs-6 mb-1">
+                                                        {{ $loan->user->detail->name ?? ($loan->user->name ?? '-') }}</div>
+                                                    <span
+                                                        class="badge badge-light-info fs-8">{{ ucfirst($loan->user->role ?? 'Pengguna') }}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3 mb-6">
+                                                <div class="col-md-6">
+                                                    <div class="d-flex align-items-center gap-3 p-4 rounded"
+                                                        style="background: var(--bs-gray-100);">
+                                                        <i class="ki-duotone ki-sms fs-3 text-gray-500"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        <div>
+                                                            <div class="text-muted fs-8 mb-1">Email</div>
+                                                            <div class="fw-semibold text-gray-700 fs-7">
+                                                                {{ $loan->user->email ?? '-' }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="d-flex align-items-center gap-3 p-4 rounded"
+                                                        style="background: var(--bs-gray-100);">
+                                                        <i class="ki-duotone ki-phone fs-3 text-gray-500"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        <div>
+                                                            <div class="text-muted fs-8 mb-1">No. Telepon</div>
+                                                            <div class="fw-semibold text-gray-700 fs-7">
+                                                                {{ $loan->user->detail->no_hp ?? '-' }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{-- Keperluan & Catatan --}}
+                                            <div class="d-flex align-items-center mb-5">
+                                                <span
+                                                    class="fw-bold text-gray-500 fs-8 text-uppercase ls-1 me-3 text-nowrap">Keperluan
+                                                    & Catatan</span>
+                                                <div class="flex-grow-1 border-bottom border-dashed border-gray-300"></div>
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <div class="text-muted fs-8 mb-2">Keperluan</div>
+                                                <div class="text-gray-800 fs-7 fw-semibold">{{ $loan->purpose ?? '-' }}
+                                                </div>
+                                            </div>
+
+                                            @if ($loan->notes)
+                                                <div class="mb-2">
+                                                    <div class="text-muted fs-8 mb-2">Catatan Tambahan</div>
+                                                    <div
+                                                        class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-4">
+                                                        <i class="ki-duotone ki-information fs-2 text-warning me-3">
+                                                            <span class="path1"></span><span class="path2"></span><span
+                                                                class="path3"></span>
+                                                        </i>
+                                                        <div class="text-gray-700 fs-7">{{ $loan->notes }}</div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                        </div>
+
+                                        <div
+                                            class="modal-footer py-4 px-7 border-top border-gray-200 d-flex justify-content-between">
+                                            <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">
+                                                <i class="ki-duotone ki-cross fs-4"><span class="path1"></span><span
+                                                        class="path2"></span></i>
+                                                Tutup
+                                            </button>
+
+                                            <div class="d-flex gap-2">
+                                                <button type="button" class="btn btn-sm btn-success"
+                                                    data-bs-dismiss="modal" data-bs-toggle="modal"
+                                                    data-bs-target="#approveModal" data-loan-id="{{ $loan->id }}"
+                                                    data-loan-code="{{ $loan->loan_code }}">
+                                                    <i class="ki-duotone ki-check-circle fs-4"><span
+                                                            class="path1"></span><span class="path2"></span></i>
+                                                    Setujui
+                                                </button>
+
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    data-bs-dismiss="modal" data-bs-toggle="modal"
+                                                    data-bs-target="#rejectModal" data-loan-id="{{ $loan->id }}"
+                                                    data-loan-code="{{ $loan->loan_code }}">
+                                                    <i class="ki-duotone ki-cross-circle fs-4"><span
+                                                            class="path1"></span><span class="path2"></span></i>
+                                                    Tolak
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
 
-                    {{-- Pagination --}}
                     @if ($loans->hasPages())
                         <div class="d-flex justify-content-between align-items-center pt-5">
                             <div class="text-muted fs-7">
@@ -338,14 +576,10 @@
                         </div>
                     @endif
                 </div>
-
             </div>
-            {{-- end card --}}
-
         </div>
     </div>
 
-    {{-- ══ Modal Reject ════════════════════════════════════════════════════════ --}}
     <div class="modal fade" id="rejectModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered mw-500px">
             <div class="modal-content">
@@ -391,17 +625,16 @@
         </div>
     </div>
 
-    @push('scripts')
-        <script>
-            const rejectModal = document.getElementById('rejectModal');
-            rejectModal.addEventListener('show.bs.modal', function(e) {
-                const btn = e.relatedTarget;
-                const loanId = btn.dataset.loanId;
-                const loanCode = btn.dataset.loanCode;
-                document.getElementById('rejectLoanCode').textContent = loanCode;
-                document.getElementById('rejectForm').action = `/management-loans/${loanId}/reject`;
-            });
-        </script>
-    @endpush
+    <script>
+        const rejectModal = document.getElementById('rejectModal');
+        rejectModal.addEventListener('show.bs.modal', function(e) {
+            const btn = e.relatedTarget;
+            const loanId = btn.dataset.loanId;
+            const loanCode = btn.dataset.loanCode;
+            document.getElementById('rejectLoanCode').textContent = loanCode;
+            document.getElementById('rejectForm').action = `/management-loans/${loanId}/reject`;
+        });
+    </script>
+
 
 @endsection

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ActivityLogC;
 use App\Http\Controllers\AuthC;
 use App\Http\Controllers\CategoriesC;
 use App\Http\Controllers\LoansC;
+use App\Http\Controllers\ReportC;
 use App\Http\Controllers\ReturnC;
 use App\Http\Controllers\ToolsC;
 use App\Http\Controllers\UnitConditionsC;
@@ -79,28 +81,35 @@ Route::prefix('management-alat/tabel')->name('tools.')->group(function () {
 
 Route::get('/daftar-alat', [ToolsC::class, 'daftar'])->name('tools.daftar');
 
-Route::prefix('management-loans/form')->name('loans.')->group(function () {
+Route::prefix('management-loans')->name('loans.')->group(function () {
     Route::get('/', [LoansC::class, 'index'])->name('index');
     Route::get('/create/{toolId}', [LoansC::class, 'create'])->name('form');
     Route::post('/store', [LoansC::class, 'store'])->name('store');
     Route::get('/view/{id}', [LoansC::class, 'view'])->name('view');
-    Route::put('/update/{id}', [LoansC::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [LoansC::class, 'delete'])->name('delete');
     Route::get('/monitoring', [LoansC::class, 'monitoring'])->name('monitoring');
     Route::get('/show', [LoansC::class, 'show'])->name('show');
     Route::post('/{id}/approve', [LoansC::class, 'approve'])->name('monitoring.approve');
     Route::post('/{id}/reject', [LoansC::class, 'reject'])->name('monitoring.reject');
+    Route::get('/history', [LoansC::class, 'history'])->name('history');
 });
 
-Route::prefix('management-return/form')->name('return.')->group(function () {
-    Route::get('/', [ReturnC::class, 'index'])->name('index');
-    Route::get('/create/{toolId}', [ReturnC::class, 'create'])->name('form');
+Route::prefix('management-return')->name('return.')->group(function () {
+    Route::get('/monitoring', [ReturnC::class, 'index'])->name('index');
     Route::post('/store', [ReturnC::class, 'store'])->name('store');
-    Route::get('/view/{id}', [ReturnC::class, 'view'])->name('view');
-    Route::put('/update/{id}', [ReturnC::class, 'update'])->name('update');
-    Route::delete('/delete/{id}', [ReturnC::class, 'delete'])->name('delete');
-    Route::get('/monitoring', [ReturnC::class, 'monitoring'])->name('monitoring');
     Route::get('/show', [ReturnC::class, 'show'])->name('show');
-    Route::post('/{id}/approve', [ReturnC::class, 'approve'])->name('monitoring.approve');
-    Route::post('/{id}/reject', [ReturnC::class, 'reject'])->name('monitoring.reject');
+    Route::post('/{loan}/process', [ReturnC::class, 'process'])->name('process');
+    Route::put('/{return}/verify', [ReturnC::class, 'verify'])->name('verify'); // ← tambahkan ini
 });
+
+Route::prefix('reports')->name('reports.')->group(function () {
+    Route::get('/', [ReportC::class, 'index'])->name('index');
+    Route::get('/export/{type}', [ReportC::class, 'export'])->name('export');
+
+    // Redirect URL lama ke tab yang sesuai
+    Route::get('/loans',      fn() => redirect()->route('reports.index', ['tab' => 'loans']));
+    Route::get('/returns',    fn() => redirect()->route('reports.index', ['tab' => 'returns']));
+    Route::get('/violations', fn() => redirect()->route('reports.index', ['tab' => 'violations']));
+    Route::get('/users',      fn() => redirect()->route('reports.index', ['tab' => 'users']));
+});
+
+Route::get('/activity-logs', [ActivityLogC::class, 'index'])->name('activity-logs.index');

@@ -25,7 +25,7 @@ class UnitConditionsC extends Controller
     $statusMap = [
       'good' => 'available',
       'maintenance' => 'maintenance',
-      'broken' => 'broken',
+      'broken' => 'damaged',
     ];
 
     // update status unit
