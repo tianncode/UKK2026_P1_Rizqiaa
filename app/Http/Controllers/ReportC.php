@@ -14,14 +14,12 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
 class ReportC extends Controller
 {
-  // ═══════════════════════════════════════════
-  // INDEX — Satu halaman dengan tab per laporan
-  // ═══════════════════════════════════════════
+
   public function index(Request $request)
   {
     $activeTab = $request->get('tab', 'loans');
 
-    // ── Stats global (untuk summary card atas) ──
+
     $dateFrom = $request->date_from ? Carbon::parse($request->date_from)->startOfDay() : null;
     $dateTo   = $request->date_to   ? Carbon::parse($request->date_to)->endOfDay()     : null;
 
@@ -45,13 +43,13 @@ class ReportC extends Controller
         ->sum('points'),
     ];
 
-    // ── Data per tab (hanya query tab aktif) ──
+
     $loans      = collect();
     $returns    = collect();
     $violations = collect();
     $users      = collect();
     $totalPoints = 0;
-    $sharedUsers = collect(); // untuk dropdown filter user
+    $sharedUsers = collect();
 
     if ($activeTab === 'loans') {
       $loans       = $this->queryLoans($request)->paginate(15)->withQueryString();
@@ -81,9 +79,7 @@ class ReportC extends Controller
     ));
   }
 
-  // ═══════════════════════════════════════════
-  // QUERY BUILDERS (reusable di index & export)
-  // ═══════════════════════════════════════════
+
   private function queryLoans(Request $request)
   {
     return Loans::with(['tool', 'user.detail', 'unit', 'return.unitConditions', 'violations'])
@@ -135,9 +131,7 @@ class ReportC extends Controller
       ->orderByDesc('penalty_points');
   }
 
-  // ═══════════════════════════════════════════
-  // EXPORT — entry point
-  // ═══════════════════════════════════════════
+
   public function export(Request $request, string $type)
   {
     $format = $request->format ?? 'xlsx';
@@ -244,9 +238,7 @@ class ReportC extends Controller
     };
   }
 
-  // ═══════════════════════════════════════════
-  // HELPER — Export XLSX
-  // ═══════════════════════════════════════════
+
   private function exportXlsx($data, string $filename, callable $rowMapper, array $headers)
   {
     $spreadsheet = new Spreadsheet();

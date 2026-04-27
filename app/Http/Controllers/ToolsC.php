@@ -6,6 +6,7 @@ use App\Models\BundleTools;
 use App\Models\Category;
 use App\Models\Returns;
 use App\Models\Tools;
+use App\Models\Violations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -277,7 +278,11 @@ class ToolsC extends Controller
       ->paginate(15);
     $categories = Category::orderBy('name')->get();
 
-    return view('management-alat.daftar', compact('tools', 'categories'));
+    $totalPoints = Violations::where('user_id', auth()->id())
+      ->sum('points');                                         
+    $canBorrow = $totalPoints <= 500;                        
+
+    return view('management-alat.daftar', compact('tools', 'categories', 'canBorrow', 'totalPoints'));
   }
 
   public function checkAvailability(Request $request, Tools $tool)

@@ -98,14 +98,13 @@ Route::prefix('management-return')->name('return.')->group(function () {
     Route::post('/store', [ReturnC::class, 'store'])->name('store');
     Route::get('/show', [ReturnC::class, 'show'])->name('show');
     Route::post('/{loan}/process', [ReturnC::class, 'process'])->name('process');
-    Route::put('/{return}/verify', [ReturnC::class, 'verify'])->name('verify'); // ← tambahkan ini
+    Route::put('/{return}/verify', [ReturnC::class, 'verify'])->name('verify');
 });
 
 Route::prefix('reports')->name('reports.')->group(function () {
     Route::get('/', [ReportC::class, 'index'])->name('index');
     Route::get('/export/{type}', [ReportC::class, 'export'])->name('export');
 
-    // Redirect URL lama ke tab yang sesuai
     Route::get('/loans',      fn() => redirect()->route('reports.index', ['tab' => 'loans']));
     Route::get('/returns',    fn() => redirect()->route('reports.index', ['tab' => 'returns']));
     Route::get('/violations', fn() => redirect()->route('reports.index', ['tab' => 'violations']));

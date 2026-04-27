@@ -126,11 +126,15 @@
                                                                             class="symbol-label
                                                                             @if ($unit->status == 'available') bg-light-success
                                                                             @elseif ($unit->status == 'borrowed') bg-light-warning
+                                                                            @elseif ($unit->status == 'returned') bg-light-primary
+                                                                            @elseif ($unit->status == 'overdue') bg-light-danger
                                                                             @else bg-light-danger @endif">
                                                                             <i
                                                                                 class="ki-duotone ki-wrench fs-3
                                                                                 @if ($unit->status == 'available') text-success
                                                                                 @elseif ($unit->status == 'borrowed') text-warning
+                                                                                @elseif ($unit->status == 'returned') bg-light-primary
+                                                                                @elseif ($unit->status == 'overdue') bg-light-danger
                                                                                 @else text-danger @endif">
                                                                                 <span class="path1"></span>
                                                                                 <span class="path2"></span>
@@ -148,6 +152,11 @@
                                                                     <span class="badge badge-light-success">Tersedia</span>
                                                                 @elseif ($unit->status == 'borrowed')
                                                                     <span class="badge badge-light-warning">Dipinjam</span>
+                                                                @elseif ($unit->status == 'returned')
+                                                                    <span
+                                                                        class="badge badge-light-primary">Dikembalikan</span>
+                                                                @elseif ($unit->status == 'overdue')
+                                                                    <span class="badge badge-light-danger">Terlambat</span>
                                                                 @else
                                                                     <span
                                                                         class="badge badge-light-danger">{{ ucfirst($unit->status) }}</span>
@@ -439,6 +448,8 @@
                                     $total = $tool->units?->count() ?? 0;
                                     $tersedia = $tool->units?->where('status', 'available')->count() ?? 0;
                                     $dipinjam = $tool->units?->where('status', 'borrowed')->count() ?? 0;
+                                    $dikembalikan = $tool->units?->where('status', 'returned')->count() ?? 0;
+                                    $terlambat = $tool->units?->where('status', 'overdue')->count() ?? 0;
                                     $rusak = $total - $tersedia - $dipinjam;
                                     $pctTersedia = $total > 0 ? round(($tersedia / $total) * 100) : 0;
                                 @endphp
@@ -474,6 +485,20 @@
                                             <span class="text-gray-600 fs-7">Dipinjam</span>
                                         </div>
                                         <span class="fw-bold text-warning fs-7">{{ $dipinjam }} Unit</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-primary"></span>
+                                            <span class="text-gray-600 fs-7">Dikembalikan</span>
+                                        </div>
+                                        <span class="fw-bold text-primary fs-7">{{ $dikembalikan }} Unit</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-danger"></span>
+                                            <span class="text-gray-600 fs-7">Terlambat</span>
+                                        </div>
+                                        <span class="fw-bold text-danger fs-7">{{ $terlambat }} Unit</span>
                                     </div>
                                     @if ($rusak > 0)
                                         <div class="d-flex justify-content-between align-items-center">

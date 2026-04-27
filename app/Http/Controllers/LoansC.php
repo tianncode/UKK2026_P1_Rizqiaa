@@ -17,10 +17,8 @@ class LoansC extends Controller
 {
   public function index()
   {
-    // data loan
     $loans = Loans::with(['tool', 'user'])->latest()->get();
 
-    // hanya tool single
     $singleTools = Tools::where('item_type', 'single')
       ->with('units')
       ->get();
@@ -37,7 +35,6 @@ class LoansC extends Controller
 
   public function create($toolId)
   {
-    // Get tool dengan semua relasi
     $tool = Tools::with([
       'category',
       'bundleItems.tools',
@@ -45,7 +42,6 @@ class LoansC extends Controller
       'units.tool'
     ])->findOrFail($toolId);
 
-    // Get data returns untuk dropdown
     $returns = Returns::latest()->get();
 
     return view('management-loans.form', compact('tool', 'returns'));
@@ -53,7 +49,6 @@ class LoansC extends Controller
 
   public function store(Request $request)
   {
-    // ── 1. Validasi ──────────────────────────────────────────────────────
     $validated = $request->validate([
       'tool_id'    => ['required', 'integer', 'exists:tools,id'],
       'unit_code'  => ['required', 'string', 'exists:tool_units,code'],
@@ -65,14 +60,12 @@ class LoansC extends Controller
 
     $user = Auth::user();
 
-    // ── 2. Cek apakah user diblokir ──────────────────────────────────────
     if ($user->is_restricted) {
       return back()
         ->withInput()
         ->with('error', 'Akun Anda sedang dibatasi. Selesaikan pelanggaran aktif terlebih dahulu.');
     }
 
-    // ── 3. Cek ulang ketersediaan unit (guard dari race-condition) ────────
     $unitBusy = Loans::where('unit_code', $validated['unit_code'])
       ->conflictingDates($validated['loan_date'], $validated['due_date'])
       ->exists();
@@ -83,13 +76,11 @@ class LoansC extends Controller
         ->with('error', 'Unit yang Anda pilih baru saja dipinjam oleh pengguna lain. Silakan pilih unit lain atau ubah tanggal.');
     }
 
-    // Pastikan unit yang dipilih benar-benar milik tool yang dimaksud
     $unit = ToolUnits::where('code', $validated['unit_code'])
       ->where('tool_id', $validated['tool_id'])
       ->where('status', ToolUnits::STATUS_AVAILABLE)
       ->firstOrFail();
 
-    // ── 4. Simpan dalam transaksi ─────────────────────────────────────────
     $loan = DB::transaction(function () use ($validated, $user) {
       return Loans::create([
         'user_id'   => $user->id,
@@ -100,11 +91,9 @@ class LoansC extends Controller
         'purpose'   => $validated['purpose'],
         'notes'     => $validated['notes'] ?? null,
         'status'    => Loans::STATUS_PENDING,
-        // loan_code di-generate otomatis via model booted()
       ]);
     });
 
-    // ── 5. Log aktivitas ──────────────────────────────────────────────────
     ActivityLogs::create([
       'user_id'     => $user->id,
       'action'      => 'create',
@@ -114,7 +103,6 @@ class LoansC extends Controller
       'ip_address'  => $request->ip(),
     ]);
 
-    // ── 6. Redirect ───────────────────────────────────────────────────────
     return redirect()
       ->route('loans.show', $loan)
       ->with('success', "Pengajuan peminjaman <strong>{$loan->loan_code}</strong> berhasil dikirim. Tunggu konfirmasi dari petugas.");
@@ -200,7 +188,6 @@ class LoansC extends Controller
       'employee_id' => Auth::id(),
     ]);
 
-    // ← Update status unit menjadi borrowed
     ToolUnits::where('id', $loan->tool_id)
       ->update(['status' => 'borrowed']);
 
@@ -217,7 +204,6 @@ class LoansC extends Controller
       'notes'       => $request->notes,
     ]);
 
-    // Saat returned/canceled → kembalikan unit ke available
     ToolUnits::where('id', $loan->tool_id)
       ->update(['status' => 'available']);
 
@@ -228,7 +214,7 @@ class LoansC extends Controller
   {
     $loans = Loans::with(['tool', 'user', 'unit'])
       ->where('user_id', Auth::id())
-      ->whereNotIn('status', ['returned', 'cancelled', 'pending_return']) // ✅ hapus 'rejected'
+      ->whereNotIn('status', ['returned', 'cancelled', 'pending_return'])
       ->latest()
       ->first();
 

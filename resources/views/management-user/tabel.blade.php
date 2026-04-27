@@ -652,7 +652,6 @@
                                                 data-dropdown-parent="#kt_modal_add_user">
 
                                                 <option></option>
-                                                <option value="admin">Admin</option>
                                                 <option value="employee">Employee</option>
                                                 <option value="user">User</option>
                                             </select>

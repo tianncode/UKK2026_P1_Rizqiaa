@@ -23,30 +23,19 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class, 'user_id');
     }
 
-    // Tambahkan method ini di Model User
-
-    /**
-     * Relasi ke Loans (sebagai employee)
-     */
     public function loans()
     {
         return $this->hasMany(Loans::class, 'employee_id');
     }
 
-    /**
-     * Relasi ke Returns (sebagai employee)
-     */
     public function returns()
     {
         return $this->hasMany(Returns::class, 'employee_id');
     }
 
-    /**
-     * Check if user is employee
-     */
     public function isEmployee()
     {
-        return $this->role === 'employee'; // Sesuaikan dengan sistem role Anda
+        return $this->role === 'employee';
     }
 
     public function violations()

@@ -26,13 +26,11 @@ class Appeals extends Model
         'reviewed_at' => 'datetime',
     ];
 
-    // Relasi ke users (pemohon)
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Relasi ke users (yang mereview)
     public function reviewer()
     {
         return $this->belongsTo(User::class, 'reviewed_by');

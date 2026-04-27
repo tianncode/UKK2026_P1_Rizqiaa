@@ -40,7 +40,6 @@ class AuthC extends Controller
     ])->onlyInput('email');
   }
 
-  // 🔥 Logout
   public function logout(Request $request)
   {
     Auth::logout();

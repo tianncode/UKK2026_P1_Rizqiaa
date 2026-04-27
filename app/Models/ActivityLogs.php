@@ -25,13 +25,11 @@ class ActivityLogs extends Model
         'created_at' => 'datetime',
     ];
 
-    // Relasi ke users
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // ── Scope helper ────────────────────────────────
     public function scopeModule($query, string $module)
     {
         return $query->where('module', $module);

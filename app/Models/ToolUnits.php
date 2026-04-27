@@ -17,6 +17,8 @@ class ToolUnits extends Model
     const STATUS_BORROWED  = 'borrowed';
     const STATUS_DAMAGED   = 'damaged';
     const STATUS_LOST      = 'lost';
+    const STATUS_RETURNED  = 'returned';
+    const STATUS_OVERDUE   = 'overdue';
 
     public function tool()
     {

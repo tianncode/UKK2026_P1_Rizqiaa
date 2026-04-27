@@ -9,15 +9,7 @@ use Illuminate\Support\Facades\Request;
 
 class ActivityLogService
 {
-  /**
-   * Catat aktivitas.
-   *
-   * @param  string      $action      Aksi: login, logout, create, update, delete, approve, reject, export, restore
-   * @param  string      $module      Modul: auth, loans, returns, violations, tools, users, categories, reports
-   * @param  string      $description Deskripsi singkat yang mudah dibaca
-   * @param  array|null  $meta        Data tambahan (opsional), disimpan sebagai JSON
-   * @param  int|null    $userId      Override user (default: user yang sedang login)
-   */
+
   public static function log(
     string $action,
     string $module,
@@ -36,12 +28,11 @@ class ActivityLogService
         'created_at'  => now(),
       ]);
     } catch (\Throwable $e) {
-      // Jangan sampai gagal log merusak flow utama
       logger()->error('ActivityLog gagal disimpan: ' . $e->getMessage());
     }
   }
 
-  // ── Shortcut per aksi ───────────────────────────
+
 
   public static function login(int $userId): void
   {

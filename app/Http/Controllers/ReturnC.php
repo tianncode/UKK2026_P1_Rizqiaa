@@ -65,7 +65,7 @@ class ReturnC extends Controller
     $request->validate([
       'loan_id' => ['required', 'integer', 'exists:loans,id', function ($attribute, $value, $fail) {
         $loan = Loans::where('id', $value)
-          ->where('user_id', auth()->id())
+          ->where('user_id', Auth::id())
           ->where('status', 'approved')
           ->first();
         if (!$loan) {
@@ -86,7 +86,7 @@ class ReturnC extends Controller
     Returns::create([
       'loan_id'     => $loan->id,
       'employee_id' => $loan->employee_id,
-      'return_date' => now(), // ✅ tambahkan ini
+      'return_date' => now(),
       'notes'       => $request->notes,
     ]);
 
@@ -140,7 +140,7 @@ class ReturnC extends Controller
       'return_notes'    => 'nullable|string|max:500',
     ]);
 
-    $condition  = $request->input('condition'); // ⬅️ fix
+    $condition  = $request->input('condition');
     $dueDate    = Carbon::parse($loan->due_date);
     $returnDate = Carbon::parse($request->return_date);
     $lateDays   = $returnDate->gt($dueDate) ? $returnDate->diffInDays($dueDate) : 0;
@@ -154,7 +154,6 @@ class ReturnC extends Controller
       'notes'       => $request->return_notes,
     ]);
 
-    // ⬅️ hapus 'code', ganti $request->condition → $condition
     UnitConditions::create([
       'unit_code'   => $loan->unit_code,
       'return_id'   => $return->id,
@@ -176,13 +175,13 @@ class ReturnC extends Controller
       ]);
     }
 
-    if (in_array($condition, ['damaged', 'lost'])) { // ⬅️
+    if (in_array($condition, ['damaged', 'lost'])) {
       Violations::create([
         'loan_id'     => $loan->id,
         'user_id'     => $loan->user_id,
         'return_id'   => $return->id,
         'type'        => $condition, // ⬅️
-        'points'      => $condition === 'lost' ? 50 : 20, // ⬅️
+        'points'      => $condition === 'lost' ? 50 : 20,
         'days_late'   => 0,
         'description' => $request->condition_notes,
         'status'      => 'pending',
@@ -192,7 +191,7 @@ class ReturnC extends Controller
     $loan->update(['status' => 'returned']);
 
     ToolUnits::where('code', $loan->unit_code)
-      ->update(['status' => 'available']);
+      ->update(['status' => 'available', 'lost']);
 
     return redirect()->route('return.index')
       ->with('success', 'Pengembalian berhasil diproses!');
@@ -264,7 +263,7 @@ class ReturnC extends Controller
     $loan->update(['status' => 'returned']);
 
     ToolUnits::where('code', $loan->unit_code)
-      ->update(['status' => 'available']);
+      ->update(['status' => $condition === 'lost' ? 'lost' : 'available']);
 
     return back()->with('success', 'Pengembalian berhasil diverifikasi.');
   }

@@ -76,17 +76,6 @@ class AdminSeeder extends Seeder
             ],
         ]);
 
-        // DB::table('app_configs')->insert([
-        //     [
-        //         'name' => "Peminjaman", // sementara integer
-        //         'late_point' => 10,
-        //         'broken_point' => 50,
-        //         'lost_point' => 100,
-        //         'late_fine' => 5,
-        //         'broken_fine' => 50,
-        //         'lost_fine' => 100,
-        //         'updated_at' => now(),
-        //     ],
-        // ]);
+
     }
 }

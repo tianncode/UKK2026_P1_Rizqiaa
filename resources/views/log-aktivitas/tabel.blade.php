@@ -351,14 +351,6 @@
                             </table>
                         </div>
 
-                        {{-- Pagination --}}
-                        <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
-                            <span class="text-muted fs-7">
-                                Menampilkan {{ $logs->firstItem() }}–{{ $logs->lastItem() }}
-                                dari {{ $logs->total() }} log
-                            </span>
-                            {{ $logs->withQueryString()->links() }}
-                        </div>
                     @endif
                 </div>
             </div>

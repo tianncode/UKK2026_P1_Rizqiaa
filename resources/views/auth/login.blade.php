@@ -19,7 +19,6 @@
             overflow: hidden;
         }
 
-        /* Animated background gradient */
         #kt_body::before {
             content: '';
             position: absolute;
@@ -54,7 +53,6 @@
             min-height: 90vh;
         }
 
-        /* Left side - Branding */
         .brand-side {
             background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             padding: 60px;

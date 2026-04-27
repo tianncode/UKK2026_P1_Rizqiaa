@@ -56,6 +56,21 @@
                     </select>
                 </div>
 
+                {{-- Warning Banner --}}
+                @if (!$canBorrow)
+                    <div
+                        style="display:flex;align-items:center;gap:10px;background:#fff3cd;border:1px solid #ffc107;border-left:4px solid #e53e3e;color:#7b341e;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:0.875rem;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            style="flex-shrink:0;color:#e53e3e;">
+                            <path
+                                d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+                                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Akun Anda memiliki <strong style="margin:0 3px;">{{ $totalPoints }} poin pelanggaran</strong>.
+                        Peminjaman alat dinonaktifkan hingga poin di bawah 500.
+                    </div>
+                @endif
+
                 {{-- Cards Grid --}}
                 <div class="cards-grid" id="cardsGrid">
                     @forelse ($tools as $tool)
@@ -106,7 +121,12 @@
 
                             {{-- Action --}}
                             <div class="card-action">
-                                @if ($availableUnits > 0)
+                                @if (!$canBorrow)
+                                    <span class="btn-pinjam disabled"
+                                        title="Poin pelanggaran melebihi batas ({{ $totalPoints }}/500)">
+                                        Diblokir
+                                    </span>
+                                @elseif ($availableUnits > 0)
                                     <a href="{{ route('loans.form', $tool->id) }}" class="btn-pinjam">
                                         <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                                             <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.6"

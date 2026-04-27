@@ -161,6 +161,12 @@
                                                                     <span class="badge badge-light-warning">Dipinjam</span>
                                                                 @elseif($unit->status == 'maintenance')
                                                                     <span class="badge badge-light-info">Maintenance</span>
+                                                                @elseif($unit->status == 'returned')
+                                                                    <span class="badge badge-light-primary">Returned</span>
+                                                                @elseif($unit->status == 'overdue')
+                                                                    <span class="badge badge-light-danger">overdue</span>
+                                                                @elseif($unit->status == 'lost')
+                                                                    <span class="badge badge-light-danger">Lost</span>
                                                                 @else
                                                                     <span class="badge badge-light-danger">Rusak</span>
                                                                 @endif
@@ -247,8 +253,7 @@
                                                                         <option value="">Pilih Status</option>
                                                                         <option value="available">Available</option>
                                                                         <option value="borrowed">Borrowed</option>
-                                                                        <option value="maintenance">Maintenance
-                                                                        </option>
+                                                                        <option value="maintenance">Maintenance</option>
                                                                         <option value="damaged">Damaged</option>
                                                                     </select>
                                                                 </div>
@@ -852,6 +857,15 @@
                                                                             <option value="damaged"
                                                                                 {{ $unit->status === 'damaged' ? 'selected' : '' }}>
                                                                                 Damaged</option>
+                                                                            <option value="returned"
+                                                                                {{ $unit->status === 'returned' ? 'selected' : '' }}>
+                                                                                Returned</option>
+                                                                            <option value="overdue"
+                                                                                {{ $unit->status === 'overdue' ? 'selected' : '' }}>
+                                                                                Overdue</option>
+                                                                            <option value="lost"
+                                                                                {{ $unit->status === 'lost' ? 'selected' : '' }}>
+                                                                                Lost</option>
                                                                         </select>
                                                                     </div>
 
@@ -975,6 +989,9 @@
                                     $total = $tool->units?->count() ?? 0;
                                     $tersedia = $tool->units?->where('status', 'available')->count() ?? 0;
                                     $dipinjam = $tool->units?->where('status', 'borrowed')->count() ?? 0;
+                                    $dikembalikan = $tool->units?->where('status', 'primary')->count() ?? 0;
+                                    $terlambat = $tool->units?->where('status', 'terlambat')->count() ?? 0;
+                                    $hilang = $tool->units?->where('status', 'hilang')->count() ?? 0;
                                     $rusak = $total - $tersedia - $dipinjam;
                                     $pctTersedia = $total > 0 ? round(($tersedia / $total) * 100) : 0;
                                 @endphp
@@ -1010,6 +1027,27 @@
                                             <span class="text-gray-600 fs-7">Dipinjam</span>
                                         </div>
                                         <span class="fw-bold text-warning fs-7">{{ $dipinjam }} Unit</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-primary"></span>
+                                            <span class="text-gray-600 fs-7">Dikembalikan</span>
+                                        </div>
+                                        <span class="fw-bold text-primary fs-7">{{ $dikembalikan }} Unit</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-danger"></span>
+                                            <span class="text-gray-600 fs-7">Terlambat</span>
+                                        </div>
+                                        <span class="fw-bold text-danger fs-7">{{ $terlambat }} Unit</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="bullet bullet-dot bg-danger"></span>
+                                            <span class="text-gray-600 fs-7">Hilang</span>
+                                        </div>
+                                        <span class="fw-bold text-danger fs-7">{{ $hilang }} Unit</span>
                                     </div>
                                     @if ($rusak > 0)
                                         <div class="d-flex justify-content-between align-items-center">

@@ -59,7 +59,7 @@ class UnitsC extends Controller
   {
     $request->validate([
       'tool_id' => 'required|exists:tools,id',
-      'status'  => 'required|in:available,borrowed,maintenance,damaged',
+      'status'  => 'required|in:available,borrowed,maintenance,damaged,returned,overdue,lost',
       'notes'   => 'nullable|string',
     ]);
 

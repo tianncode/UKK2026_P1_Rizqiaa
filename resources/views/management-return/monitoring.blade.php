@@ -289,7 +289,7 @@
 
                                                 $conditionBadge = match ($condition) {
                                                     'good' => ['badge-light-success', 'Baik'],
-                                                    'broken' => ['badge-light-danger', 'Rusak'], // ✅ was: 'damaged'
+                                                    'broken' => ['badge-light-danger', 'Rusak'],
                                                     'lost' => ['badge-light-dark', 'Hilang'],
                                                     'maintenance' => ['badge-light-warning', 'Perawatan'],
                                                     default => ['badge-light-secondary', 'Belum Dicek'],
@@ -305,7 +305,7 @@
                                             @php
                                                 $statusBadge = match ($return->loan->status ?? '') {
                                                     'pending_return' => 'badge-light-warning',
-                                                    'returned' => 'badge-light-success',
+                                                    'returned' => 'badge-light-primary',
                                                     default => 'badge-light-secondary',
                                                 };
                                             @endphp
